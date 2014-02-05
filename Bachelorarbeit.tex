@@ -1,0 +1,130 @@
+\documentclass[liststotoc,a4paper, 12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{ngerman}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{listings}
+\usepackage{color}
+
+
+\geometry{a4paper, top=25mm, left=25mm, right=25mm, bottom=25mm}
+
+\title{Bachelorarbeit}
+\author{Kevin Seidel \\ Studiengang Informatik \\ Matrikelnummer: 943147}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+	
+\includegraphics[scale=0.1]{pictures/uos_logo.png}\\
+\vspace*{1.5cm}
+\begin{Large}
+\textbf{Universität Osnabrück}
+\end{Large}
+
+\noindent\hrulefill
+\\[0.25cm]
+Fachbereich Informatik \\[3.5cm]
+\begin{large}\textsc{Bachelorarbeit}\end{large} \\[2cm]
+\begin{huge}\textbf{Indoor Positionierung mittels Bluetooth Low Energy} \end{huge} \\[1.5cm]
+Erstellt am 28.01.2014
+\\[3.5cm]
+\textbf{Vorgelegt von:} \\
+Kevin Seidel \\
+Falkenstraße 43 \\
+49124 Georgsmarienhütte \\
+keseidel@uni-osnabrueck.de
+\\[1cm]
+\textbf{Geprüft von:} \\
+Prof. Dr. Oliver Vornberger \\
+Prof. Dr. Elke Pulvermüller
+
+\end{center}
+\end{titlepage}
+
+
+\newpage
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\setcounter{secnumdepth}{-2}
+\section*{Kurzfassung}%
+\addcontentsline{toc}{section}{Kurzfassung}%
+
+\newpage
+
+\setuptoc{toc}{totoc}
+
+
+\tableofcontents
+
+
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\lstlistoflistings
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{secnumdepth}{2}
+
+
+\section{Danksagung}
+
+\section{Einleitung}
+\subsection{Motivation}
+\subsection{Ziele der Bachelorarbeit}
+
+\section{Technologien}
+
+\subsection{Bluetooth 4.0}
+\subsubsection{Bluetooth Low Energy}
+\subsubsection{iBeacons}
+
+\subsection{iOS und Xcode}
+
+\subsection{CoreLocation-Framework}
+\subsubsection{iBeacons-API}
+\subsubsection{Weitere APIs}
+
+\subsection{CoreData-Framework}
+
+
+\section{Werkzeuge}
+\subsection{Xcode}
+\subsection{Versionsverwaltung mit Git}
+\subsection{iPhone}
+
+\section{Daten und Messungen}
+\subsection{Mobile iBeacons}
+\subsection{Stationäre iBeacons}
+\subsection{Außenmessugen}
+\subsection{Innenraummessungen}
+
+\section{Umsetzung und Implementation}
+
+\subsection{Ansatz zur Positionbestimmung}
+\subsubsection{Trilateration}
+\subsubsection{Fingerprinting}
+
+\section{Fingerprinting}
+\subsection{Positionbestimmung}
+\subsubsection{Nearest-Neighbor-Verfahren}
+\subsubsection{Probabilistisch-Verfahren}
+
+\section{Fazit und Ausblick}
+
+\section{Literatur}
+
+
+
+\end{document}
