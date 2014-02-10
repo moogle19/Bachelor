@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pdflatex -shell-escape Bachelorarbeit.tex
+bibtex Bachelorarbeit
+pdflatex -shell-escape Bachelorarbeit.tex
+pdflatex -shell-escape Bachelorarbeit.tex

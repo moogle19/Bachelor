@@ -1,0 +1,159 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% latexklasse.tex
+%%
+%% Kapitel: Die Latex-Klasse agrosy.cls
+%% Hauptdokument: howto.tex
+%% Autor: Tobias Luksch
+%% Datum: Juli 2003
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Aufbau der \LaTeX -Vorlage}
+\label{chap:aufbau}
+Dieses Kapitel behandelt die zur Verfügung gestellte \LaTeX -Klasse
+\latexklasse\ und die aus ihrer Anwendung resultierende Struktur des
+Hauptdokumentes. Die wichtigsten Makros werden erläutert und ein paar
+Hinweise zum systematischen Aufbau der Arbeit gegeben.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Grundfunktionen des Hauptdokumentes}
+\label{sec:aufbau:hauptdoku}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Hauptdokument}\index{\latexklasse} Das Hauptdokument (englisch
+\emph{master file}), hält sich an die übliche Form eines \LaTeX
+-Dokumentes. Grundsätzlich kann das Hauptdokument dieser Dokumentation
+(\texttt{howto.tex}) als kommentiertes Beispiel herangezogen werden.
+Als Klasse ist im Kopf des Dokumentes (\verb|\documentclass{}|)
+\latexklasse\ anzugeben.
+Es folgen die üblichen Angaben zu Titel, Autor und Typ der Arbeit, im
+einzelnen \verb|\titel|, \verb|\autor|, \verb|\typ| (Bachelorarbeit,
+Diplomarbeit,\dots) und Felder für die Gutachter, die bei Abschlussarbeiten
+angegeben werden sollten. Dann bietet sich noch die Möglichkeit,
+eigene Makros zu definieren und \index{Bilder!Verzeichnisse}
+Verzeichnisse anzugeben, in denen nach Bildern gesucht werden soll
+(\verb|\graphicspath|).
+Anschließend beginnt der sichtbare Inhalt innerhalb der
+\verb|document|-Umbegung. Hier können bestimmte Makros verwendet werden:
+\begin{description}
+\item[$\backslash$maketitle] generiert die Titelseite mit Titel und
+  Autor der Arbeit
+\item[$\backslash$erklaerung] erstellt eine Seite, die aussagt, dass
+  der Autor die Arbeit selbständig verfasst und alle benutzten Quellen
+  angegeben hat. Diese Seite ist bei offiziellen Exemplaren vom Autoren zu 
+  unterschreiben.
+% \item[$\backslash$prefacesection] bietet die Möglichkeit, Zusammenfassung
+%   und Abstract einzufügen. Auch Danksagungen lassen sich damit erstellen.
+%   Als Beispiel sei auf die Quellen dieses Textes
+%   verwiesen.
+\item[$\backslash$tableofcontents] fügt das Inhaltsverzeichnis ein.
+\item[$\backslash$bibliography] erzeugt das Literaturverzeichnis. Als
+  Parameter wird die zu verwendende BibTex-Datei (ohne \verb|.bib|)
+  übergeben. Mehr zu Literaturhinweisen in
+  Kapitel~\ref{sec:floats:bib}.
+\end{description}
+%
+Bei längeren Arbeiten kann es sinnvoll sein, auch einen Index zu erstellen.
+Dazu sei auf die einschlägige \LaTeX-Literatur verwiesen.
+Tabelle~\ref{tab:dateien} gibt eine Übersicht der zur \LaTeX -Vorlage gehörenden Dateien.
+%
+\begin{table}
+  \centering
+  \caption{Die bereitgestellten Dateien mit einer kurzen Beschreibung.} \vskip 2mm
+  \begin{tabular}[c]{lp{10cm}}
+    \hline
+    \bf Dateiname & \bf Beschreibung \\
+    \hline 
+    \latexklasse & Die Klassendefinition beruhend auf scrreprt.cls \\
+    \texttt{howto.tex} & Die Hauptdatei dieser Dokumentation \\
+    \texttt{kapitel/} & Das Verzeichnis, in dem die Kapitel (in \texttt{tex}-Files) liegen\\
+    \texttt{literatur.bib} & Die Literaturliste zu diesem Dokument im BibTeX-Format \\
+    \texttt{beispiele.bib} & Kommentierte Beispieldatei zur BibTex-Datenbank \\
+    \texttt{algorithmen/} & Verzeichnis mit Style-Dateien und Dokumentation zum Einbau von Algorithmen \\
+%     \texttt{algorithms.ps, .tex} & Dokumentation zu den Algorithmus-Styles \\
+%    \texttt{makefile} & Makefile zur automatischen Generation des Dokuments \\
+    \hline
+  \end{tabular}
+%  \caption{Die bereitgestellten Dateien mit einer kurzen Beschreibung.}
+  \label{tab:dateien}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hilfreiche Tipps}
+\label{sec:aufbau:tipps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In diesem Abschnitt werden einige Tipps zur Strukturierung und Handhabung
+der Arbeit gegeben.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kapitel in externen Dateien}
+\label{sec:aufbau:tipps:kapitel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Kapitel}
+Bei längeren Dokumenten ist es grundsätzlich ratsam, den Text
+auf mehrere Dateien zu verteilen, zum Beispiel für
+jedes Kapitel eine eigene Datei anzulegen. Diese können dann mittels
+des \verb|\include|-Befehls in der Hauptdatei eingefügt werden. Auch
+diese Dokumentation ist derart gegliedert, die einzelnen Kapitel befinden 
+sich im Verzeichnis \texttt{kapitel}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Label}
+\label{sec:aufbau:tipps:label}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Label}
+Ein Hilfsmittel, von dem man unbedingt Gebrauch machen sollte, ist die Verwendung von {\it Labeln}. Diese funktionieren so, dass jeder Abschnitt und jedes Bild mit einem eindeutigen Label versehen wird, welches zum Verweis auf den betreffenden Abschnitt bzw. das Bild verwendet wird. Dank dieser Label bleibt die Referenzierung von Dokumenteninhalten auch bei Umstellung von Abschnitten und Kapiteln immer konsistent. So kann von diesem Dokument z.B. immer guten Gewissens behauptet werden, dass Abbildung~\ref{fig:bisam} auf Seite~\pageref{fig:bisam} steht und Abschnitt~\ref{sec:aufbau:tipps:label} auf Seite~\pageref{sec:aufbau:tipps:label} beginnt.\\
+Bei der Wahl der Label bietet es sich an, eine
+einheitliche Benennung zu wählen. Diese Dokumentation benennt Label
+nach dem Schema \verb|<type>:<beschreibung>|, wobei \verb|<type>| zum
+Beispiel \verb|chap|, \verb|sec|, \verb|fig|, \verb|eq| oder etwas
+entsprechendes sein kann. Das mag zwar alles etwas mehr Tipperei sein,
+verbessert jedoch die Lesbarkeit des Dokumentes erheblich und spart 
+zusätzlich viel Arbeit.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kommentare}
+\label{sec:aufbau:tipps:kommentare}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Kommentare}
+In \LaTeX\ sind Kommentare erlaubt (beginnend mit \verb|%|), also
+sollte man davon Gebrauch machen. Hilfreich sind deutliche Einschnitte
+zwischen Unterkapiteln oder anderen relevanten Abschnitten, so dass
+man sich schneller in seinen Quellen zurechtfindet.
+
+Verwendet man unter Linux (X-)Emacs zum Schreiben der Arbeit, 
+lässt sich in den Unterdateien durch einen Block der Art
+\begin{verbatim}
+   %%% Local Variables: 
+   %%% mode: latex
+   %%% TeX-master: "howto"
+   %%% End: 
+\end{verbatim}
+am Ende der Datei auf die Hauptdatei verweisen. Das Programm weiss
+dadurch, welche Datei zu kompilieren bzw. anzuzeigen ist. Verwendet
+man unter Windows das Programm TeXnicCenter lässt sich eine ähnliche
+Funktionalität mittels Projekten erreichen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kompilieren des Dokumentes}
+\label{sec:aufbau:tipps:kompilieren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Kompilieren}
+Kurz ein paar Worte zum Kompilieren der \LaTeX -Quellen. Unter Windows
+und dem TeXnicCenter sollte das größtenteils automatisch passieren.
+Unter Linux kann es sein, dass man mehrfach kompilieren muss, um die
+Referenzen richtig zu kriegen. Ein komplettes Kompilieren sieht zum
+Beispiel so aus:
+\begin{verbatim}
+   > latex howTo.tex
+   > makeindex howTo.idx
+   > bibtex howTo.aux
+   > latex howTo.tex
+   > latex howTo.tex
+   >
+\end{verbatim} 
+Diese Schritte lassen sich aber auch durch ein \emph{makefile}, ein
+\emph{SConscript} oder Shellskripte automatisieren.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "howto"
+%%% End: 

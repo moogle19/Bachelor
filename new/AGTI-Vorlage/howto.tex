@@ -1,0 +1,131 @@
+\documentclass{AGTI} 
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hier bitte die Eckdaten der Arbeit eingeben (Arbeits-Typ, Titel, Name, Gutachter)
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Typ der Arbeit (z.B. Diplomarbeit, Projektarbeit, Seminararbeit,..):
+%\subject{Dokumentation}
+\typ{Dokumentation}
+
+% Titel der Arbeit:
+\titel{Arbeiten mit der \LaTeX-Vorlage für Abschlussarbeiten}
+
+% Autor der Arbeit:
+\autor{Kalle Kleinlützum, \\Nils Rosemann}
+
+
+% Datum der Abgage (wird automatisch auf aktuelles Datum gesetzt)
+\datum{\today}
+
+% Die beiden Gutachter der Arbeit (für Bachelor, Master, Diplom)
+\firstSupervisor{Prof. Werner Brockmann}
+\secondSupervisor{Prof. Kalle Rosemann}
+\erstgutachter{Prof. Werner Brockmann}
+\zweitgutachter{Prof. Mr. X }
+
+% Pfad zu den Bildern
+\graphicspath{
+ {./bilder/}
+ {/noch/ein/verzeichnis}
+}
+
+% Eigene Makros
+\newcommand{\latexklasse}{\texttt{AGTI.cls}}
+
+  
+\begin{document}
+
+% Für eine schönere Ausgabe für zu Hause oder für den Betreuer besteht
+% hier die Möglichkeit, der Arbeit mit einem zusätzlichen schmucken Deckblatt 
+% (mit Titelbild) eine persönliche Note zu verleihen: 
+% Dazu dem Befehl \extraTitelblatt einen \includegraphics-Befehl übergeben
+%\extraTitelblatt{\fbox{\includegraphics[width=.52\linewidth]{titelbild}}}
+%\cleardoublepage
+
+% Dieser Befehl erzeugt das offizielle Titelblatt
+\standardTitelblatt
+\cleardoublepage
+
+% Dieser "normale" Titel-Erzeugungsbefehl wird nicht mehr benötigt
+%\maketitle
+%\newpage 
+%\cleardoublepage
+
+% Durch den folgenden Befehl wird die Erklärung eingebunden,
+% dass man die Arbeit seriös erstellt hat.
+
+% \erklaerung%%{\today}
+% \cleardoublepage
+
+% Hier die Zusammenfassung auf Deutsch und auf Englisch
+\thispagestyle{empty}
+\section*{Zusammenfassung}
+Bei allen Abschlussarbeiten wird zu Beginn der Arbeit eine kurze Zusammenfassung in deutscher und englischer Sprache verlangt. Diese dürfen zusammen maximal eine Seite einnehmen.
+\vfill
+\section*{Abstract}
+In the preface of all thesis, a short abstract of the work is required both in german and in english language. The length for both is restricted to one page maximum.
+\cleardoublepage
+
+% Hier kommt bei umfangreichen Arbeiten (Master- oder Diplomarbeit) ein Vorwort
+%   \chapter*{Vorwort}
+%   Da bei Master-- und Diplomarbeiten im Allgemeinen ein Vorwort erwartet
+%   wird, soll beispielhaft auch bei dieser Dokumentation ein solches
+%   erscheinen.  Bei Arbeiten geringeren Umfanges ist ein Vorwort
+%   nicht unbedingt angebracht.
+%   
+%   Zumeist finden sich in Vorworten irgendwelche Danksagungen. Wem man
+%   dankt, sei jedem selber überlassen, wir möchten an dieser Stelle 
+%   Roland Bless, Tobias Luksch, Kai Lingemann und Andreas Nüchter
+%   danken, auf deren Vorarbeiten dieses Dokument sowie die zugehörige 
+%   \LaTeX-Klasse basieren.
+% \cleardoublepage
+
+\pagenumbering{roman}
+\tableofcontents
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beginn der eigentlichen Arbeit
+%%
+%% Bei längeren Arbeiten ist es sinnvoll, Kapitel in 
+%% einzelne Dateien auszulagern, die dann in der Hauptdatei
+%% mittels \include{} eingebunden werden
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Seitennummer auf 1 setzen
+
+\pagenumbering{arabic}
+
+\include{kapitel/einleitung}
+
+\include{kapitel/latexklasse}
+
+\include{kapitel/floats}
+
+\include{kapitel/inhalt}
+
+% \appendix
+%   \chapter{Quellcode}
+%   \section{AGTI.cls}
+%   \lstset{language=[LaTeX]TeX}
+%   \lstinputlisting[breaklines]{AGTI.cls}
+% %\lstset{language=LaTeX}
+
+
+% Dieser Stil erzeugt Verweise mit Autorenname und Jahr
+%\bibliographystyle{gerapali}
+\bibliographystyle{wmaainf}
+%\bibliographystyle{AGTI}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+% Hier die Datei (ohne .bib) angeben, in der die referenzierten
+% Paper stehen
+\bibliography{literatur}
+\clearpage{\cleardoublepage}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ende des Dokuments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% einleitung.tex
+%%
+%% Kapitel: Einleitung
+%% Hauptdokument: howto.tex
+%% Autor: Tobias Luksch
+%% Datum: Juli 2003
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Einleitung}
+\label{chap:einl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\label{sec:einl:motiv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Die Arbeitsgruppe Technische Informatik an der
+Universität Osnabrück bietet eine Vielzahl von Angeboten an
+studentischen Arbeiten an, seien es Abschlussarbeiten,
+Seminare oder Praktika. Für all diese Arbeiten ist ein Dokument zu
+erstellen, das die Ansprüche an eine wissenschaftliche Arbeit erfüllen
+sollte. Um es den Studierenden einfacher zu machen, diesen Ansprüchen
+gerecht zu werden, bietet die Arbeitsgruppe \LaTeX -Vorlagen an,
+die ein professionelles und einheitliches Layout ermöglichen.
+% Diese Dokumentation 
+% beschreibt die Formatvorlage für \emph{Abschlussarbeiten}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ziel der Arbeit}
+\label{sec:einl:ziel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Das Ziel dieser Dokumentation ist es, Studierenden eine Anleitung zum
+Erstellen wissenschatlicher Dokumente an die Hand zu geben. Dabei wird
+auf Besonderheiten der zur Verfügung gestellen \LaTeX -Klasse ebenso
+eingegangen wie auf einige prinzipelle Formalismen wissenschatlicher
+Arbeiten. Es wird aufgezeigt, wie Bilder oder Tabellen korrekt
+erstellt und referenziert werden und wie ein Literaturverzeichnis
+erstellt wird. Dieses Dokument selbst dient als Beispiel und kann als
+Vorlage und Ausgangspunkt für eigene Arbeiten verwendet werden.
+
+Es sei angemerkt, dass dies weder eine Einführung in \LaTeX\ ist, noch wird
+eine Anleitung zur Installation von \LaTeX -Distributionen gegeben.
+Dazu sei deshalb auf die einschlägige Literatur (zum Beispiel
+\cite{Lamport95}, \cite{Goossens96}) oder Webseiten (\cite{WWWDante},
+\cite{WWWMikTex}) verwiesen.
+
+Weiterhin sei bemerkt, dass der Sprachstil dieser Arbeit über weite
+Teile (nicht überall) formaler gehalten ist als notwendig.
+Der Grund hierfür liegt in der Intention, dem Leser einen Eindruck zu
+vermitteln, welcher Art der Stil einer wissenschaftlichen Arbeit sein
+sollte. Man möge dem Autor deshalb den Mangel an Lockerheit und
+humoristischen Ausschweifungen verzeihen.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Aufbau der Arbeit}
+% \label{sec:einl:aufbau}
+% Kapitel~\ref{chap:klasse} beschäftigt sich zunächst mit der von der AG
+% Robotersysteme angebotenen \LaTeX -Klasse \latexklasse. Es wird
+% erläutert, welche Form das Hauptdokument haben muss und welche Makros
+% zur Verfügung gestellt werden.
+% 
+% Anschließend finden sich in Kapitel~\ref{chap:floats} Anleitungen zum
+% Erstellen besonderer Dokumentelemente. Bilder und Tabellen werden
+% ebenso behandelt wie Formeln oder Literaturverweise.
+% 
+% In Kapitel~\ref{chap:aufbau} werden einige kurze Hinweise zum
+% allgemeinen Aufbau einer wissenschaftlichen Arbeit gegeben. Dies ist
+% nur als Anregung zu verstehen, eine ausgiebige Einführung hierzu würde
+% den Rahmen dieser Dokumentation sprengen.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "howto"
+%%% End: 

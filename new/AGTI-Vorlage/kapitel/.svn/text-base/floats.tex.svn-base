@@ -1,0 +1,198 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% floats.tex
+%%
+%% Kapitel: Tabellen, Bilder und mehr
+%% Hauptdokument: howto.tex
+%% Autor: Tobias Luksch
+%% Datum: Juli 2003
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Tabellen, Bilder und mehr}
+\label{chap:floats}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Damit auch Bilder, Tabellen etc. und deren Beschriftung und
+Referenzierung einheitlich erscheinen, beschreibt dieses Kapitel, wie
+eben diese Elemente eingebunden werden sollten.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bilder}
+\label{sec:floats:bilder}
+\index{Bilder} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In ein \LaTeX-Dokument können Bilder verschiedener Formate eingefügt werden, 
+jedoch abhängig vom gewünschten Zielformat: Wird {\it normales} \texttt{latex}
+ mit dem Zielformat postscript benutzt, können nur Bilder im \texttt{PS}- und 
+im \texttt{EPS}-Format eingebunden werden. Wird \texttt{pdflatex} zum direkten 
+Erzeugen von pdf-Dateien verwendet, können keine \texttt{PS}- und \texttt{EPS}-Bilder 
+verwendet werden, dafür \texttt{PDF}s, \texttt{JPG}s und \texttt{PNG}s.  
+Um den Studierenden die Wahl des Zielformats zu ermöglichen, 
+ist folgende Konvention nötig: 
+\begin{quote}
+Jedes eingebundene Bild wird doppelt gespeichert: Einmal in \texttt{PS}- oder \texttt{EPS}-Format und einmal in \texttt{PDF}-, \texttt{JPG}- oder \texttt{PNG}-Format.
+Beim Einbinden in das \TeX-Dokument wird dann der Dateiname ohne Endung angegeben. \texttt{Latex} bzw. \texttt{pdflatex} suchen sich dann automatisch die richtige Datei.
+\end{quote}
+Unter Linux können die Bilder mit Kommandos wie \verb|epstopdf| und \verb|pdf2ps| sowie mit Grafikprogrammen wie Gimp ineinander überführt werden, unter Windows empfiehlt sich auf jeden Fall Gimp oder ein entsprechendes Grafikprogramm. Unabhängig von dem Format, in dem die Bilder gespeichert werden, sollte auf eine ausreichend hohe Auflösung geachtet werden, damit die Bilder nicht pixelig erscheinen.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=10cm]{bisam}
+    \caption{Die vierbeinige Laufmaschine \textsc{Bisam}, 
+      die am Forschungszentrum Informatik in Karlsruhe entwickelt
+      wurde.}
+    \label{fig:bisam}
+  \end{center}
+\end{figure}
+
+Um Bilder einzufügen verwendet man eine \texttt{figure}-Umgebung wie:
+\begin{verbatim}
+   \begin{figure}
+     \begin{center}
+       \includegraphics[width=10cm]{bisam}
+       \caption{Die vierbeinige Laufmaschine \textsc{Bisam}, 
+         die am Forschungszentrum Informatik in Karlsruhe entwickelt
+         wurde.}
+       \label{fig:bisam}
+     \end{center}
+   \end{figure}
+\end{verbatim}
+Dies erzeugt die Ausgabe, die in Abbildung~\ref{fig:bisam} zu sehen
+ist. Zu den einzelnen Befehlen und ihren Parametern sei auf
+entsprechende Literatur verwiesen. 
+
+Wichtig ist, dass die
+Bildunterschrift auch wirklich beschreibt, was mit dem Bild gezeigt
+werden soll. Die Diskussion des Gezeigten sollte sich allerdings im
+Fließtext befinden. Ist die Abbildung z.B. ein Plot, könnte die
+Beschriftung heißen: ``Der Temperaturverlauf bei geschlossenem Ventil
+B. Hier überschreitet die Temperatur die kritische Grenze bei
+$t=130\mbox{sec}$''. Warum das aber so ist, welche Effekte eine Rolle
+spielen oder ob das gut oder schlecht ist, gehört nicht unter das
+Bild, sondern sollte im Text diskutiert werden. Bei Datenplots ist
+übrigens grundsätzlich darauf zu achten, dass alle Achsen sauber
+beschriftet sind und die Legende vollständig ist. Bei zusammengehörigen
+Bildern ist zusätzlich auf eine einheitliche Skalierung und Beschriftung 
+zu achten.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tabellen}
+\label{sec:floats:tabellen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Tabellen} Für die Beschriftung von Tabellen gilt im Prinzip das
+bei Bildern Gesagte. Mit der Anzahl der Linien kann man etwas
+herumexperimentieren, allerdings sollte das Aussehen der Tabellen in
+der ganzen Arbeit konsistent sein. Tabelle~\ref{tab:dateien} kann als
+Beispiel für Tabellen herangezogen werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formeln}
+\label{sec:floats:formeln}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Formeln} Formeln sollten nicht im Fließtext untergehen, auch
+wenn es nur kleine (und einfallslose) sind wie $E=mc^2$, sondern
+vielmehr in einer \verb|equation|-Umgebung ausgegeben werden:
+\begin{equation}
+  \label{eq:einstein}
+  E=mc^2 
+\end{equation}
+Grundsätzlich sollten Formeln nummeriert werden, bei längeren
+Herleitungen reicht es jedoch, nur wichtige Schritte und das
+Endergebnis zu benennen. Werden im Fließtext Variablen genannt, wie
+zum Beispiel die Energie $E$ oder die Lichtgeschwindigkeit $c$ aus
+Gleichung~\ref{eq:einstein}, so sollten diese im Mathematikmodus
+gesetzt sein (z.B. \verb|$E$|).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algorithmen}
+\label{sec:floats:algo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Algorithmen} Zum Visualisieren von Algorithmen und besonderen
+Programmabschnitten kann die Funktionalität der Pakete
+\verb|algorithm.sty| und \verb|algorithmic.sty| verwendet werden.
+Beide werden zum Beispiel auf \cite{WWWDante} als unterstützt geführt,
+sind allerdings im Allgemeinen nicht bei \LaTeX -Distributionen dabei,
+weshalb wir sie mitliefern.
+
+\begin{algorithm}
+\begin{algorithmic}[5]  %% opt. Param.: alle n Zeilen Zeilennummer
+\STATE Lege 2D-Array an
+\STATE{Führe Tiefensuche durch:}
+\FORALL{Knoten des Baumes $U$ mit Koordinaten $(x,y,z)$}
+  \IF{$z$-Koordinate der Zelle größer als in Wert im Array an $(x,y)$}
+    \STATE Speichere $z$ an der Stelle $(x,y)$ in 2D-Array
+  \ENDIF
+\ENDFOR
+\STATE Lege Quadtree $G$ an
+\STATE{Führe erneut Tiefensuche durch:}
+\FORALL{Knoten des Baumes $U$ mit Koordinaten $(x,y,z)$}
+  \IF{Koordinaten identisch mit den im 2D-Array gespeicherten}
+    \STATE{Speichere $z$ für $(x,y)$ im Quadtree $G$}
+  \ENDIF
+\ENDFOR
+\end{algorithmic}
+\caption{Generieren einer globalen 2D-Karte $G$ aus Urkarte $U$}
+\label{alg:beispiel}
+\end{algorithm}
+
+Als Dokumentation ist die Datei \verb|algorithms.ps| einschließlich
+ihrer \LaTeX -Quellen \verb|algorithms.tex| beigefügt. Grundsätzlich
+sollten wichtige Algorithmen als Pseudocode in der Art von
+Algorithmus~\ref{alg:beispiel} mithilfe dieser Pakete angegeben
+werden, um das Verständnis zu erleichtern. Sollte es tatsächlich nötig
+sein, ``richtigen'' Quellcode einzufügen (der aber höchstens mal in
+den Anhang gehört), ist der \LaTeX -Style \verb|listings.sty|
+empfehlenswert.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Literaturverweise}
+\label{sec:floats:bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Literaturverweise} Natürlich müssen sämtliche verwendete
+Quellen aufgeführt werden. Dazu sind sie im Literaturverzeichnis zu
+verzeichnen und an der entsprechenden Textstelle ist auf sie zu
+verweisen. Letzteres geschieht mit \verb|\cite{<label>}|, wobei
+\verb|<label>| der zugehörige Eintrag in der BibTex-Datei ist. Der
+Name der BibTex-Datei wird im Hauptdokument dem \verb|literatur|-Makro
+übergeben (siehe auch Abschnitt~\ref{sec:aufbau:hauptdoku}). Zum Aufbau der
+BibTex-Datei kann ein Blick in \verb|literatur.bib| geworfen
+oder entsprechende Literatur (\cite{Lamport95}, \cite{WWWBibTex})
+konsultiert werden. Außerdem finden sich in der Datei
+\verb|beispiele.bib| exemplarische BibTex-Einträge der meisten verwendeten 
+Literaturquellen mit einer kurzen Erklärung.
+
+Das verwendete BibTex-Layout erzeugt Verweise bestehend aus dem
+Nachnamen des ersten Autors und den letzten beiden Ziffern der
+Jahreszahl. Bei Verweisen auf URLs sollte der \verb|@Misc|-Eintrag
+derart verwendet werden, wie es in \verb|literatur.bib| zu finden ist.
+
+--> Siehe z.B. \cite{Albiez03}.
+
+Auf URL-Verweise sollte jedoch so weit wie möglich verzichtet werden,
+da Printmedien wie Paper, Bücher und wissenschaftliche Artikel diesen
+grundsätzlich vorzuziehen sind. D.h., zu Veröffentlichungen, die per
+Internetsuche gefunden wurden, sollten so weit wie möglich auch
+zitierfähige Angaben gesucht werden. Die Aktualität von URLs sollte
+auch immer durch ein Datum (Monat und Jahr) angezeigt werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Index}
+\label{sec:floats:index}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Indexverzeichnis} 
+In größeren Arbeiten kann es sinnvoll sein, einen Index zu erstellen, ein Abbildungsverzeichnis ist dagegen meistens überflüssig. 
+Das Indexverzeichnis erstellt man am besten, wenn man mit der
+Ausarbeitung fertig ist, indem man die Arbeit noch einmal Abschnitt für Abschnitt 
+durchgeht und bei jedem (inhaltlich neuen) Abschnitt das behandelte Thema (oder mehrere) ``auf den Index'' setzt. Dies geschieht mit dem Indexverweis: \\
+\verb|   \index{<Stichwort>}|, \\
+wodurch dieses <Stichwort> dann im Indexverzeichnis zusammen mit der
+Seitenzahl, auf der der \verb|index|-Befehl steht, aufgeführt wird.
+Unterpunkte lassen sich mit \\
+\verb|   \index{<Stichwort>!<Unterpunkt>}| \\
+erzeugen. Das Indexverzeichnis selbst wird im Masterdokument zentral mit dem
+Makro \verb|\indexverzeichnis| generiert.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "howto"
+%%% End: 

@@ -1,0 +1,201 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% inhalt.tex
+%%
+%% Kapitel: Inhaltliche Gestaltung,
+%% Kapitel: Bewertungsrichtlinien
+%% Hauptdokument: howto.tex
+%% Autor: Kalle Kleinlützum
+%% Datum: August 2007
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Inhaltliche Gestaltung}
+\label{chap:inhalt} \index{Inhalt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dieses Kapitel befasst sich näher mit dem Inhalt einer Abschlussarbeit. Es 
+beschreibt den üblichen Aufbau und gibt Hinweise zu häufig gemachten 
+Fehlern sowie zum Sprachgebrauch.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aufbau einer Abschlussarbeit}
+\label{sec:inhalt:aufbau} \index{Aufbau} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Der grobe Aufbau einer Abschlussarbeit folgt meistens einem festen Schema, auch wenn der Aufbau des Hauptteiles stark von der individuellen Arbeit abhängt. Einleitung, Problemstellung, Stand der Technik und Zusammenfassung gehören zu einer wissenschaftlichen Ausarbeitung nun einmal dazu und werden im Folgenden kurz umrissen.
+
+\subsection{Einleitung (Motivation und Grobziel)}
+Dieses nicht unwichtige Kapitel muss die Notwendigkeit der Arbeit motivieren. Es soll die wichtigen Fragen beantworten: ,,Warum wird die Arbeit gemacht?'' und ,,Was ist der Nutzen?'' bzw. ,,Was soll mit der Arbeit erreicht werden?''.
+
+\subsection{Problemstellung, Zielsetzung}
+Hier sollte eine Einführung in das Themengebiet der Arbeit erfolgen und die spezielle(n) Problemstellung(en) herausgearbeitet werden. Der Stand der Technik kann sowohl entlang der dieser Problemstellung beschrieben werden oder getrennt davon. Jedoch sollte die Problemstellung, auch wenn sie unabhängig vom Stand der Technik diskutiert wird, mit Literaturverweisen versehen werden, da es sehr wahrscheinlich ist, dass andere Wissenschaftler schon verwandte Problemstellungen bearbeitet haben.
+
+\subsection{Stand der Technik (evtl. zusammen mit Problemstellung)}
+Dieses Kapitel soll das Ergebnis der Literaturrecherche vorstellen. Das Ziel dabei ist die Einordnung der eigenen Arbeit in den Stand der Technik, d.h. alternative Ansätze aus der Literatur sollen vorgestellt und verglichen werden (Vorteile, Nachteile, Grenzen).
+
+
+\subsection{Hauptteil (eigene Arbeit)}
+Dieser Teil beschreibt den Kern der eigenen Arbeit. Über den Inhalt lässt sich nichts allgemeingültiges sagen, da dieser themenspezifisch ist. Hier wird lediglich der übliche Aufbau vorgestellt:
+\begin{itemize}
+\item ggf. Einführung in benötigte Grundlagen
+\item Ansatz
+\item (Implementierung)
+\item Experimente, Testreihen
+\item Diskussion
+\end{itemize}
+
+\subsection{Zusammenfassung und Ausblick}
+Im Anschluss an den Hauptteil der Arbeit folgt eine Zusammenfassung der Ergebnisse mit einem Ausblick. Diese Zusammenfassung sollte klar erkennen lassen, was die wesentlichen Ergebnisse zur Lösung der Aufgabenstellung sind und in welchem Ausmaß die Ergebnisse vom Bearbeiter selbst kommen. Der Ausblick sollte kurz auf Arbeiten und Fragestellungen eingehen, die auf der vorliegenden Arbeit aufbauen können oder sollten.
+
+\subsection{Anhang}
+In den Anhang können technische Daten, Zeichnungen und Bilder, die zum Verständnis der Arbeit beitragen. Ebenso sind kurze Auszüge aus dem Quellcode möglich, wenn sie der Sache dienen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Was eine Ausarbeitung nicht sein soll}
+\label{sec:inhalt:sollnicht}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Die Ausarbeitung ist keine Reinschrift des während der Arbeit geführten Protokolls. Es sollen nicht alle Irrwege und Alternativen ebenso ausführlich beschrieben werden wie der letzten Endes eingeschlagene Weg. Auch die zeitliche Reihenfolge der Bearbeitung spielt bei der Reihenfolge der Abschnitte keine Rolle.
+Nicht alle Gesichtspunkte sind gleich wichtig. Ausführliche Detail-Berechnungen und Nebenbetrachtungen gehören in den Anhang.
+Die Ausarbeitung soll auch keine Wiederholung eines Buches bzw. von einzelnen Abschnitten aus Büchern oder Vorlesungen sein. Die Details können vom Leser mit Hilfe der Quellenangabe im Original nachgelesen werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sprachgebrauch}
+\label{sec:inhalt:sprache} \index{Sprachgebrauch} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Spezielle (mathematische) Bezeichnungen sowie (häufig englische) Fachtermini sollten kurz und präzise im Stil anerkannter Vorlesungsskripte bzw. Lehrbücher definiert werden. Beim Gebrauch dieser Bezeichnungen ist im gesamten Dokument auf Konsistenz zu achten. Wenn viele Abkürzungen verwendet werden, kann ein Abkürzungsverzeichnis im Anhang hilfreich sein. Auch bei sehr spezifischen Themen sollte die Verbindung zu den gängigen Gesichtspunkten der (Technischen) Informatik hergestellt werden. 
+
+Vorsicht ist geboten im Umgang mit ,,absoluten'' Aussagen. Wenn von einer zitierten Arbeit behauptet wird, sie sei die erste, beste, schlechteste oder einzige, dann muss diese Aussage fundiert sein. Ansonsten sind solche Aussagen entsprechend zu relativieren. ,,Ich''- und ,,Wir''-Form oder Floskeln wie ,,man'', ,,sollte'' sind nach Möglichkeit ebenso zu vermeiden wie Ausdrücke aus dem Fachjargon von Labors und Rechenzentren.
+
+Achten Sie auf korrekte Rechtschreibung. Rechtschreibprogramme können hierbei nur als Hilfe dienen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Bewertungskriterien}
+\label{chap:bewertung} \index{Bewertung}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In diesem Kapitel werden eine Reihe von Bewertungskriterien für 
+Abschlussarbeiten aufgeführt, um den Studierenden einen Gefühl 
+dafür zu vermitteln, wodurch sich eine gute Abschlussarbeit
+auszeichnet.
+Es ist leicht ersichtlich, dass die Länge der Ausarbeitung 
+kein Maß für ihre Güte darstellt. Die wesentlichen Gesichtspunkte 
+bei der Bewertung von Abschlussarbeiten sind daher im Folgenden 
+kurz aufgeführt:
+
+\begin{itemize}
+
+\item Schwierigkeitsgrad
+\begin{itemize}
+  \item Umfang der erforderlichen Einarbeitung (Problemstellung, Literatur, Entwicklungsumgebung, neue Hardware- und Softwaresysteme, $\ldots$)
+  \item Einsatz anspruchsvoller theoretischer Methoden und komplizierter praktischer Hilfsmittel
+  \item Abgrenzung und Präzisierung des Themas als Teil der Aufgabenstellung
+\end{itemize}
+
+\item Schöpferische Originalität
+\begin{itemize} 
+  \item Lösung bisher unbekannter Probleme oder neuartige, bessere Lösung bekannter Probleme
+  \item Aufgreifen und selbständiges Lösen sich im Laufe der Arbeit ergebender Probleme (eigene Initiative)
+  \item Allgemeingültigkeit und Weiterentwicklungsfähigkeit der Lösungen (keine isolierte Speziallösung)
+\end{itemize}
+
+
+\item Wissenschaftliche Arbeitstechnik
+\begin{itemize}
+  \item Motivation der Aufgabenstellung (,,Warum wurde die Arbeit gemacht?'')
+  \item Erarbeitung des Standes des Wissens in Breite und Tiefe mit Herausarbeiten von Vorteilen/Nachteilen/Grenzen
+  \item Einordnung der Arbeit in den Stand des Wissens anhand der Literatur (,,Was soll verbessert werden? Was ist neu? Welche alternativen Ansätze gibt es?'')
+  \item Richtige Gewichtung der Einzelergebnisse und deren Einordnung in einen größeren Rahmen (,,Was ist wichtig?'')
+  \item Diskussion und Interpretation der Ergebnisse, (selbst)kritische Reflexion und Bewertung der eigenen Arbeit und Vergleich mit anderen ähnlichen Ansätzen
+  \item saubere Darstellung der Vorschläge für weiterführende Arbeiten 
+\end{itemize}
+
+\item Stil
+\begin{itemize}
+\item Klare Gliederung und geradliniger roter Faden
+  \item Prägnanz, Klarheit der Beschreibung der eigenen Lösung
+  \item angemessener Umfang, Länge der Darstellung orientiert sich an der Wichtigkeit
+  \item Einprägsame, treffende, möglichst kurze Beispiele, die die wesentlichen Aspekte verdeutlichen
+  \item Klare, weitgehend selbsterklärende Abbildungen
+  \item Verständliche Darstellung auch komplizierter Zusammenhänge (ggf. Beispiele, Abbildungen)
+  \item Flüssige, prägnante und angemessene Sprache
+  \item Keine Gedankensprünge oder Sprünge der Abstraktionsebene
+\end{itemize}
+
+\item Äußere Form
+\begin{itemize}
+\item Fehlerfreiheit und Rechtschreibung
+\item Klares Layout, saubere, optisch ansprechende Ausführung (Schriftbild, Abbildungen)
+\item Beachtung von Hinweisen in dieser Vorlage
+\end{itemize}
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ende des Dokumentes, hier beginnt der Anhang %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Anhang 1: Organisatorisches}
+\label{chap:organisatorisches} \index{Organisatorisches}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Was tun, wenn die Arbeit fertig ist? Hier eine kurze Checkliste,
+was wann und in wieviel Exemplaren wo abgeliefert werden muss.
+
+\begin{itemize}
+\item 2 gedruckte Exemplare (für das Prüfungsamt)
+\item 2 gedruckte Exemplare (für die AG)
+\item 1 PDF-File der Arbeit (für die AG)
+\item Die bereinigten, vollständigen und gepackten \LaTeX-Sourcen (AG)
+\item Der Vortrag inklusive Videos, gepackt (AG)
+\item Der Source-Code in gutem Zustand (self-contained und bereinigt) 
+      mit dedizierter MCA-Version, gepackt (AG)
+\end{itemize}
+
+Einige Punkte bedürfen einer näheren Erklärung:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Drucken und Binden}
+\label{sec:org:drucken} \index{Drucken und Binden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Noch zu klären:
+\begin{itemize}
+\item Farbig drucken: Wo, wie, wie teuer
+\item Klebe-Bindung und Karton vs. Klarsicht: Vorgaben von PAs Mathe/Physik/CogSci/SyWi??
+\item 
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Am Abgabetag}
+\label{sec:org:abgabetag} \index{Abgabetag}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Was muss am Tag der Deadline wann abgegeben werden? Zur Sicherheit sollte
+das jeder Studierende rechtzeitig bei seinem Prüfungsamt in Erfahrung bringen. Üblicherweise wird bei Bachelor- Master- und Diplomarbeiten die Abgabe zweier gedruckter Exemplare bis zu einer bestimmten Uhrzeit gefordert.
+
+In der AG wird am Tag der Abgabe die Einreichung von zwei gedruckten Exemplaren
+sowie einer identischen PDF-Version verlangt. Zum Bereinigen und verpacken des
+\LaTeX- und Source-Codes stehen danach noch zwei Wochen Zeit zur Verfügung.
+Das ist üblicherweise auch die Zeitspanne zum Vorbereiten des Abschluss-Vortrags.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Abgabeformat}
+\label{sec:org:abgabeformat} \index{Abgabeformat}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Nach dem Bereinigen, Überprüfen und packen der verlangten Daten sollten (unmittelbar nach halten des Vortrags) vier Dateien beim Betreuer abgegeben werden: PDF, Vortrag, \LaTeX-Quellen und Source-Code. Der Übersicht halber setzen sich dabei die Dateinamen
+jeweils aus dem Namen des Studierenden, den Typ der Arbeit, der Art der Daten und dem ABgabedatum zusammen. Zur besseren Verständlichkeit hier das Beispiel der Studentin {\it Erika Mustermann}, die soeben erfolgreich ihre {\it Bachelorarbeit} abgegeben
+hat. Sie reicht nach ihrem Vortrag folgende Dateien bei ihrem Betreuer ein:
+
+\begin{enumerate}
+\item {\texttt Erika\_Mustermann\_BA\_28\_09\_2007\_Ausarbeitung.pdf}
+\item {\texttt Erika\_Mustermann\_BA\_28\_09\_2007\_LaTeX-Quellen.zip}
+\item {\texttt Erika\_Mustermann\_BA\_28\_09\_2007\_Vortrag.zip}
+\item {\texttt Erika\_Mustermann\_BA\_28\_09\_2007\_Source-Code.zip}
+\end{enumerate}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "howto"
+%%% End: 

@@ -1,0 +1,197 @@
+\documentclass{AGTI}
+%\usepackage{subfig}
+%\usepackage[compatibility=false]{caption}
+\usepackage[compatibility=false]{caption}
+\usepackage{subcaption}
+\usepackage{stmaryrd}
+%\usepackage{multicol}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hier bitte die Eckdaten der Arbeit eingeben (Arbeits-Typ, Titel, Name, Gutachter)
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Typ der Arbeit (z.B. Diplomarbeit, Projektarbeit, Seminararbeit,..):
+%\subject{Dokumentation}
+\typ{Bachelorarbeit}
+
+% Titel der Arbeit:
+% \titel{Twitter Sentiment Analysis: A closer Look at Features and Configurations
+% for Standard Classifiers and a Qualitative Validation with a Realtime Sentiment
+% Tracking Application}
+
+% \titel{Twitter Sentiment Analysis: On Feature Engineering and Realtime Sentiment Tracking}
+% \titel{Twitter Sentiment Analysis: Feature Quality Evaluation and Realtime Tracking}
+
+\titel{Indoor Positionierung mittels Bluetooth Low Energy}
+
+% Autor der Arbeit:
+\autor{Kevin Seidel}
+
+% Datum der Abgabe (wird automatisch auf aktuelles Datum gesetzt)
+\datum{24.09.2013}
+
+% Die beiden Gutachter der Arbeit (für Bachelor, Master, Diplom)
+\firstSupervisor{Prof. Dr. Oliver Vornberger}
+\secondSupervisor{Prof. Dr. Elke Pulvermüller}
+\erstgutachter{Prof. Dr. Oliver Vornberger}
+\zweitgutachter{Prof. Dr. Elke Pulvermüller}
+\bibpunct{(}{)}{,}{a}{}{;}
+
+% Pfad zu den Bildern
+\graphicspath{
+ {./pictures/}
+}
+% Eigene Makros
+\newcommand{\latexklasse}{\texttt{AGTI.cls}}
+\newcommand{\term}[1]{\textbf{#1}}
+\newcommand{\insertminted}[2]{\inputminted[linenos=true,
+                                           %frame=lines,
+                                           framesep=2mm,
+                                           xleftmargin=2cm,
+                                           xrightmargin=2cm]{#1}{#2}}
+
+\newcommand{\minipageminted}[2]{\inputminted[linenos=true,xleftmargin=0.85cm]{#1}{#2}}
+
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+  \hyphenchar\font=`\-% allowing hyphenation
+}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% \setlength{\parindent}{15pt}
+% \setlength{\parskip}{0ex}
+
+\begin{document}
+
+% Dieser Befehl erzeugt das offizielle Titelblatt
+\standardTitelblatt
+\cleardoublepage
+
+% Durch den folgenden Befehl wird die Erklärung eingebunden,
+% dass man die Arbeit seriös erstellt hat.
+
+\thispagestyle{empty}
+\section*{Danksagungen}
+
+\selectlanguage{ngerman}
+
+Hiermit möchte ich allen Personen danken, die mich bei der Erstellung der Arbeit
+unterstützt haben:
+
+\begin{itemize}
+  \item Herrn Prof. Dr. Oliver Vornberger für die Tätigkeit als Erstgutachter und für die Bereitstellung
+    der interessanten Thematik.
+  \item Frau Prof. Dr. Elke Pulvermüller, die sich als Zweitgutachterin zur Verfügung gestellt hat.
+  
+\end{itemize}
+
+\cleardoublepage
+
+% Hier die Zusammenfassung auf Deutsch und auf Englisch
+\thispagestyle{empty}
+
+
+\selectlanguage{ngerman}
+
+\section*{Zusammenfassung}
+
+Bluetooth
+
+\vfill
+
+\selectlanguage{ngerman}
+
+\section*{Abstract}
+
+Bluetooth
+
+\selectlanguage{ngerman}
+
+\cleardoublepage
+
+% Hier kommt bei umfangreichen Arbeiten (Master- oder Diplomarbeit) ein Vorwort
+%   \chapter*{Vorwort}
+%   Da bei Master-- und Diplomarbeiten im Allgemeinen ein Vorwort erwartet
+%   wird, soll beispielhaft auch bei dieser Dokumentation ein solches
+%   erscheinen.  Bei Arbeiten geringeren Umfanges ist ein Vorwort
+%   nicht unbedingt angebracht.
+%
+%   Zumeist finden sich in Vorworten irgendwelche Danksagungen. Wem man
+%   dankt, sei jedem selber überlassen, wir möchten an dieser Stelle
+%   Roland Bless, Tobias Luksch, Kai Lingemann und Andreas Nüchter
+%   danken, auf deren Vorarbeiten dieses Dokument sowie die zugehörige
+%   \LaTeX-Klasse basieren.
+% \cleardoublepage
+
+\pagenumbering{roman}
+\tableofcontents
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\include{kapitel/1_introduction}
+\include{kapitel/2_technologies}
+\include{kapitel/3_tools}
+\include{kapitel/4_dataAndMeasurement}
+\include{kapitel/5_implementation}
+\include{kapitel/6_fingerprinting}
+\include{kapitel/7_resume}
+
+%\include{kapitel/state_of_the_art}
+%\include{kapitel/performance_investigation}
+%\include{kapitel/example_application}
+%\include{kapitel/reflexion}
+
+%\input{kapitel/einleitung}
+%\input{kapitel/methoden_und_technologien}
+%\input{kapitel/umsetzung_der_beispielapplikation}
+%\input{kapitel/fazit}
+
+% Dieser Stil erzeugt Verweise mit Autorenname und Jahr
+%\bibliographystyle{gerapali}
+\bibliographystyle{abbrvnat}
+%\bibliographystyle{AGTI}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% Hier die Datei (ohne .bib) angeben, in der die referenzierten
+% Paper stehen
+\bibliography{literatur}
+%\clearpage{\cleardoublepage}
+\cleardoublepage
+
+  \vspace*{15cm}
+
+  \chapter*{Erklärung}
+
+  \thispagestyle{empty}
+
+  Ich versichere, dass ich die eingereichte Bachelor-Arbeit selbstständig und ohne
+  unerlaubte Hilfe verfasst habe. Anderer als der von mir angegebenen Hilfsmittel und
+  Schriften habe ich mich nicht bedient. Alle wörtlich oder sinngemäß den Schriften
+  anderer Autoren entnommenen Stellen habe ich kenntlich gemacht.
+
+  \bigskip\bigskip
+
+\begin{flushright}
+Osnabrück, den 24.09.2013
+\end{flushright}
+\vskip 0.5 cm
+
+ \bigskip
+ \bigskip
+ \bigskip
+ \bigskip
+ \bigskip
+
+ (Kevin Seidel)
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ende des Dokuments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
