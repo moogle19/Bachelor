@@ -25,11 +25,59 @@ So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbi
 Die Vorteile die BLE mit sich bringt, liegen vor allem in der niedrigen Latenz, welche von 100ms auf bis zu unter 3ms reduziert wurde, und, wie bereits erwähnt, der Energieverbrauch drastisch gesenkt wurde.
 
 
+
+Bluetooth Low Energy bietet darüber hinaus eine Vielzahl sogennanter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinen für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches besipielsweise die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass dieser Gurt mit jedem Endgerät auf die selbe Weise funktioniert.
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{iBeacons}
 \label{sec:technologies:bluetoothLE:ibeacons}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Die iBeacons-Technologie wurde am 10.Juni 2014 von Apple auf der Worldwide Developers Conference vorgestellt. 
+Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwickelten GATT-Profil.
 
+Beacon bedeutet übersetzt ''Leuchtfeuer'' und die Funktionsweise der Beacons ist dem sehr ähnlich.
+Einmal in Betrieb genommen, sendet das Beacon kontinuierlich ein Signal, in welchem sich Daten zur Identifizierung des Beacons befinden.
+
+Neben den Identifikationsdaten kann das Emfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung einzuschätzen. 
+In der iBeacons-API sind dafür vier verschiedene Zustände definiert: \textit{Far}, \textit{Near}, \textit{Immediate} und \textit{Unknown}. Diese Werte erlauben eine grobe Entfernungseinschätzung und für eine genauere Bestimmung lässt sich noch eine weitere Kenngröße bestimmen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung zwischen zwei Beacons genutzt werden soll und keinesfalls eine genaue Entfernung angibt.
+
+\begin{tabular}{p{2cm}p{5cm}p{5cm}p{4cm}}
+	\\
+	Daten & Format & Beschreibung & Beispiel \\ \\
+	UUID & 16-stellige Hexadezimalzahl & Identifizierung & 3F4 \\
+	Major & Integerzahl & Identifizierung eine Region & 12 \\
+	Minor & Integerzahl & Identifizierung eines einzelnen Beacons & 132 \\
+	Proximity & Drei Entfernungsstufen & Ungefähre Entfernung & Far, Near, Immediate und Unknown \\
+	Accuracy & Wert in Meter & Bestimmung der ungefähren Entfernung & 1.243 m \\
+	RSSI & Signalstärke in dBm & Signalstärke des emfangenen Signals & -42 dBm \\
+\end{tabular}
+
+
+Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät empfangen.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% figure of estimote beacon
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb!]
+	\centering
+	\begin{minipage}[t]{5cm}
+		\includegraphics[scale=0.15]{pictures/estimote-beacon-outside}
+		\caption{Außenhülle}
+		\label{estimote-outside}
+	\end{minipage}
+	\hspace{2cm}
+	\begin{minipage}[t]{5cm}
+			\includegraphics[scale=0.2]{pictures/estimote-beacon-inside}
+			\caption{Chipsatz mit Bluetooth-Modul}
+			\label{estimote-inside}
+		\end{minipage}
+		\caption{Ein iBeacon der Firma ''estimote''}{} 
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{iOS und Xcode}
