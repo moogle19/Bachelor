@@ -60,10 +60,13 @@ Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät
 
 
 
+Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher es erlaubt die Beacons an fast jedem beliebigem Ort anzubringen, als auch ihr geringer Stromverbrauch, der es möglich macht, die Beacons bis zu mehreren Jahren mit einer Knopfzellenbatterie zu betreiben. Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} sehr gut erkennen. Den Großteil des Beacons nimmt dabei die Batterie ein. 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure of estimote beacon
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb!]
+\begin{figure}[h!]
 	\centering
 	\begin{minipage}[t]{5cm}
 		\includegraphics[scale=0.15]{pictures/estimote-beacon-outside}
@@ -75,14 +78,33 @@ Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät
 			\includegraphics[scale=0.2]{pictures/estimote-beacon-inside}
 			\caption{Chipsatz mit Bluetooth-Modul}
 			\label{estimote-inside}
-		\end{minipage}
-		\caption{Ein iBeacon der Firma ''estimote''}{} 
+	\end{minipage}
+		\caption{Ein iBeacon der Firma ''estimote''}
+		\label{estimote-beacon}
 \end{figure}
 
+
+Unter genauerer Betrachtung des Chipsatzes in Abbildung \ref{estimote-beacon-inside-annotations}, erkennt man, dass er im Grunde aus zwei Teilen besteht.
+Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der Antenne, welche im vorderen Bereich der Platine eingearbeitet ist und die über welche letztendlich die Daten gesendet werden.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.25]{estimote-beacon-inside-annotation}
+	\caption{Aufbau des estimote-Beacons}
+	\label{estimote-beacon-inside-annotations}
+\end{figure}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{iOS und Xcode}
+\section{iOS, OS X und Xcode}
 \label{sec:technologies:iosandxcode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
+Daher waren drei Dinge zwingend notwendig: ein Mac, Xcode und ein iOS-Gerät.
+
+Für die Entwicklung setzte ich deshalb auf ein Macbook Pro mit installiertem Xcode und als iOS-Gerät setzte ich ein iPhone 5 ein.
+Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-Features des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
