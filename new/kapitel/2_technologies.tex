@@ -111,11 +111,77 @@ Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-Features 
 \section{CoreLocation-Framework}
 \label{sec:technologies:corelocation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Das Core Location-Framework erlaubt es aktuelle Positions- und Richtungsinformationen eines Gerätes zu bestimmen.
+Die Positionsbestimmung lässt sich dabei über verschiedene Werte und Sensoren bestimmen und auch der Grad der Genauigkeit ist variabel.
+Auch die Aktualiserungsrate der Position lässt sich festlegen, wobei eine höhere Aktualisierungsrate auch gleichbedeutend mit einem höherem Akkuverbrauch ist.
 
+Bei der Genauerigkeit gibt es dabei verschiedene Konstanten, die die gewollte Genauigkeit bestimmen. 
+
+
+    \begin{table}[htb!]
+      \centering
+      \begin{tabular}{l p{6cm}}
+        Konstante & Erwartete Genauigkeit \\ \\
+		\emph{kCLLocationAccuracyThreeKilometers} & Genauigkeit auf 3 Kilometer \\
+		\emph{kCLLocationAccuracyKilometer} & Genauigkeit auf 1 Kilometer \\
+		\emph{kCLLocationAccuracyHundredMeters} & Genauigkeit auf 100 Meter \\
+		\emph{kCLLocationAccuracyNearestTenMeters} & Genauigkeit auf 10 Meter \\
+		\emph{kCLLocationAccuracyBest} & Höchstmögliche Genauigkeit \\
+		\emph{kCLLocationAccuracyBestForNavigation} & Höchstmögliche Genauigkeit und weitere Sensordaten für die Navigation
+      \end{tabular}
+      \caption{Mögliche Optionen der Positionsgenauigkeit}
+      \label{tbl:positionaccuracy}
+    \end{table}
+	
+Diese Genauigkeiten beziehen sich hauptsächlich auf die Positionierung mittels GPS und sind daher für die Indoor Positionierung nur bedingt geeignet.
+
+
+Eine weitere Funktion des Core Location-Frameworks ist die Bestimmung der Himmelsrichtungen. Durch den eingebauten Kompass in den neueren iOS-Geräten ist es möglich, die aktuelle Ausrichtung des Gerätes zu bestimmen. Dies ist im Bezug auf die Indoor Navigation hilfreich, da diese Informationen in die Positionsbestimmung einbezogen werden können.
+Des Weiteren erlaubt diese Funktion eine dynamische Ausrichtung der Karte, abhängig davon in welche Richtung man momentan schaut.
+
+
+Die für uns zentrale Funktion dieses Frameworks ist die Erkennung von iBeacons und die Funktionen zur Verarbeitung der gesendeten Daten.
+Damit können Beacons anhand ihres UUID erkannt werden und einer Region zugeordnet werden. Die genaue Funktionsweise wird in Kapitel \ref{sec:technologies:corelocation:ibeaconsapi}.
+
+Die Funktionen zum Positionsupdate und zur Erkennung der Beacons werden dabei im \emph{LocationManager} verwaltet.
+In der \emph{LocationManagerDelegate} lassen sich dabei die Aktionen bestimmen, welche bei verschiedenen Events ausgeführt werden.
+
+In Listing \ref{lst:locationmanager_objc} wird die Initialisierung eines LocationManager gezeigt, welcher eine Genauigkeit von einem Kilometer haben soll und bei Positionsänderungen von mehr als 500 Metern aktualisiert wird.
+
+  \begin{listing}[htb!]
+    \insertminted{objc}{code_examples/locationManager.m}
+    \caption{Beispielinitialisierung für einen LocationManager.}
+    \label{lst:locationmanager_objc}
+  \end{listing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{iBeacons-API}
-\label{sec:technologies:iosandxcode:ibeaconsapi}
+\label{sec:technologies:corelocation:ibeaconsapi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Seit der iOS Version 7 wurde das Core Location Framework um die Beacon-Funktionen erweitert. 
+Dazu wurden zwei neue Klassen geschaffen. Einmal die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID, beschreibt.
+
+Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Propertys mit den gegenbenden Beacon-Informatinen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
+
+Die \emph{CLBeaconRegion}-Klasse ist etwas umfangreicher und bestimmt letztendlich, nach welchen Beacons gesucht werden soll.
+Dabei ist es möglich die Region in verschiedene Genaugikeitsstufen einzuteilen.
+
+
+\emph{initWithProximityUUID:identifier:}\begin{quote}
+	Die Region ist nur abhängig von dem UUID und dem Identifier der Beacons, das heißt es werden alle Beacons mit dem gegebenen UUID gesucht.
+\end{quote}
+\emph{initWithProximityUUID:major:identifier:}\begin{quote}
+	Die Region ist abhängig von dem UUID, dem Identifier und dem Major-Wert der Beacons. Es werden nur Beacons eines bestimmten Major-Wertes gesucht.
+\end{quote}
+\emph{initWithProximityUUID:major:minor:identifier:}\begin{quote}
+	Die Region ist abhängig von dem UUID, dem Identifier, dem Major-Wert und dem Minor-Wert der Beacons. Es werden nur Beacons mit passendem Major und Minor-Wert gesucht. In diesem Fall ist bei mehreren erkannten Beacons keine Unterscheidung mehr möglich.
+\end{quote}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{MapBox-Framework}
+\label{sec:sec:technologies:mapbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
