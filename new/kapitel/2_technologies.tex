@@ -182,9 +182,26 @@ Mittels des Location Manager lässt sich dann gezielt nach bestimmten Regionen s
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{MapBox-Framework}
+\section{MapBox}
 \label{sec:sec:technologies:mapbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+MapBox ist ein Online-Karten Anbieter, welcher es erlaubt eigene Karten zu erstellen und über ihren Service bereitzustellen. 
+Die Karten werden dabei vom OpenStreetMap Projekt bereitgestellt und MapBox erlaubt es diese Karten grafisch zu überarbeiten, um zum Beispiel das Farbschema zu ändern, eigene Markierungen zu setzen oder auch eigene Layer über die Karte zu legen.
+Ausserdem stellt MapBox ein SDK für iOS bereit, welche es erlaubt diese individuell angepassten Karten in iOS anzuzeigen und gleichzeitig die Funktionen des native MapKit-Framework mit sich bringt. Ausserdem besitzt MapBox eine größere Flexibilität im Bezug auf die individuelle Anpassung und den Offline-Betrieb, das die Karten direkt auf dem Gerät gespeichert werden können.
+
+Bisher ist die Unterstützung von Indoor-Karten jedoch noch nicht gegeben, sodass man hierbei nicht auf schon vorhandenes Kartenmaterial zurückgreifen kann.
+
+Google hat mit Google Maps Indoor bereits einen Dienst gestartet, welcher Gebäudepläne in Google Maps integriert, bisher handelt es sind jedoch dabei hauptsächlich um öffentliche Gebäude in US-amerikanischen Städten. Das hinzufügen von neuen Gebäudeplänen ist nur bei öffentlichen Gebäuden möglich und nicht für den privaten Gebrauch vorgesehen, daher konnte ich nicht darauf zurückgreifen.
+
+Die Indoor-Karten mussten daher selbst erstellt und in ein, von Mapbox verständliches Format umgewandelt werden.
+Die Ausgangsdatei ist dabei eine Bilddatei mit der Karte des Innenraumes, welche selbst angefertigt wurde. Dieses Bild der Karte muss nun in ein passendes Geo-Format überführt werden. 
+Dazu wurde ein von ''Tom MacWright'' (\citet{jpgtogeo}) bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTiff Datei speichert neben den eigentlichen Bilddaten noch Koordinaten für die Georeferenzierung. \citet{geotiff}
+
+Mit diesem GeoTIFF ist es nun möglich eine eigene Karte zu erstellen, welche letztendlich auf dem iOS-Gerät ausgegeben wird.
+Dafür stellt MapBox das Programm \emph{TileMill} zur Verfügung. Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten ausgegeben werden. 
+TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt eingefügt werden kann.
+
+\todo{Tilemill Screenshot und Erklärung}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Weitere API's}
