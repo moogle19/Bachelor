@@ -243,4 +243,20 @@ In Listing \ref{lst:RMMapView_objc} wird diese Inintialisierung gezeigt.
 \section{CoreData-Framework}
 \label{sec:technologies:coredata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Core Data ist ein Framework für die Organisation und Speicherung von Daten in einem Entity-Realationship-Modell.
+Core Data vereinfacht die Speicherung und den Zugriff auf die Daten, da es für jede Entity ein eigenes Objekt erstellt.
+Die eigentliche Datenspeicherung sieht dabei drei Verschiedene speichermöglichkeiten vor, entweder als Binärdatei, als XML-Datei oder in einer SQLite-Datenbank. 
+Nachdem eine Core Data-Datenbank erstellt wurde, benötigt man zunächst ein \emph{NSManagedObjectContext}, welcher Lese- und Schreibzugriffe auf die Datenbank steuert und verwaltet.
+Objekte aus der Datenbank werden durch \emph{NSManagedObject} repräsentiert. Nach dem anlegen der Datenbank ist es jedoch auch möglich sich direkt eigene Klasse für die einzelnen Datenbank-Objekte erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff enorm erleichtern.
 
+Um auf die Daten zuzugreifen und diese zu verändern ist es zunächst nötig sie aus der Datenbank zu extrahieren. Dazu verwendet man einen \emph{NSFetchRequest}, welcher Objekte nach bestimmten Kriterien aus der Datenbank holt.
+Dabei ist es möglich den \emph{NSFetchRequest} zu spezialisieren und so nur Objekte mit bestimmten Eigenschaften anzuzeigen.
+Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Vergleiche von Attributen und logische Operationen erlaubt.
+
+\begin{listing}[htb! breaklines=true]
+    \insertminted{objc}{code_examples/NSFetchRequest.m}
+    \caption{Fetch Request für alle Objekte die im Namen ''mann'' enthalten und mehr als 3000 Euro im Monat verdienen}
+	\label{lst:NSFetchRequest_objc}
+\end{listing}
+
+Als Rückgabewert erhält man ein Array mit allen Objekten auf die die gegebenen Kriterien zutreffen.
