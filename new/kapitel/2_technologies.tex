@@ -198,10 +198,40 @@ Die Ausgangsdatei ist dabei eine Bilddatei mit der Karte des Innenraumes, welche
 Dazu wurde ein von ''Tom MacWright'' (\citet{jpgtogeo}) bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTiff Datei speichert neben den eigentlichen Bilddaten noch Koordinaten für die Georeferenzierung. \citet{geotiff}
 
 Mit diesem GeoTIFF ist es nun möglich eine eigene Karte zu erstellen, welche letztendlich auf dem iOS-Gerät ausgegeben wird.
-Dafür stellt MapBox das Programm \emph{TileMill} zur Verfügung. Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten ausgegeben werden. 
+Dafür stellt MapBox das Programm \emph{TileMill} zur Verfügung. Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten exportiert werden. 
 TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt eingefügt werden kann.
 
-\todo{Tilemill Screenshot und Erklärung}
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[scale=0.25]{tilemill-example}
+	\caption{Karte in TileMill}
+	\label{tilemill-example}
+\end{figure}
+
+TileMill erlaubt es nun die eingefügte Karte weiter zu bearbeiten, was in unserem Fall jedoch nicht nötig ist.
+Der nächste Schritt ist es die Karte in ein für iOS beziehungsweise das Mapbox SDK, verstädnliches Format zu überführen.
+Dazu wird die Karte als \emph{mbtiles} exportiert. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in Kacheln speichert um das Laden der einzelnen Kartenabschnitte bei größeren Karten zu beschleunigen, sodass nicht die komplette Karte geladen werden muss, sondern nur die benötigten Kacheln.
+
+Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Appikation einbinden und über das SDK auf dem iOS-Gerät ausgeben. In Abbildung \ref{mapbox-map-ios} sieht man die Ausgabe einer Karte auf dem iPhone 5.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.25]{mapbox-map-ios-mockup}
+	\caption{Kartenausgabe mittels Mapbox SDK auf dem iPhone}
+	\label{mapbox-map-ios}
+\end{figure}
+
+Diese Karte wird offline auf dem Gerät gespeichert, es ist also keine Internetverbindung nötig und diese anzuzeigen.
+
+Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
+Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} läd und dem MapView zur Verfügung stellt. 
+In Listing \ref{lst:RMMapView_objc} wird diese Inintialisierung gezeigt.
+
+\begin{listing}[htb! breaklines=true]
+    \insertminted{objc}{code_examples/RMMapView.m}
+    \caption{Initialisierung des MapView mit eigenem Kartenmaterial}
+	\label{lst:RMMapView_objc}
+\end{listing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Weitere API's}
@@ -213,3 +243,4 @@ TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt 
 \section{CoreData-Framework}
 \label{sec:technologies:coredata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
