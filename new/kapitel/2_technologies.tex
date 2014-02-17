@@ -24,7 +24,9 @@ So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbi
 
 Die Vorteile die BLE mit sich bringt, liegen vor allem in der niedrigen Latenz, welche von 100ms auf bis zu unter 3ms reduziert wurde, und, wie bereits erwähnt, der Energieverbrauch drastisch gesenkt wurde.
 
+Des Weiteren wird eine 24-Bit-Fehlerkorrektur eingesetzt, was die Verbindung unempfindlicher für Störungen machen soll.
 
+Für die Verschlüsselung des Signals wird AES-128 eingesetzt, was eine sichere Kommunikation gewährleisten soll.
 
 Bluetooth Low Energy bietet darüber hinaus eine Vielzahl sogennanter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinen für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches besipielsweise die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass dieser Gurt mit jedem Endgerät auf die selbe Weise funktioniert.
 
@@ -103,7 +105,7 @@ Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der 
 Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
 Daher waren drei Dinge zwingend notwendig: ein Mac, Xcode und ein iOS-Gerät.
 
-Für die Entwicklung setzte ich deshalb auf ein Macbook Pro mit installiertem Xcode und als iOS-Gerät setzte ich ein iPhone 5 ein.
+Für die Entwicklung setzte ich deshalb auf ein MacBook Pro mit installiertem Xcode 5.0.2 und als iOS-Gerät setzte ich ein iPhone 5 mit iOS 7.0.4 ein.
 Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-Features des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
 
 
@@ -226,8 +228,7 @@ Diese Karte wird offline auf dem Gerät gespeichert, es ist also keine Internetv
 Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
 Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} läd und dem MapView zur Verfügung stellt. 
 In Listing \ref{lst:RMMapView_objc} wird diese Inintialisierung gezeigt.
-
-\begin{listing}[htb! breaklines=true]
+\begin{listing}[htb!]
     \insertminted{objc}{code_examples/RMMapView.m}
     \caption{Initialisierung des MapView mit eigenem Kartenmaterial}
 	\label{lst:RMMapView_objc}
