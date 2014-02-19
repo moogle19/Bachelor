@@ -85,3 +85,50 @@ Diese Möglichkeit wurde von der Firma Radius Network vorgestellt, welche auch e
 \section{Innenraummessungen}
 \label{sec:dataandmeasurement:indoormeasure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um die Leistungsfähigkeit und das Verhalten der Beacons in Innenräume zu testen und darzustellen, wurden verschiedene Messungen durchgeführt. Dazu wurden zum einen die mobilen Beacons verwendet und zum anderen der Raspberry Pi, als stationäres Beacon.
+Die Messungen wurden dabei sowohl mit dem iPhone 5 als auch mit dem iPhone 4s durchführt, um auch hier die Unterschiede zwischen den einzelnen Modellen zu erfassen.
+
+
+Zuerst wurden die Messungen mit den mobilen Beacons, hier die \emph{kontakt.io}-Beacons, durchgeführt.
+Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt, wobei immer freie Sicht zwischen den Beacons und den Empfangsgeräten bestand. Für jede Entfernung wurden dabei 100 Stichproben genommen, jeweils eine pro Sekunde.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% figure of signal strnegth
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}[t]{5cm}
+		\includegraphics[scale=0.2]{avgiphone5}
+		\caption{Messung des iPhone 5}
+		\label{avgiphone5-signalstrength}
+	\end{minipage}
+	\hspace{2cm}
+	\begin{minipage}[t]{5cm}
+			\includegraphics[scale=0.2]{avgiphone4s}
+			\caption{Messung des iPhone 4s}
+			\label{avgiphone4s-signalstrength}
+	\end{minipage}
+		\caption{Durchschnittliche Signalstärke eines kontakt.io Beacons}
+		\label{signalstrength}
+\end{figure}
+
+In Abbildung \ref{avgiphone5-signalstrength} und Abbildung \ref{avgiphone4s-signalstrength} lässt sich dabei sehr gut erkennen, das die Signalstärke, nicht wie eigentlich erwartet stetig abnimmt, sondern relativ stark schwankt. Dies ist darauf zurückzuführen, dass in Innenräumen sowohl Wände, als auch Gegenstände im Raum, das Bluetoothsignal reflektieren oder blockieren und so die Ergebnisse verfälschen.
+Des Weiteren ist zu erkennen, dass die Ergebnisse zwischen den verschiedenen iPhone-Modellen deutlich voneinander abweichen. Das lässt darauf schließen, das der verbaute Chipsatz beziehungsweise die verbaute Antenne innerhalb der Gerät die Ergebnisse deutlich beeinflusst und die Werte daher nur schwer übertragbar sind.
+
+
+Ein weiterer Untersuchungspunkt ist die Stabilität des Signal. Dabei wurden die gleichen Daten wie zuvor verwendet, jedoch um die minimalen und maximalen Werte ergänzt. In Abbildung \ref{all-iphone 5} lässt sich dabei gut erkennen, das die Ergebnisse eine ähnliche Tendenz haben, aber sich dennoch über einen sehr großen Bereich der Signalstärke verteilen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{alliphone5}
+	\caption{Minimale, maximale und durchschnittliche Signalstärke des Beacons gemessen vom iPhone 5}
+	\label{all-iphone5}
+\end{figure}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mögliche Störfaktoren}
+\label{sec:dataandmeasurement:interferencefactor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
