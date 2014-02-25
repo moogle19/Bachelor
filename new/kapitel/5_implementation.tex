@@ -100,20 +100,74 @@ Die letzte untersuchte Möglichkeit ist die der Wahrscheinlichkeitsverteilung de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Bei der einfachen und naiven Bestimmung der aktuellen Position, werden alle zuvor gesammelten Fingerprints mit den aktuell gemessenen Signalstärken verglichen. Dies führt dazu, dass bei größeren Fingerprint-Datenbanken auch die Rechenzeit und der Energieverbrauch steigt. 
 
-Bei dem Vergleich der Messwerte mit den gespeicherten Fingerprints wird das Nearest-Neighbor-Verfahren verwendet. Dabei werden sowohl die aktuellen Messwerte, als auch die Fingerprints als Vektoren aus den Signalstärken zusammengefasst und aus diesen Vektoren wird die jeweilige Entfernung der beiden Werte berechnet.
+Bei dem Vergleich der Messwerte mit den gespeicherten Fingerprints wird das Nearest-Neighbor-Verfahren verwendet. Dabei werden sowohl die aktuellen Messwerte, als auch die Fingerprints als Vektoren aus den Signalstärken zusammengefasst und aus diesen Vektoren wird die jeweilige Entfernung der beiden Werte berechnet. Die einzelnen Signalstärken-Werte sind die Werte von allen in Reichweite befindlichen Beacons.
+
+Bei der Berechnung wird dabei für jeden Fingerprint ein Vektor erzeugt, welcher die Signalstärken zu den in Reichweite befindlichen Beacons beinhaltet.
+Die Signalstärke für die Beacons wird hier als \emph{FSig} bezeichnet, wobei ein Zusatz angibt auf welches Beacon sich der Wert bezieht, zum Beispiel \emph{FSigB1} für die Sigalstärke des Beacons 1.
+Die Signalstärke der aktuellen Messung wird mit \emph{MSig} abgekürzt und ebenfalls um den Identifikator des Beacons erweitert.
+
 
 \begin{equation}
 	\begin{pmatrix}
-		RSSI1 \\
-		RSSI2 \\
-		RSSI3 \\
+		FSigB1 \\
+		FSigB2 \\
+		FSigB3 \\
+		...
+	\end{pmatrix} -
+	\begin{pmatrix}
+		MSigB1 \\
+		MSigB2 \\
+		MSigB3 \\
 		...
 	\end{pmatrix}
+	= 
 	\begin{pmatrix}
-		Measured RSSI1 \\
-		Measured RSSI2 \\
-		Measured RSSI3 \\
+		FSigB1 - MSigB1 \\
+		FSigB2 - MSigB2 \\
+		FSigB3 - MSigB3 \\
 		...
 	\end{pmatrix}
 \end{equation}
+
+\begin{equation}
+	\begin{pmatrix}
+		FSigB1 - MSigB1 \\
+		FSigB2 - MSigB2 \\
+		FSigB3 - MSigB3 \\
+		...
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		Diff1 \\
+		Diff2 \\
+		Diff3 \\
+		...
+	\end{pmatrix}
+	\widehat{=}
+	\sqrt{Diff1^2 + Diff2^2 + Diff3^2 + ...}
+\end{equation}
+
+Aus den Differenzen beziehungsweise die Abstände zwischen den einzelnen Signalstärke-Vektoren lässt sich nun der Nearest-Neighbor bestimmen und damit die wahrscheinliche Position im Raum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Probleme}
+\label{sec:implementation:fingerprinting:positioning:naiv:problems}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Bei dem Standart-Nearest-Neighbor-Verfahren kommt es jedoch zu einigen Problemen. 
+Die Masse der zu überprüfenden Daten kann, je nach der Größe der Fingerprint-Datenbank, sehr groß werden. Bei sehr großen Datenmengen kann es zu einer längeren Laufzeit bei der Überprüfung der Fingerprints kommen und ausserdem wird mehr Systemspeicher belegt. 
+Eine Möglichkeit dies zu beheben, wäre die Verlagerung der Berechnungen auf einen Server, welche als Ergebnis die aktuelle Position liefert. Die zu übertragenden Daten dabei sind sehr gering, da es sich nur um die aktuellen Beacon-Signalstärken handelt beziehungsweise die aktuelle Position, welche vom Server zurückgesendet wird. 
+Ausserdem würde die Rechenlast komplett von iPhone genommen, was sich positiv auf die Batterielaufzeit und Performance auswirkt.
+
+Ein weiteres Problem sind Messfehler beziehungsweise Messausreißer, welche das Ergebnis verfälschen können. So werden auch Ausreißer in das Nearest-Neighbor-Verfahren mit einbezogen, wodurch die Berechnung der aktuellen Position verfälscht werden kann.
+
+In der Realität ist das Standard-Nearest-Neighbor-Verfahren nicht problemlos möglich, da die Positionsangabe starkt schwankt und zwischen einzelnen Positonen springt.
+
+Daher wurde überlegt, wie dieses Problem behoben werden könnte. Dies wurde so gelöst, dass statt aller Fingerprint-Wert nur der durchschnittliche Wert der Signalstärke eines Beacons genutzt wird.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nearest-Neighbor-Verfahren mit Durchschnittswerten}
+\label{sec:implementation:fingerprinting:positioning:avg}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
