@@ -169,5 +169,19 @@ Daher wurde überlegt, wie dieses Problem behoben werden könnte. Dies wurde so 
 \subsection{Nearest-Neighbor-Verfahren mit Durchschnittswerten}
 \label{sec:implementation:fingerprinting:positioning:avg}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Der zweite Ansatz arbeitet ähnlich wie das zuvor erklärte Verfahren, nutzt jedoch nicht die komplette Datenbank der Fingerprints. 
+Stattdessen wird nur ein Durchschnittswert über alle Fingerprints eines Beacons berechnet und dieser für die Bestimmung der Position verwendet.
+Dieser Durchschnittswert muss dabei nur bei einer Änderung der grundlegenden Datenbank angepasst werden, wodurch der Rechenaufwand niedriger gehalten wird. 
+Ausserdem ist der Einfluss von Störungen und Messungenauigkeiten quasi eliminiert. 
+Bei den genutzten Werten bieten sich dabei zwei verschiedenen Möglichkeiten. 
+Zum einen der Durchschnittswert über alle Fingerprints und zum anderen ist es auch möglich den Median-Wert zu bilden.
+Dabei bietet sich der Median an, da dort Ausreißer keinerlei Einfluss auf auf den Wert haben, wohingegen die Ausreißer bei dem Durchschnittswert das Ergebnis verfälschen können.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Prohabilistisches Verfahren}
+\label{sec:implementation:fingerprinting:positioning:probability}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
