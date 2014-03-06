@@ -166,22 +166,63 @@ Daher wurde überlegt, wie dieses Problem behoben werden könnte. Dies wurde so 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Nearest-Neighbor-Verfahren mit Durchschnittswerten}
+\subsection{Nearest-Neighbor-Verfahren mit Mittelwerten}
 \label{sec:implementation:fingerprinting:positioning:avg}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Der zweite Ansatz arbeitet ähnlich wie das zuvor erklärte Verfahren, nutzt jedoch nicht die komplette Datenbank der Fingerprints. 
-Stattdessen wird nur ein Durchschnittswert über alle Fingerprints eines Beacons berechnet und dieser für die Bestimmung der Position verwendet.
-Dieser Durchschnittswert muss dabei nur bei einer Änderung der grundlegenden Datenbank angepasst werden, wodurch der Rechenaufwand niedriger gehalten wird. 
-Ausserdem ist der Einfluss von Störungen und Messungenauigkeiten quasi eliminiert. 
-Bei den genutzten Werten bieten sich dabei zwei verschiedenen Möglichkeiten. 
-Zum einen der Durchschnittswert über alle Fingerprints und zum anderen ist es auch möglich den Median-Wert zu bilden.
-Dabei bietet sich der Median an, da dort Ausreißer keinerlei Einfluss auf auf den Wert haben, wohingegen die Ausreißer bei dem Durchschnittswert das Ergebnis verfälschen können.
+Stattdessen wird für jede Zelle ein Mittelwert über alle Fingerprints der vorhandenen Beacons berechnet und dieser für die Bestimmung der Position verwendet.
+Dieser Mittelwert muss dabei nur bei einer Änderung der grundlegenden Fingerprint-Datenbank angepasst werden, wodurch der Rechenaufwand niedriger gehalten wird, da bei jeder Positionsbestimmung nur auf den Mittelwert zugegriffen werden muss.
+Ausserdem wird der Einfluss von Störungen und Messungenauigkeiten der Fingerprints verrringert.
+
+Bei der Implementation wurden zwei Mittelwerte getestet. Zum einen der Median, welcher den mittleren Wert einer sortierten Reihe aller Werte nutzt und zum anderen das arithmetische Mittel, welcher alles Werte aufaddiert und dann durch die Anzahl der Werte dividiert.
+
+\begin{equation}
+	RSSI_{avg} = \frac{RSSI_{1} + RSSI_{2} + ... + RSSI_{n}}{n}
+\end{equation}
+
+Der arithmetische Mittelwert lässt sich sehr leicht berechnen und schafft es kleinere Messungenauigkeiten zu beseitigen. Falls jedoch sehr starke Messfehler einfließen, können diese das arithmetische Mittel deutlich verfälschen.
+
+Im Gegensatz dazu ist der Median deutlich robuster als das arithmetische Mittel.
+
+Der Median errechnet sich dabei wie folgt: 
+
+\begin{equation}
+	\begin{split}
+	\text{\emph{Für }}RSSI \text{\emph{ gilt: }} RSSI_{1} \leq RSSI_{2} \leq ... \leq RSSI_{n} \\
+	RSSI_{median}=\begin{cases}
+	RSSI_{\frac{n+1}{2}} & \text{für } n \text{ ungerade}\\ \\
+	\frac{RSSI_{\frac{n}{2}} + RSSI_{\frac{n}{2}+1}}{2} & \text{für } n \text{ gerade} \\
+	\end{cases}
+	\end{split}
+\end{equation}
+
+Bei der Berechnung wird klar, warum Messfehler keinerlei Auswirkungen haben. Da beim Median, der mittlere Wert der sortierten Reihe genutzt wird, spielen Messfehler, welche sich am Anfang oder Ende der Reihe befinden, keine Rolle.
+
+Im Testeinsatz war der Unterschied zwischen Median und arithmetischem Mittel jedoch zu vernachlässigen. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prohabilistisches Verfahren}
 \label{sec:implementation:fingerprinting:positioning:probability}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Der letzte untersuchte Ansatz war ein prohabilistisches Verfahren, welches die Wahrscheinlichkeiten einer bestimmten Signalstärke eines Beacons als Referenzwert für die Positionbestimmung nutzt. Dabei wurde für die Berechnung der Wahrscheinlichkeiten und Bestimmung der aktuellen Position das Verfahren von \citet{wifiFingerprintProbability} verwendet, welche das Fingerprinting mit Hilfe von Wireless LAN-Routern verwenden.
+
+Die Methoden ließen sich jedoch relativ einfach auf die Bluetooth-Technologie übertragen.
+
+Das Verfahren arbeitet mit einer Wahrscheinlichkeitsverteilung über die Signalstärken für jedes Beacon. 
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.2]{probability_signal_strength}
+	\caption{Wahrscheinlichkeitsverteilung von Signalstärke bei einem Beacon}
+	\label{probability-signal-strength-beacon}
+\end{figure}
+
+
+Dabei wird für jede Kombination von Zelle und Beacon in der Datenbank eine Wahrscheinlichkeitsverteilung der Signalstärke-Werte angelegt, welche dann später mit den aktuell gemessenen Werten verglichen werden.
+
+
+
 
 
 
