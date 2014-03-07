@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Die Bluetooth-Version 4.0, oder auch Bluetooth Smart genannt, wurde 2009 final spezifiziert und wird seit Ende 2010 in Endgeräten eingesetzt.
-Dieser Standard beinhaltet neben dem klassischen Bluetooth, eine neue Version, mit dem Namen Bluetooth Low Energy, welche, wie der Name schon andeutet, einen sehr viel geringeren Stromverbrauch vorweißt. Dabei ist der Stromverbrauch zwischen zwei und 100 mal geringer als beim klassischen Bluetooth.
+Dieser Standard beinhaltet neben dem klassischen Bluetooth, eine neue Version, mit dem Namen Bluetooth Low Energy, welche, wie der Name schon andeutet, einen sehr viel geringeren Stromverbrauch vorweist. Dabei ist der Stromverbrauch zwischen zwei und 100 mal geringer als beim klassischen Bluetooth.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,7 +20,7 @@ Im Jahr 2007 wurden diese Spezifikationen dann in den, sich in der Entwicklung b
 
 Bluetooth Low Energy arbeitet wie das klassische Bluetooth im 2,4 GHz Band, bringt aber in der Funktionsweise einige Unterschiede mit sich.
 
-So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbit/s auf maximal 1 Mbit/s reduziert. Dies führt dazu, dass BLE zum Beispiel nicht für Headsets genutzt werden kann, da die zur Verffügung stehende Übertragungsrate nicht für die Audioübertragung ausreicht.
+So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbit/s auf maximal 1 Mbit/s reduziert. Dies führt dazu, dass BLE zum Beispiel nicht für Headsets genutzt werden kann, da die zur Verfügung stehende Übertragungsrate nicht für die Audioübertragung ausreicht.
 
 Die Vorteile die BLE mit sich bringt, liegen vor allem in der niedrigen Latenz, welche von 100ms auf bis zu unter 3ms reduziert wurde, und, wie bereits erwähnt, der Energieverbrauch drastisch gesenkt wurde.
 
@@ -28,7 +28,7 @@ Des Weiteren wird eine 24-Bit-Fehlerkorrektur eingesetzt, was die Verbindung une
 
 Für die Verschlüsselung des Signals wird AES-128 eingesetzt, was eine sichere Kommunikation gewährleisten soll.
 
-Bluetooth Low Energy bietet darüber hinaus eine Vielzahl sogennanter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinen für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches besipielsweise die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass dieser Gurt mit jedem Endgerät auf die selbe Weise funktioniert.
+Bluetooth Low Energy bietet darüber hinaus eine Vielzahl so genannter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinien für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches besipielsweise die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass dieser Gurt mit jedem Endgerät auf die selbe Weise funktioniert.
 
 
 
@@ -43,7 +43,7 @@ Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwicke
 Beacon bedeutet übersetzt ''Leuchtfeuer'' und die Funktionsweise der Beacons ist dem sehr ähnlich.
 Einmal in Betrieb genommen, sendet das Beacon kontinuierlich ein Signal, in welchem sich Daten zur Identifizierung des Beacons befinden.
 
-Neben den Identifikationsdaten kann das Emfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung einzuschätzen. 
+Neben den Identifikationsdaten kann das Empfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung einzuschätzen. 
 In der iBeacons-API sind dafür vier verschiedene Zustände definiert: \textit{Far}, \textit{Near}, \textit{Immediate} und \textit{Unknown}. Diese Werte erlauben eine grobe Entfernungseinschätzung und für eine genauere Bestimmung lässt sich noch eine weitere Kenngröße bestimmen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung zwischen zwei Beacons genutzt werden soll und keinesfalls eine genaue Entfernung angibt.
 
 \begin{tabular}{p{2cm}p{5cm}p{5cm}p{4cm}}
@@ -62,7 +62,7 @@ Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät
 
 
 
-Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher es erlaubt die Beacons an fast jedem beliebigem Ort anzubringen, als auch ihr geringer Stromverbrauch, der es möglich macht, die Beacons bis zu mehreren Jahren mit einer Knopfzellenbatterie zu betreiben. Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} sehr gut erkennen. Den Großteil des Beacons nimmt dabei die Batterie ein. 
+Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher es erlaubt die Beacons an fast jedem beliebigem Ort anzubringen, als auch ihr geringer Stromverbrauch, der es möglich macht, die Beacons bis zu mehreren Jahren mit einer Knopfzellen Batterie zu betreiben. Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} sehr gut erkennen. Den Großteil des Beacons nimmt dabei die Batterie ein. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,9 +115,9 @@ Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-Features 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Das Core Location-Framework erlaubt es aktuelle Positions- und Richtungsinformationen eines Gerätes zu bestimmen.
 Die Positionsbestimmung lässt sich dabei über verschiedene Werte und Sensoren bestimmen und auch der Grad der Genauigkeit ist variabel.
-Auch die Aktualiserungsrate der Position lässt sich festlegen, wobei eine höhere Aktualisierungsrate auch gleichbedeutend mit einem höherem Akkuverbrauch ist.
+Auch die Aktualisierungsrate der Position lässt sich festlegen, wobei eine höhere Aktualisierungsrate auch gleichbedeutend mit einem höherem Akkuverbrauch ist.
 
-Bei der Genauerigkeit gibt es dabei verschiedene Konstanten, die die gewollte Genauigkeit bestimmen. 
+Bei der Genauigkeit gibt es dabei verschiedene Konstanten, die die gewollte Genauigkeit bestimmen. 
 
 
     \begin{table}[htb!]
@@ -163,10 +163,10 @@ In Listing \ref{lst:locationmanager_objc} wird die Initialisierung eines Locatio
 Seit der iOS Version 7 wurde das Core Location Framework um die Beacon-Funktionen erweitert. 
 Dazu wurden zwei neue Klassen geschaffen. Einmal die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID, beschreibt.
 
-Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Propertys mit den gegenbenden Beacon-Informatinen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
+Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Propertys mit den gegebenen Beacon-Informationen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
 
 Die \emph{CLBeaconRegion}-Klasse ist etwas umfangreicher und bestimmt letztendlich, nach welchen Beacons gesucht werden soll.
-Dabei ist es möglich die Region in verschiedene Genaugikeitsstufen einzuteilen.
+Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen einzuteilen.
 
 
 \emph{initWithProximityUUID:identifier:}\begin{quote}
@@ -211,10 +211,10 @@ TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt 
 \end{figure}
 
 TileMill erlaubt es nun die eingefügte Karte weiter zu bearbeiten, was in unserem Fall jedoch nicht nötig ist.
-Der nächste Schritt ist es die Karte in ein für iOS beziehungsweise das Mapbox SDK, verstädnliches Format zu überführen.
+Der nächste Schritt ist es die Karte in ein für iOS beziehungsweise das Mapbox SDK, verständliches Format zu überführen.
 Dazu wird die Karte als \emph{mbtiles} exportiert. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in Kacheln speichert um das Laden der einzelnen Kartenabschnitte bei größeren Karten zu beschleunigen, sodass nicht die komplette Karte geladen werden muss, sondern nur die benötigten Kacheln.
 
-Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Appikation einbinden und über das SDK auf dem iOS-Gerät ausgeben. In Abbildung \ref{mapbox-map-ios} sieht man die Ausgabe einer Karte auf dem iPhone 5.
+Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Applikation einbinden und über das SDK auf dem iOS-Gerät ausgeben. In Abbildung \ref{mapbox-map-ios} sieht man die Ausgabe einer Karte auf dem iPhone 5.
 
 \begin{figure}[htb!]
 		\centering
@@ -226,8 +226,8 @@ Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Appikation einbind
 Diese Karte wird offline auf dem Gerät gespeichert, es ist also keine Internetverbindung nötig und diese anzuzeigen.
 
 Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
-Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} läd und dem MapView zur Verfügung stellt. 
-In Listing \ref{lst:RMMapView_objc} wird diese Inintialisierung gezeigt.
+Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} lädt und dem MapView zur Verfügung stellt. 
+In Listing \ref{lst:RMMapView_objc} wird diese Initialisierung gezeigt.
 \begin{listing}[htb!]
     \insertminted{objc}{code_examples/RMMapView.m}
     \caption{Initialisierung des MapView mit eigenem Kartenmaterial}
@@ -246,7 +246,7 @@ In Listing \ref{lst:RMMapView_objc} wird diese Inintialisierung gezeigt.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Core Data ist ein Framework für die Organisation und Speicherung von Daten in einem Entity-Realationship-Modell.
 Core Data vereinfacht die Speicherung und den Zugriff auf die Daten, da es für jede Entity ein eigenes Objekt erstellt.
-Die eigentliche Datenspeicherung sieht dabei drei Verschiedene speichermöglichkeiten vor, entweder als Binärdatei, als XML-Datei oder in einer SQLite-Datenbank. 
+Die eigentliche Datenspeicherung sieht dabei drei verschiedene Speichermöglichkeiten vor, entweder als Binärdatei, als XML-Datei oder in einer SQLite-Datenbank. 
 Nachdem eine Core Data-Datenbank erstellt wurde, benötigt man zunächst ein \emph{NSManagedObjectContext}, welcher Lese- und Schreibzugriffe auf die Datenbank steuert und verwaltet.
 Objekte aus der Datenbank werden durch \emph{NSManagedObject} repräsentiert. Nach dem anlegen der Datenbank ist es jedoch auch möglich sich direkt eigene Klasse für die einzelnen Datenbank-Objekte erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff enorm erleichtern.
 
