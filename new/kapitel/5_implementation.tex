@@ -207,9 +207,9 @@ Im Testeinsatz war der Unterschied zwischen Median und arithmetischem Mittel jed
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Der letzte untersuchte Ansatz war ein prohabilistisches Verfahren, welches die Wahrscheinlichkeiten einer bestimmten Signalstärke eines Beacons als Referenzwert für die Positionbestimmung nutzt. Dabei wurde für die Berechnung der Wahrscheinlichkeiten und Bestimmung der aktuellen Position das Verfahren von \citet{wifiFingerprintProbability} verwendet, welche das Fingerprinting mit Hilfe von Wireless LAN-Routern verwenden.
 
-Die Methoden ließen sich jedoch relativ einfach auf die Bluetooth-Technologie übertragen.
+Da das Fingerprinting mit Wireless LAN auch auf den Signalstärken der Wireless LAN-Basisstationen basiert, lässt sich das Verfahren auch auf andere Technologien, welche die Signalstärke zur Positionsbestimmung nutzen, übertragen.
 
-Das Verfahren arbeitet mit einer Wahrscheinlichkeitsverteilung über die Signalstärken für jedes Beacon. 
+Während der initialen Offline-Phase wird, nachdem die Fingerprints gesammelt wurden, eine Wahrscheinlichkeitsverteilung der Signalstärken für jedes Beacon in jeder Zelle erstellt. Diese wird später als Vergleichswert genutzt, um die Ähnlichkeit der Signalstärken zu bestimmen.
 
 \begin{figure}[htb!]
 		\centering
@@ -218,11 +218,27 @@ Das Verfahren arbeitet mit einer Wahrscheinlichkeitsverteilung über die Signals
 	\label{probability-signal-strength-beacon}
 \end{figure}
 
+Danach folgt die Online-Phase in der die aktuelle Position bestimmt werden soll. Dafür werden die aktuellen Signalstärken der Beacons gemessen und gespeichert, um von diesen Werten ebenfalls eine Wahrscheinlichkeitsverteilung zu berechnen. Die Anzahl der Werte, welche in die Wahrscheinlichkeitsverteilung einfließen ist dabei sehr wichtig.
+Für eine statische Positionsbestimmung sollte die Anzahl der letzten gespeicherten Werte groß gewählt werden, da es hier keine Echtzeitänderung der Positon geschieht.
+Für unsere Anwendung der Echtzeit-Positionsbestimmung ist ein relativ schnelles aktualisieren der Position jedoch essenziell. Daher muss hier ein Kompromiss aus akkurater Positionsbestimmung und Echtzeitfähigkeit gefunden werden.
 
-Dabei wird für jede Kombination von Zelle und Beacon in der Datenbank eine Wahrscheinlichkeitsverteilung der Signalstärke-Werte angelegt, welche dann später mit den aktuell gemessenen Werten verglichen werden.
+Die Wahrscheinlichkeitsverteilung der aktuell gemessenen Werte muss nun mit den Verteilungen aller Zellen verglichen werden und deren Ähnlichkeit muss bestimmt werden. Dafür wird die Bhattacharyya-Distanz genutzt, welche die Ähnlichkeit zweier Wahrscheinlichkeitsverteilungen beschreibt. 
+Diese Distanz muss für jede Zelle errechnet werden. 
+Dafür muss zunächst der Bhattacharyya-Koeffizient $B_{b, c}$ für jedes Beacon $b$ einer Zelle $c$ berechnet werden.
 
+\begin{equation}
+	B_{b, c} = \sum_{s \in [s_{min},s_{max}]} \sqrt{P_{b}^{c}(s) \cdot Q_{b}(s)}
+\end{equation}
 
+Um daraus die Bhattacharyya-Distanz für die aktuelle Zelle $c$ zu berechnen, wird zunächst das arithmetische Mittel der Bhattacharyya-Koeffizienten der $q$ stärksten Beacons der aktuellen Zelle $O_{c}^{q}$ gebildet. Die Bhattacharyya-Distanz $d_{c}$ ist dabei der negative Logarithmus über diesen Mittelwert.
 
+\begin{equation}
+	d_{c}= \begin{cases}
+	-ln (\frac{1}{q} \sum_{i \in O_{c}^{q}} B_{b, c}) & \text{wenn } \sum_{i \in O_{c}^{q}} B_{b, c} > 0 \\
+	- \infty & \text{sonst}
+	\end{cases}
+\end{equation}
 
+Diese Distanz gibt nun die Ähnlichkeit der aktuellen Wahrscheinlichkeitsverteilung mit den Wahrscheinlichkeitsverteilungen der jeweiligen Zelle an. Daraus ergibt sich, dass die Zelle mit der kleinsten Distanz die wahrscheinlichste Zelle für die aktuellen Messwerte ist.
 
-
+Für unseren Zweck reicht diese Angabe aus. Es lässt sich jedoch, wie im Paper von \citet{wifiFingerprintProbability} weiter ausgeführt, auch noch eine interpolierte Position aus den $k$ wahrscheinlichsten Positionen bilden, welche, gewichtet nach ihrer Distanz, in die finale Position einfließen. Da wir jedoch mit Zellen arbeiten und nicht mit Koordinaten wurde darauf verzichtet.
