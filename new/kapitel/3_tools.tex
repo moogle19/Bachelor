@@ -1,17 +1,17 @@
 \chapter{Werkzeuge}
 \label{chap:tools}
 In diesem Kapitel wird erläutert, welche Hilfsmittel bei der Erstellung des Bachelorarbeit genutzt werden.
-Dabei wird näher auf die verwendete Hard- und Software eingegangen und wie sie für die Erstellung und das Testen genutzt wurde.
+Dabei wird näher auf die verwendete Hard- und Software eingegangen und wie sie für die Erstellung und die Tests genutzt wurde.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Xcode}
 \label{sec:tools:xcode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Xcode ist eine integrierte Entwicklungsumgebung von Apple, welche es ermöglicht iOS und OS X Applikationen zu programmieren, zu testen und zu debuggen.
+Xcode ist eine integrierte Entwicklungsumgebung welche von Apple etwickelt wurde. Xcode ermöglicht es \emph{iOS} und \emph{OS X} Applikationen zu programmieren, zu testen und zu debuggen.
 Standardmäßig werden dabei die Programmiersprachen \emph{Objective C}, \emph{C} und \emph{C++} unterstützt.
 
-Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen.
+Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen, ohne diese auf ein reales Gerät zu übertragen.
 
 Bei Erstellung einer neuen Applikation kann man unter mehreren Templates wählen, welche jeweils verschiedene Funktionen mit sich bringen. In Abbildung \ref{xcode-templates} lassen sich die verschiedenen Auswahlmöglichkeiten erkennen.
 
@@ -27,7 +27,7 @@ Dazu gehören beispielsweise die \emph{AppDelegate} und das \emph{Storyboard}.
 
 Die AppDelegate-Klasse steuert applikationsweite Ereignisse, wie etwa das Aufrufen und Schließen der Applikation. Außerdem wird durch die AppDelegate der aktuelle Zustand der Applikation gespeichert und wiederhergestellt.
 
-Das Storyboard ist eine grafische Oberfläche für die Erstellung des User Interfaces. Es ermöglicht verschiedene Elemente wie zum Beispiel Views, Textfelder, Buttons oder Tabellen einzufügen und diese zu verbinden. Wie in Abbildung \ref{xcode-storyboard} zu erkennen, besteht das Storyboard aus mehreren View Controllern, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen View Controller sind mit so gennanten \emph{Segue's} verbunden, welche sich durch bestimmte Aktionen, wie zum Beispiel den Druck auf einen Button, auslösen lassen.
+Das Storyboard ist eine grafische Oberfläche für die Erstellung des User Interfaces. Es ermöglicht verschiedene Elemente wie zum Beispiel Views, Textfelder, Buttons oder Tabellen einzufügen und diese zu verbinden. Wie in Abbildung \ref{xcode-storyboard} zu erkennen, besteht das Storyboard aus mehreren View Controllern, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen View Controller sind mit so gennanten \emph{Segue's} verbunden, welche sich durch bestimmte Aktionen, wie zum Beispiel den Druck auf einen Button, auslösen lassen. Diese Segue's definieren, wie die Übergänge zwischen den ViewControllern ablaufen.
 
 \begin{figure}[htb!]
 	\centering
@@ -36,8 +36,8 @@ Das Storyboard ist eine grafische Oberfläche für die Erstellung des User Inter
 	\label{xcode-storyboard}
 \end{figure}
 
-Das Storyboard bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sowohl im Hochformat, als auch im Querformat ein sauberes und geordnetes Format hat.
-In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Abstands und Ausrichtungsbeziehungen zwischen den einzelnen Objekten gut erkennen.
+Das Storyboard bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein passendes User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt.
+In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Constraints, also die Abstands und Ausrichtungsbeziehungen zwischen den einzelnen Objekten, gut erkennen.
 
 \begin{figure}[htb!]
 		\centering
@@ -45,7 +45,8 @@ In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Abstands und Aus
 	\caption{View Controller mit Constraints}
 	\label{xcode-storyboard-constraints}
 \end{figure}
-\todo{Aufgabe der Constraints beschreiben}
+
+Diese Constraints beschreiben dabei die Abstände und Ausrichtungen der einzelnen Elemente zu dem umschließenden ViewController oder den anderen Elementen.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Objective-C}

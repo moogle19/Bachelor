@@ -1,0 +1,6 @@
+Quellen:
+
+Wibree: http://developer.nokia.com/community/wiki/Wibree
+Bluetooth: https://www.bluetooth.org/en-us/specification/adopted-specifications
+iBeacon: https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html#//apple_ref/doc/uid/TP40009497-CH9-SW7
+CLBeacon: https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLBeacon_class/Reference/Reference.html

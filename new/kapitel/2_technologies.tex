@@ -6,8 +6,9 @@
 \label{sec:technologies:bluetooth4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Die Bluetooth-Version 4.0, oder auch Bluetooth Smart genannt, wurde 2009 final spezifiziert und wird seit Ende 2010 in Endgeräten eingesetzt.
-Dieser Standard beinhaltet neben dem klassischen Bluetooth, eine neue Version, mit dem Namen Bluetooth Low Energy, welche, wie der Name schon andeutet, einen sehr viel geringeren Stromverbrauch vorweist. Dabei ist der Stromverbrauch zwischen zwei und 100 mal geringer als beim klassischen Bluetooth.
+Der Bluetooth-Standard 4.0, auch Bluetooth Smart genannt, wurde am 30.Juni 2010 verabschiedet. Darin enthalten sind alle Protokolle der vorherigen Version 3.0, sowie Fehlerkorrekturen und Erweiterungen und ein neues Protokoll, Bluetooth Low Energy. 
+
+Das erste unterstützte Mobilfunkgerät war das iPhone 4s, welches am 4. Oktober 2011 vorgestellt wurde. Im Jahr 2012 integrierten auch andere Smartphone-Hersteller Bluetooth 4.0 in ihre Geräte, sodass alle neueren Geräte diesen Standard beherschen.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,21 +16,20 @@ Dieser Standard beinhaltet neben dem klassischen Bluetooth, eine neue Version, m
 \label{sec:technologies:bluetoothLE}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Bluetooth Low Energy wurde Anfangs von Nokia unter dem Namen ''Wibree'' entwickelt. Die Zielsetzung dabei war es eine Technologie zu entwickeln, mit der sich Computer und Mobilgeräte schnell und einfach mit Peripherie-Geräten verbinden lassen. Das Hauptaugenmerk galt dabei dem geringen Stromverbrauch, kompakter Bauweise und den Kosten für die benötigte Hardware.
-Im Jahr 2007 wurden diese Spezifikationen dann in den, sich in der Entwicklung befindenden, Bluetooth-Standard 4.0 aufgenommen und daraufhin in Bluetooth Low Energy, oder kurz BLE umbenannt.
+Bluetooth Low Energy wurde Anfangs von Nokia unter dem Namen ''Wibree'' entwickelt. Die Zielsetzung dabei war es eine Technologie zu entwickeln, mit der sich Computer und Mobilgeräte schnell und einfach mit Peripherie-Geräten verbinden lassen sollten. Das Hauptaugenmerk galt dabei dem geringen Stromverbrauch, einer kompakten Bauweise und den geringen Kosten der benötigten Hardware.
+Im Jahr 2007 wurden diese Spezifikationen in den, sich in der Entwicklung befindenden, Bluetooth-Standard 4.0 aufgenommen und daraufhin in Bluetooth Low Energy, oder kurz BLE, umbenannt.
 
 Bluetooth Low Energy arbeitet wie das klassische Bluetooth im 2,4 GHz Band, bringt aber in der Funktionsweise einige Unterschiede mit sich.
 
-So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbit/s auf maximal 1 Mbit/s reduziert. Dies führt dazu, dass BLE zum Beispiel nicht für Headsets genutzt werden kann, da die zur Verfügung stehende Übertragungsrate nicht für die Audioübertragung ausreicht.
+So wurde, im Vergleich zum klassischem Bluetooth, die Datenrate von bis zu 3 Mbit/s auf maximal 1 Mbit/s reduziert. Dies führt dazu, dass BLE beispielsweise nicht für Headsets genutzt werden kann, da die zur Verfügung stehende Übertragungsrate nicht für eine Audioübertragung ausreicht.
 
-Die Vorteile die BLE mit sich bringt, liegen vor allem in der niedrigen Latenz, welche von 100ms auf bis zu unter 3ms reduziert wurde, und, wie bereits erwähnt, der Energieverbrauch drastisch gesenkt wurde.
+Die Vorteile die BLE mit sich bringt, liegen vor allem in der niedrigen Latenz, welche von 100ms auf bis zu unter 3ms reduziert wurde, und den drastisch gesenkten Energieverbrauch im Vergleich zu den Vorgänger-Versionen.
 
-Des Weiteren wird eine 24-Bit-Fehlerkorrektur eingesetzt, was die Verbindung unempfindlicher für Störungen machen soll.
+Des Weiteren wird eine 24-Bit-Fehlerkorrektur eingesetzt, welche die Verbindung unempfindlicher für Störungen und Übertragungsfehler machen soll und unnötige Neuübertragungen verhindert.
 
-Für die Verschlüsselung des Signals wird AES-128 eingesetzt, was eine sichere Kommunikation gewährleisten soll.
+Auch die Verschlüsselung des zu übertragenden Signals wurde verbessert. Dabei kommt der Advance Encryption Standard (AES) mit einer Schlüssellänge von 128 Bit zum Einsatz.
 
-Bluetooth Low Energy bietet darüber hinaus eine Vielzahl so genannter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinien für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches besipielsweise die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass dieser Gurt mit jedem Endgerät auf die selbe Weise funktioniert.
-
+Bluetooth Low Energy bietet darüber hinaus eine Vielzahl so genannter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinien für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass jeder Pulsmessgurt mit jedem Endgerät auf die selbe Weise funktioniert. Bisher sind 18 solcher Profile von der Bluetooth Special Interest Group (SIG) bereitgestellt worden. 
 
 
 
@@ -38,31 +38,44 @@ Bluetooth Low Energy bietet darüber hinaus eine Vielzahl so genannter GATT-Prof
 \label{sec:technologies:bluetoothLE:ibeacons}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Die iBeacons-Technologie wurde am 10.Juni 2014 von Apple auf der Worldwide Developers Conference vorgestellt. 
-Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwickelten GATT-Profil.
+Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwickelten, proprietären GATT-Profil.
 
 Beacon bedeutet übersetzt ''Leuchtfeuer'' und die Funktionsweise der Beacons ist dem sehr ähnlich.
-Einmal in Betrieb genommen, sendet das Beacon kontinuierlich ein Signal, in welchem sich Daten zur Identifizierung des Beacons befinden.
+Einmal in Betrieb genommen, sendet das Beacon kontinuierlich ein Signal, in welchem sich Daten zur Identifizierung und Entfernungsbestimmung des Beacons befinden.
 
-Neben den Identifikationsdaten kann das Empfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung einzuschätzen. 
-In der iBeacons-API sind dafür vier verschiedene Zustände definiert: \textit{Far}, \textit{Near}, \textit{Immediate} und \textit{Unknown}. Diese Werte erlauben eine grobe Entfernungseinschätzung und für eine genauere Bestimmung lässt sich noch eine weitere Kenngröße bestimmen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung zwischen zwei Beacons genutzt werden soll und keinesfalls eine genaue Entfernung angibt.
+Für die Identifizierung sendet das Beacon drei Werte, den \emph{Universally Unique Identifier (UUID)}, den \emph{Major-Wert} und den \emph{Minor-Wert}.
+Der \emph{UUID} ist ein Identifier, welcher Beacons einem bestimmten Typ oder einem Unternehmen zuordnen. Dieser UUID lässt sich mittels diversen Programmen generieren.
 
-\begin{tabular}{p{2cm}p{5cm}p{5cm}p{4cm}}
-	\\
-	Daten & Format & Beschreibung & Beispiel \\ \\
-	UUID & 16-stellige Hexadezimalzahl & Identifizierung & 3F4 \\
-	Major & Integerzahl & Identifizierung eine Region & 12 \\
-	Minor & Integerzahl & Identifizierung eines einzelnen Beacons & 132 \\
-	Proximity & Drei Entfernungsstufen & Ungefähre Entfernung & Far, Near, Immediate und Unknown \\
-	Accuracy & Wert in Meter & Bestimmung der ungefähren Entfernung & 1.243 m \\
-	RSSI & Signalstärke in dBm & Signalstärke des emfangenen Signals & -42 dBm \\
-\end{tabular}
+Der \emph{Major-Wert} dient zur Unterscheidung von Beacons mit dem selben UUID und soll dazu eingesetzt werden, verschiedene Standorte beziehungsweise Regionen zu unterscheiden. Ein Beispiel dafür wäre ein Unternehmen mit mehreren Standorten, sodass bei gleichem UUID eine eindeutige Bestimmung des Standortes möglich ist.
+
+Der \emph{Minor-Wert} dient zur weiteren Unterscheidung der Beacons mit gleichem UUID und Major-Wert. Vorgesehen ist der Minor-Wert zur Bestimmung eines einzelnen Beacons in einer bestimmten Region, es ist jedoch nicht verboten mehreren Beacons die gleichen UUID, Major und Minor-Werte zu zuweisen, wodurch keine eindeutige Identifizierung mehr möglich ist. 
+
+Neben den Identifikationsdaten kann das Empfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung zu erhalten. 
+In der iBeacons-API sind dafür vier verschiedene Entfernungs-Zustände definiert: \textit{Far}, \textit{Near}, \textit{Immediate} und \textit{Unknown}. Diese Werte erlauben eine grobe Entfernungseinschätzung zum Beacon. Für eine differenziertere Entfernungsbestimmung lässt sich eine weitere Kenngröße auslesen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung der Enterfernung zweier Beacons genutzt werden soll und keinesfalls einen genauen Abstand zum Beacon angibt. Der Accuracy-Wert soll dabei erlauben, dass nächstgelegene Beacon zu bestimmen.
+
+%\begin{tabular}{p{2cm}p{5cm}p{5cm}p{4cm}}
+%	\\
+%	Daten & Format & Beschreibung & Beispiel \\ \\
+%	UUID & 16-stellige Hexadezimalzahl & Identifizierung & 3F4 \\
+%	Major & Integerzahl & Identifizierung eine Region & 12 \\
+%	Minor & Integerzahl & Identifizierung eines einzelnen Beacons & 132 \\
+%	Proximity & Drei Entfernungsstufen & Ungefähre Entfernung & Far, Near, Immediate und Unknown \\
+%	Accuracy & Wert in Meter & Bestimmung der ungefähren Entfernung & 1.243 m \\
+%	RSSI & Signalstärke in dBm & Signalstärke des emfangenen Signals & -42 dBm \\
+%\end{tabular}
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{ibeacon-table}
+	\caption{Daten in der iBeacon-Übertragung}
+	\label{ibeacon-table}
+\end{figure}
 
 
-Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät empfangen.
+Die von dem Beacon gesendeten Daten lassen sich mit jedem BLE-kompatiblem Gerät empfangen, bisher bietet jedoch nur iOS eine entsprechende, native Unterstützung für das iBeacon-Profil.
 
-
-
-Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher es erlaubt die Beacons an fast jedem beliebigem Ort anzubringen, als auch ihr geringer Stromverbrauch, der es möglich macht, die Beacons bis zu mehreren Jahren mit einer Knopfzellen Batterie zu betreiben. Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} sehr gut erkennen. Den Großteil des Beacons nimmt dabei die Batterie ein. 
+Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher es erlaubt die Beacons an fast jedem beliebigem Ort anzubringen, als auch ihr geringer Stromverbrauch, der es möglich macht, die Beacons mit einer Knopfzellen Batterie zu betreiben und das, laut Herstellerangaben, für bis zu zwei Jahre.
+Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} erkennen. Den Großteil des Beacons nimmt dabei die Batterie ein. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,7 +100,7 @@ Die großen Vorteile der iBeacons sind zum einen ihr kleiner Formfaktor, welcher
 
 
 Unter genauerer Betrachtung des Chipsatzes in Abbildung \ref{estimote-beacon-inside-annotations}, erkennt man, dass er im Grunde aus zwei Teilen besteht.
-Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der Antenne, welche im vorderen Bereich der Platine eingearbeitet ist und die über welche letztendlich die Daten gesendet werden.
+Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der Antenne, welche im vorderen Bereich der Platine eingearbeitet ist und über die letztendlich die Daten gesendet werden.
 
 \begin{figure}[h!]
 	\centering
@@ -105,19 +118,20 @@ Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der 
 Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
 Daher waren drei Dinge zwingend notwendig: ein Mac, Xcode und ein iOS-Gerät.
 
-Für die Entwicklung setzte ich deshalb auf ein MacBook Pro mit installiertem Xcode 5.0.2 und als iOS-Gerät setzte ich ein iPhone 5 mit iOS 7.0.4 ein.
-Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-Features des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
+Für die Entwicklung setzte ich deshalb auf ein MacBook Pro mit installiertem Xcode 5.0.2 und als iOS-Gerät setzte ich ein iPhone 5 mit iOS 7.0.6 und ein iPhone 4s mit iOS 7.0.6 ein.
+Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-API des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CoreLocation-Framework}
 \label{sec:technologies:corelocation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Das Core Location-Framework erlaubt es aktuelle Positions- und Richtungsinformationen eines Gerätes zu bestimmen.
-Die Positionsbestimmung lässt sich dabei über verschiedene Werte und Sensoren bestimmen und auch der Grad der Genauigkeit ist variabel.
-Auch die Aktualisierungsrate der Position lässt sich festlegen, wobei eine höhere Aktualisierungsrate auch gleichbedeutend mit einem höherem Akkuverbrauch ist.
+Das CoreLocation-Framework ist ein iOS-Framework, welches es erlaubt die aktuellen Positions- und Richtungsinformationen eines Gerätes zu bestimmen und auszugeben.
+Die Positionsbestimmung lässt sich dabei über verschiedene Sensoren und Werte bestimmen, wobei der Grad der Genauigkeit variabel ist.
+Für die Positionsbestimmung lässt sich dabei zum Beispiel das integrierte GPS-Modul verwenden.
+Auch die Aktualisierungsrate der Position lässt sich festlegen, wobei eine höhere Aktualisierungsrate und eine höhere Genauigkeit auch gleichbedeutend mit einem höherem Akkuverbrauch sind.
 
-Bei der Genauigkeit gibt es dabei verschiedene Konstanten, die die gewollte Genauigkeit bestimmen. 
+Bei der Genauigkeit gibt es dabei verschiedene Konstanten, welches bestimmen, mit welcher Genaugikeit die Position bestimmt werden soll. 
 
 
     \begin{table}[htb!]
@@ -135,38 +149,26 @@ Bei der Genauigkeit gibt es dabei verschiedene Konstanten, die die gewollte Gena
       \label{tbl:positionaccuracy}
     \end{table}
 	
-Diese Genauigkeiten beziehen sich hauptsächlich auf die Positionierung mittels GPS und sind daher für die Indoor Positionierung nur bedingt geeignet.
+Diese Genauigkeiten beziehen sich hauptsächlich auf die Positionierung mittels GPS und sind daher für die Indoor Positionierung nur bedingt geeignet. Es wäre jedoch denkbar, die Positionierung mittels GPS und die Positionierung mittels iBeacons zu verbinden und nahtlos in einander übergehen zu lassen.
 
+Eine weitere Funktion des CoreLocation-Frameworks ist der Kompass, also die Bestimmung der Himmelsrichtungen. Durch den eingebauten Kompass in den neueren iOS-Geräten ist es möglich, die aktuelle Ausrichtung des Gerätes sehr genau zu bestimmen. Dies ist im Bezug auf die Indoor Navigation hilfreich, da diese Informationen in die Positionsbestimmung einbezogen werden können. Da der menschliche Körper die Signale der Beacons beeinflusst, ist es daher von Vorteil die aktuelle Ausrichtung zu kennen und so auch die Position des Körpers zu berücksichtigen.
 
-Eine weitere Funktion des Core Location-Frameworks ist die Bestimmung der Himmelsrichtungen. Durch den eingebauten Kompass in den neueren iOS-Geräten ist es möglich, die aktuelle Ausrichtung des Gerätes zu bestimmen. Dies ist im Bezug auf die Indoor Navigation hilfreich, da diese Informationen in die Positionsbestimmung einbezogen werden können.
-Des Weiteren erlaubt diese Funktion eine dynamische Ausrichtung der Karte, abhängig davon in welche Richtung man momentan schaut.
+Des Weiteren erlaubt diese Funktion eine dynamische Ausrichtung der Karte, abhängig davon wie das Gerät ausgerichtet ist.
 
-
-Die für uns zentrale Funktion dieses Frameworks ist die Erkennung von iBeacons und die Funktionen zur Verarbeitung der gesendeten Daten.
-Damit können Beacons anhand ihres UUID erkannt werden und einer Region zugeordnet werden. Die genaue Funktionsweise wird in Kapitel \ref{sec:technologies:corelocation:ibeaconsapi}.
-
-Die Funktionen zum Positionsupdate und zur Erkennung der Beacons werden dabei im \emph{LocationManager} verwaltet.
-In der \emph{LocationManagerDelegate} lassen sich dabei die Aktionen bestimmen, welche bei verschiedenen Events ausgeführt werden.
-
-In Listing \ref{lst:locationmanager_objc} wird die Initialisierung eines LocationManager gezeigt, welcher eine Genauigkeit von einem Kilometer haben soll und bei Positionsänderungen von mehr als 500 Metern aktualisiert wird.
-
-  \begin{listing}[htb!]
-    \insertminted{objc}{code_examples/locationManager.m}
-    \caption{Beispielinitialisierung für einen LocationManager.}
-    \label{lst:locationmanager_objc}
-  \end{listing}
+Die für uns zentrale Funktion dieses Frameworks ist die Erkennung von iBeacons und die Funktionen zur Verarbeitung der von den Beacons gesendeten Daten.
+Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Region zugeordnet werden. Die genaue Funktionsweise wird dabei im Kapitel \ref{sec:technologies:corelocation:ibeaconsapi} behandelt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{iBeacons-API}
 \label{sec:technologies:corelocation:ibeaconsapi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Seit der iOS Version 7 wurde das Core Location Framework um die Beacon-Funktionen erweitert. 
-Dazu wurden zwei neue Klassen geschaffen. Einmal die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID, beschreibt.
+Seit der iOS Version 7 wurde das CoreLocation Framework um die Beacon-Funktionalitäten erweitert. 
+Dazu wurden zwei neue Klassen hinzugefügt. Einmal die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum Anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID, beschreibt.
 
 Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Propertys mit den gegebenen Beacon-Informationen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
 
 Die \emph{CLBeaconRegion}-Klasse ist etwas umfangreicher und bestimmt letztendlich, nach welchen Beacons gesucht werden soll.
-Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen einzuteilen.
+Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen zu beschreiben:
 
 
 \emph{initWithProximityUUID:identifier:}\begin{quote}
@@ -179,27 +181,26 @@ Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen einzuteilen
 	Die Region ist abhängig von dem UUID, dem Identifier, dem Major-Wert und dem Minor-Wert der Beacons. Es werden nur Beacons mit passendem Major und Minor-Wert gesucht. In diesem Fall ist bei mehreren erkannten Beacons keine Unterscheidung mehr möglich.
 \end{quote}
 
-
-Mittels des Location Manager lässt sich dann gezielt nach bestimmten Regionen suchen.
-
+Die Beacon-Region bestimmt also letztlich nach welchen Beacons gesucht wird, beziehungsweise welche Beacons gefunden werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MapBox}
 \label{sec:sec:technologies:mapbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-MapBox ist ein Online-Karten Anbieter, welcher es erlaubt eigene Karten zu erstellen und über ihren Service bereitzustellen. 
-Die Karten werden dabei vom OpenStreetMap Projekt bereitgestellt und MapBox erlaubt es diese Karten grafisch zu überarbeiten, um zum Beispiel das Farbschema zu ändern, eigene Markierungen zu setzen oder auch eigene Layer über die Karte zu legen.
-Ausserdem stellt MapBox ein SDK für iOS bereit, welche es erlaubt diese individuell angepassten Karten in iOS anzuzeigen und gleichzeitig die Funktionen des native MapKit-Framework mit sich bringt. Ausserdem besitzt MapBox eine größere Flexibilität im Bezug auf die individuelle Anpassung und den Offline-Betrieb, das die Karten direkt auf dem Gerät gespeichert werden können.
+MapBox ist ein Online-Landkarten Anbieter, welcher es erlaubt eigene Karten zu erstellen und über ihren Service online bereitzustellen. 
+Die Grundkarten werden dabei aus dem OpenStreetMap-Projekt entnommen und MapBox erlaubt es diese Karten grafisch zu überarbeiten, um so zum Beispiel das Farbschema zu ändern, eigene Markierungen hinzuzufügen oder auch eigene Layer über die Karte zu legen.
 
-Bisher ist die Unterstützung von Indoor-Karten jedoch noch nicht gegeben, sodass man hierbei nicht auf schon vorhandenes Kartenmaterial zurückgreifen kann.
+Ausserdem stellt MapBox ein SDK für iOS bereit, welche es erlaubt diese individuell angepassten Karten in iOS anzuzeigen und gleichzeitig die Funktionen des native MapKit-Framework, wie zum Beispiel Pinch-to-Zoom, automatische Kompassausrichtung oder Annotationen, mit sich bringt. Ausserdem besitzt MapBox eine größere Flexibilität im Bezug auf die individuelle Anpassung der Karten und den Offline-Betrieb als das von Apple für iOS bereitgestellte MapKit-Framework. Das MapKit-SDK erlaubt die Karten direkt auf dem Gerät zu speichern.
 
-Google hat mit Google Maps Indoor bereits einen Dienst gestartet, welcher Gebäudepläne in Google Maps integriert, bisher handelt es sind jedoch dabei hauptsächlich um öffentliche Gebäude in US-amerikanischen Städten. Das hinzufügen von neuen Gebäudeplänen ist nur bei öffentlichen Gebäuden möglich und nicht für den privaten Gebrauch vorgesehen, daher konnte ich nicht darauf zurückgreifen.
+Bisher ist die Unterstützung von Indoor-Karten jedoch noch nicht gegeben, sodass man hierbei nicht auf vorhandenes Kartenmaterial zurückgreifen kann, sondern eigenes Kartenmaterial bereitstellen muss.
 
-Die Indoor-Karten mussten daher selbst erstellt und in ein, von Mapbox verständliches Format umgewandelt werden.
-Die Ausgangsdatei ist dabei eine Bilddatei mit der Karte des Innenraumes, welche selbst angefertigt wurde. Dieses Bild der Karte muss nun in ein passendes Geo-Format überführt werden. 
-Dazu wurde ein von ''Tom MacWright'' (\citet{jpgtogeo}) bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTiff Datei speichert neben den eigentlichen Bilddaten noch Koordinaten für die Georeferenzierung. \citet{geotiff}
+Google hat mit \emph{Google Maps Indoor} bereits einen Dienst gestartet, welcher Gebäudepläne in Google Maps integriert. Dabei handelt es sich bisher jedoch hauptsächlich um öffentliche Gebäude in US-amerikanischen Städten. In Deutschland ist der Dienst ebenfalls schon gestartet, beinhaltet jedoch nur wenige Gebäude. Das hinzufügen von neuen Gebäudeplänen ist nur bei öffentlichen Gebäuden möglich und nicht für den privaten Gebrauch vorgesehen, daher konnte nicht auf diesen Dienst zurückgegriffen werden.
 
-Mit diesem GeoTIFF ist es nun möglich eine eigene Karte zu erstellen, welche letztendlich auf dem iOS-Gerät ausgegeben wird.
+Die Indoor-Karten mussten daher individuell für den Einsatzort erstellt und in ein, von Mapbox verständliches Format, umgewandelt werden.
+Die Ausgangsdatei ist dabei eine Bilddatei in JPEG-Format, welches die Karte des Innenraumes zeigt. Dieses Datei muss zur weiteren Verwendung in ein von MapBox verständliches Format umgewandelt werden. 
+Dazu wurde ein von ''Tom MacWright'' (\citet{jpgtogeo}) bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTiff Datei speichert neben den eigentlichen Bildinformationen zusätzlich Koordinaten für die Georeferenzierung. \citet{geotiff}
+
+Mit dieser GeoTIFF-Datei ist es nun möglich eine eigene Karte zu erstellen, welche letztendlich auf dem iOS-Gerät ausgegeben wird.
 Dafür stellt MapBox das Programm \emph{TileMill} zur Verfügung. Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten exportiert werden. 
 TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt eingefügt werden kann.
 
@@ -210,9 +211,9 @@ TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt 
 	\label{tilemill-example}
 \end{figure}
 
-TileMill erlaubt es nun die eingefügte Karte weiter zu bearbeiten, was in unserem Fall jedoch nicht nötig ist.
+TileMill erlaubt es nun die eingefügte Karte weiter zu bearbeiten oder weitere Informationen hinzuzufügen.
 Der nächste Schritt ist es die Karte in ein für iOS beziehungsweise das Mapbox SDK, verständliches Format zu überführen.
-Dazu wird die Karte als \emph{mbtiles} exportiert. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in Kacheln speichert um das Laden der einzelnen Kartenabschnitte bei größeren Karten zu beschleunigen, sodass nicht die komplette Karte geladen werden muss, sondern nur die benötigten Kacheln.
+Dazu wird die Karte als \emph{mbtiles} exportiert. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in einzelne Kacheln überführt und speichert. Dadurch wird das Laden der einzelnen Kartenabschnitte bei größeren Karten beschleunigt, da nicht die komplette Karte geladen werden muss, sondern nur die benötigten Kacheln.
 
 Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Applikation einbinden und über das SDK auf dem iOS-Gerät ausgeben. In Abbildung \ref{mapbox-map-ios} sieht man die Ausgabe einer Karte auf dem iPhone 5.
 
@@ -223,36 +224,32 @@ Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Applikation einbin
 	\label{mapbox-map-ios}
 \end{figure}
 
-Diese Karte wird offline auf dem Gerät gespeichert, es ist also keine Internetverbindung nötig und diese anzuzeigen.
-
-Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
-Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} lädt und dem MapView zur Verfügung stellt. 
-In Listing \ref{lst:RMMapView_objc} wird diese Initialisierung gezeigt.
-\begin{listing}[htb!]
-    \insertminted{objc}{code_examples/RMMapView.m}
-    \caption{Initialisierung des MapView mit eigenem Kartenmaterial}
-	\label{lst:RMMapView_objc}
-\end{listing}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Weitere API's}
-\label{sec:technologies:iosandxcode:otherapis}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Diese Karte wird offline auf dem Gerät gespeichert, sodass keine Internetverbindung für die Anzeige nötig ist.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CoreData-Framework}
 \label{sec:technologies:coredata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Core Data ist ein Framework für die Organisation und Speicherung von Daten in einem Entity-Realationship-Modell.
+Das CoreData-Framework erlaubt die Modellierung von Objekten und deren Speicherung auf dem Gerät.
 Core Data vereinfacht die Speicherung und den Zugriff auf die Daten, da es für jede Entity ein eigenes Objekt erstellt.
 Die eigentliche Datenspeicherung sieht dabei drei verschiedene Speichermöglichkeiten vor, entweder als Binärdatei, als XML-Datei oder in einer SQLite-Datenbank. 
-Nachdem eine Core Data-Datenbank erstellt wurde, benötigt man zunächst ein \emph{NSManagedObjectContext}, welcher Lese- und Schreibzugriffe auf die Datenbank steuert und verwaltet.
-Objekte aus der Datenbank werden durch \emph{NSManagedObject} repräsentiert. Nach dem anlegen der Datenbank ist es jedoch auch möglich sich direkt eigene Klasse für die einzelnen Datenbank-Objekte erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff enorm erleichtern.
 
-Um auf die Daten zuzugreifen und diese zu verändern ist es zunächst nötig sie aus der Datenbank zu extrahieren. Dazu verwendet man einen \emph{NSFetchRequest}, welcher Objekte nach bestimmten Kriterien aus der Datenbank holt.
-Dabei ist es möglich den \emph{NSFetchRequest} zu spezialisieren und so nur Objekte mit bestimmten Eigenschaften anzuzeigen.
-Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Vergleiche von Attributen und logische Operationen erlaubt.
+Für die Erstellung eines CoreData-Modells bietet Xcode einen eigenen Editor an, welcher es erlaubt, Entitäten zum Modell hinzuzufügen und deren Attribute anzupassen. Die Beziehungen der Entitäten lassen sich dort ebenfalls erstellen und bearbeiten. Das Modell lässt sich dabei sowohl grafisch als auch in Tabellenform anzeigen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{coredata-model}
+	\caption{CoreData-Modell in der grafischen Darstellung.}
+	\label{coredata-model}
+\end{figure}
+
+
+Nachdem ein CoreData-Modell erstellt wurde, benötigt man für den Zugriff auf das Modell ein \emph{NSManagedObjectContext}-Objekt, welcher Lese- und Schreibzugriffe auf das Datenmodell steuert und verwaltet.
+Die einzelnen Objekte der Modells sind dabei \emph{NSManagedObject}-Objekte. Nach dem Anlegen des Modells ist es jedoch auch möglich, automatisiert eigene Klassen für die einzelnen Datenobjekte erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff und das Auslesen erleichtern.
+
+Um auf die Daten zuzugreifen und diese zu verändern ist es zunächst nötig sie aus der Datenbank zu extrahieren. Dazu verwendet man einen \emph{NSFetchRequest}, welcher Objekte nach bestimmten Kriterien aus der Datenmodell ausliest.
+Dabei ist es möglich den \emph{NSFetchRequest} genauer zu spezifizieren und so nur Objekte mit bestimmten Eigenschaften auszulesen.
+Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Tests auf bestimmte Attribute und logische Operationen erlaubt.
 
 \begin{listing}[htb! breaklines=true]
     \insertminted{objc}{code_examples/NSFetchRequest.m}
@@ -260,4 +257,6 @@ Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Vergleiche von
 	\label{lst:NSFetchRequest_objc}
 \end{listing}
 
-Als Rückgabewert erhält man ein Array mit allen Objekten auf die die gegebenen Kriterien zutreffen.
+Als Rückgabewert erhält man ein Array mit allen Objekten, auf die die gegebenen Kriterien zutreffen.
+
+Die Attribute dieser Objekte können nun ausgelesen und verändert werden. Um Veränderungen auch im Datenmodell zu übernehmen, muss lediglich der \emph{save}-Befehl des \emph{NSManagedObjectContext} ausgeführt werden.
