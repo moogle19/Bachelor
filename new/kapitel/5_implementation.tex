@@ -89,7 +89,7 @@ Daher sollte die Zellengröße so gewählt werden, dass eine gute Unterscheidbar
 
 Das Fingerprinting besteht im Wesentlichen aus zwei Phase.
 
-Die erste Phase ist die sogenannte \emph{Trainingsphase}. Dabei werden die sogenannten \emph{Fingerprints} gesammelt, welche letztlich zur Positionsbestimmung genutzt werden. 
+Die erste Phase ist die sogenannte \emph{Trainingsphase} (auch Offline-Phase). Dabei werden die sogenannten \emph{Fingerprints} gesammelt, welche letztlich zur Positionsbestimmung genutzt werden. 
 In der Trainingsphase werden daher, für jede Zelle unseres Messraumes eine Reihe von Fingerprints gesammelt. Die Anzahl der Fingerprints sollte dabei relativ groß sein, sodass Messfehler kompensiert werden können. 
 Ein Fingerprint kann sich dabei aus verschiedenen Daten zusammensetzen. 
 In diesem Fall besteht ein Fingerprint aus der aktuellen Zellennummer beziehungsweise der Zellenkoordinate, einem Zeitstempel mit aktuellem Datum und der Uhrzeit und den Signalstärken zu den verschiedenen, in Reichweite befindlichen Sendestationen, welches in diesem Fall die iBeacons sind.
@@ -100,6 +100,29 @@ Die der zweiten Phase, auch \emph{Onlinephase} genannt, werden die zuvor gesamme
 Dafür werden die gesammelten Fingerprints mit den aktuell gemessenen Signalstärken verglichen. Wenn eine Übereinstimmung gefunden wird, wird die Position des passenden Fingerprints als aktuelle Position angenommen.
 
 \todo{Einfügen von Zeichnung welche Zellen und Fingerprints verdeutlicht}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sammlung und Speicherung von Fingerprints}
+\label{sec:implementation:fingerprinting:collecting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um eine Positionierung mittels Fingerprinting zu ermöglichen, ist es zunächst nötig einen grundlegenden Datensatz mit Fingerprints zu sammeln, welcher später für die Positionsbestimmung genutzt werden kann. Dazu ist es zunächst wichtig zu bestimmen, welche Informationen benötigt werden.
+
+Für jeden Fingerprint muss dabei die aktuelle Position der Messung, das zugehörige Beacon und die aktuelle Signalstärke zwingend vorhanden sein.
+Zusätzlich ist es sinnvoll den aktuellen Zeitpunkt der Messung zu speichern, um so, wenn nötig, veraltete Fingerprints zu entfernen. 
+
+Für das iOS-Programm lag es daher nahe, ein CoreData-Datenmodell anzulegen und die Speicherung der Daten darüber abzuwickeln.
+Dafür wurden diverse Entitäten angelegt:
+
+Beacon:
+	\begin{quote}Repräsentiert ein Beacon und beinhaltet UUID, Major und Minor-Wert\end{quote}
+Cell:
+	\begin{quote}Repräsentiert eine Zelle und beinhaltet die Zellennummer\end{quote}
+Fingerprint:
+	\begin{quote}Repräsentiert einen Fingerprint eines Beacons und beinhaltet die gemessene Signalstärke\end{quote}
+Measurement:
+	\begin{quote}Repräsentiert eine Messung von Fingerprints und beinhaltet den Zeitstempel des Zeitpunktes der Messung\end{quote}
+
+Untereinander verfügen die Entitäten über diverse Beziehungen, sodass jeder Fingerprint eindeutig einer Zelle und einem Beacon zuzuordnen ist.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Positionsbestimmung}
@@ -114,6 +137,12 @@ Die letzte untersuchte Möglichkeit ist die der Wahrscheinlichkeitsverteilung de
 \subsection{Einfache Positionsbestimmung mittels Nearest-Neighbor-Verfahren}
 \label{sec:implementation:fingerprinting:positioning:naiv}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algorithmus}
+\label{sec:implementation:fingerprinting:positioning:naiv:algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Bei der einfachen und naiven Bestimmung der aktuellen Position, werden alle zuvor gesammelten Fingerprints mit den aktuell gemessenen Signalstärken verglichen. Dies führt dazu, dass bei größeren Fingerprint-Datenbanken auch die Rechenzeit und der Energieverbrauch steigt. 
 
 Bei dem Vergleich der Messwerte mit den gespeicherten Fingerprints wird das Nearest-Neighbor-Verfahren verwendet. Dabei werden sowohl die aktuellen Messwerte, als auch die Fingerprints als Vektoren aus den Signalstärken zusammengefasst und aus diesen Vektoren wird die jeweilige Entfernung der beiden Werte berechnet. Die einzelnen Signalstärken-Werte sind die Werte von allen in Reichweite befindlichen Beacons.
@@ -163,7 +192,21 @@ Die Signalstärke der aktuellen Messung wird mit \emph{MSig} abgekürzt und eben
 	\sqrt{Diff1^2 + Diff2^2 + Diff3^2 + ...}
 \end{equation}
 
-Aus den Differenzen beziehungsweise die Abstände zwischen den einzelnen Signalstärke-Vektoren lässt sich nun der Nearest-Neighbor bestimmen und damit die wahrscheinliche Position im Raum.
+Aus den Differenzen beziehungsweise die Abstände zwischen den einzelnen Signalstärke-Vektoren lässt sich nun der Nearest-Neighbor bestimmen und damit die wahrscheinlichste Position im Raum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Implementierung}
+\label{sec:implementation:fingerprinting:positioning:naiv:implementation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Bei der Implementierung dieser Methode wird für jedes Set von Fingerprints in der Datenbank die euklidische Distanz zu den aktuell gemessenenen Signalstärken berechnet. Dazu wird über die vorhandenen Measurements iteriert, welche jeweils ein Set von gemessenen Fingerprints zu einem bestimmten Zeitpunkt enthalten. Diese Signalstärken werden in einen Vektor transformiert, sodass die Distanz berechnet werden kann. In Listing \ref{lst:euclidean_distance_objc} sieht man die Berechnung der euklidischen Distanz zweier Vektoren, welche in Form eines Arrays eingelesen werden.
+
+\begin{listing}[htb!]
+    \insertminted{objc}{code_examples/euclidean_distance.m}
+    \caption{Bestimmung der euklidischen Distanz zwei Vektoren}
+	\label{lst:euclidean_distance_objc}
+\end{listing}
+
+Das Measurement mit der geringsten euklidischen Distanz wird dabei gespeichert, sodass diesem, nachdem alle Measurements durchiteriert wurden, zurückgegeben werden kann. Anhand dieses Measurements lässt sich nun die zugehörige Zelle bestimmen und ausgeben.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Probleme}
@@ -185,6 +228,12 @@ Daher wurde überlegt, wie dieses Problem behoben werden könnte. Dies wurde so 
 \subsection{Nearest-Neighbor-Verfahren mit Mittelwerten}
 \label{sec:implementation:fingerprinting:positioning:avg}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algorithmus}
+\label{sec:implementation:fingerprinting:positioning:avg:algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Der zweite Ansatz arbeitet ähnlich wie das zuvor erklärte Verfahren, nutzt jedoch nicht die komplette Datenbank der Fingerprints. 
 Stattdessen wird für jede Zelle ein Mittelwert über alle Fingerprints der vorhandenen Beacons berechnet und dieser für die Bestimmung der Position verwendet.
 Dieser Mittelwert muss dabei nur bei einer Änderung der grundlegenden Fingerprint-Datenbank angepasst werden, wodurch der Rechenaufwand niedriger gehalten wird, da bei jeder Positionsbestimmung nur auf den Mittelwert zugegriffen werden muss.
@@ -214,8 +263,25 @@ Der Median errechnet sich dabei wie folgt:
 
 Bei der Berechnung wird klar, warum Messfehler keinerlei Auswirkungen haben. Da beim Median, der mittlere Wert der sortierten Reihe genutzt wird, spielen Messfehler, welche sich am Anfang oder Ende der Reihe befinden, keine Rolle.
 
-Im Testeinsatz war der Unterschied zwischen Median und arithmetischem Mittel jedoch zu vernachlässigen. 
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{avgmedianiphone5_raspberry}
+	\caption{Vergleich zwischen dem arithmetischen Mittel und dem Median}
+	\label{avgmedianiphone5_raspberry}
+\end{figure}
 
+Wie in Abbildung \ref{avgmedianiphone5_raspberry} zu erkennen, ist der Unterschied zwischen Median und arithmetischem Mittel jedoch zu vernachlässigen. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Implementierung}
+\label{sec:implementation:fingerprinting:positioning:avg:implementiation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Für die Implementierung der Positionsbestimmung mit Mittelwerten wird das CoreData-Modell um eine Entität namens \emph{BeaconInCell} erweitert. Diese Entität repräsentiert ein Beacon in einer bestimmten Zelle und wird zur Speicherung der Mittelwerte genutzt. Dadurch ist es nicht nötig die Mittelwerte für jede Positionsbestimmung neu zu berechnen, wobei über alle Fingerprints iteriert werden muss. Die Mittelwerte müssen so nur beim Hinzufügen neuer Fingerprints berechnet werden.
+
+
+
+BeaconInCell:
+	\begin{quote}Repräsentiert ein Beacon in einer bestimmten Zelle und beinhaltet durchschnittliche, maximale und minimale Signalstärke, sowie den Median der Signalstärke des Beacons in der aktuellen Zelle\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prohabilistisches Verfahren}
@@ -223,13 +289,13 @@ Im Testeinsatz war der Unterschied zwischen Median und arithmetischem Mittel jed
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Der letzte untersuchte Ansatz war ein prohabilistisches Verfahren, welches die Wahrscheinlichkeiten einer bestimmten Signalstärke eines Beacons als Referenz-Wert für die Positionbestimmung nutzt. Dabei wurde für die Berechnung der Wahrscheinlichkeiten und Bestimmung der aktuellen Position das Verfahren von \citet{wifiFingerprintProbability} verwendet, welche das Fingerprinting mit Hilfe von Wireless LAN-Routern verwenden.
 
-Da das Fingerprinting mit Wireless LAN auch auf den Signalstärken der Wireless LAN-Basisstationen basiert, lässt sich das Verfahren auch auf andere Technologien, welche die Signalstärke zur Positionsbestimmung nutzen, übertragen.
+Da das Fingerprinting mittels Wireless LAN ebenfalls auf den Signalstärken der Wireless LAN-Basisstationen basiert, lässt sich das Verfahren auch auf andere Technologien, welche die Signalstärke zur Positionsbestimmung nutzen, übertragen.
 
 Während der initialen Offline-Phase wird, nachdem die Fingerprints gesammelt wurden, eine Wahrscheinlichkeitsverteilung der Signalstärken für jedes Beacon in jeder Zelle erstellt. Diese wird später als Vergleichswert genutzt, um die Ähnlichkeit der Signalstärken zu bestimmen.
 
 \begin{figure}[htb!]
 		\centering
-	\includegraphics[scale=0.2]{probability_signal_strength}
+	\includegraphics[scale=0.3]{probability_signal_strength}
 	\caption{Wahrscheinlichkeitsverteilung von Signalstärke bei einem Beacon}
 	\label{probability-signal-strength-beacon}
 \end{figure}
