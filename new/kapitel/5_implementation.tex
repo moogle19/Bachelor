@@ -6,16 +6,135 @@
 \section{Initialisierung und Beacon-Daten}
 \label{sec:implementation:initandbeacon}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generating the project and setup the storyboard
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Für die Implementierung unter iOS müssen zunächst einige grundlegende Programmbestandteile erzeugt und eingerichtet werden.
+Wie bereits in Kaptiel \ref{sec:tools:xcode} gezeigt, gibt es bei der Erstellung eines neuen Projektes in Xcode verschiedene Vorlage, aus welchen gewählt werden kann. Für diese Applikation wurde die Vorlage der \emph{Master-Detail Application} gewählt, da diese zum einen CoreData-Unterstützung mit sich bringt und zum anderen lassen sich über die Master-Detail Applikation die bereits gemessenen Zellen in einem Tabellen View anzeigen und zusätzlich, bei Klick auf die Tabellenzelle, weitere Informationen zu der Zelle ausgeben.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.25]{ipad-master-detail-view-controller-mockup}
+	\caption{Beispiel einer Master-Detail Applikation auf dem iPad}
+	\label{master-detail-view-controller}
+\end{figure}
+
+Durch die Verwendung dieses Templates werden die benötigten Klassen, das Datenmodel und die Storyboards direkt generiert. Der \emph{NSManagedContext} des Datenmodels wird in der \emph{AppDelegate} erzeugt und dort an die jeweiligen ViewController weitergegeben, sodass der Zugriff auf das Datenmodell in der gesamten Applikation möglich ist. Alle selbstständig generierten Klassen und Dateien lassen sich selbstverständlich den eigenen Bedürfnissen nach, verändern und anpassen.
+
+Die geplante Applikation soll mehrere Funktionen abdecken, im Genaueren soll sie es ermöglichen Fingerprints zu sammeln, die gesammelten Fingerprints beziehungsweise Informationen über die Fingerprints anzeigen und eine Positionierung des Geräte im aktuellen Raum ermöglichen.
+
+Dazu kommt im Storyboard ein Tab Bar Controller zum Einsatz, welcher es ermöglicht, mittels einer Tab Bar im unteren Bereich des Bildschirms, zwischen verschiedenen View Controllern zu wechseln. Dies ermöglicht einen schnellen Wechsel zwischen den ViewControllern für das Sammeln der Fingerprints, für die Ausgabe der Informationen über die Fingerprints und für das Anzeigen der aktuellen Position.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.25]{iphone-tab-view-controller-mockup}
+	\caption{Beispiel eines TabView Controller auf dem iPhone 5}
+	\label{iphone-tab-view-controller}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CoreData Initializing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um ein Fingerprinting zu ermöglichen, ist es zunächst wichtig eine geeignete Datenstruktur zur Speicherung der Fingerprints zu haben. Hierfür wird das von Apple bereitgestellte CoreData genutzt, welches einen einfachen Zugriff und eine leichte Speicherung der Daten ermöglicht. Dazu muss zunächst ein Datenmodell angelegt werden, welches die Attribute der Entitäte und deren Beziehung beschreibt. Durch die Nutzung des Master-Detail-Templates wurde schon ein Modell erstellt, welches jedoch nur aus einer Entität besteht. Daher muss das Modell um unsere Zwecke erweitert werden.
+
+Zunächst werden daher die wichtigsten Eigenschaften eines Fingerprints bestimmt. Diese bestehen aus der aktuellen Position, der empfangenden Signalstärke und dem sendenden Beacon. Daraus lassen sich auch schon die grundlegenden Entitäten des Datenmodells bestimmen: \textbf{Beacon}, \textbf{Zelle} und \textbf{Fingerprint}. Des Weiteren ist der Zeitpunkt der Messung ebenfalls relevant und sollte gespeichert werden. Da eine Messung zu einem Zeitpunkt stattfindet und mehrere Fingerprints enthält bietet es sich an, für die Messung eine eigene Entität zu erstellen, welche einen Zeitstempel enthält und eine Beziehung zu den Fingerprints der Messung besitzt. 
+Dieses Modell lässt sich durch den in Xcode integrierten CoreData-Modell-Editor einfach erstellen und das fertige Modell ist in Abbildung \ref{core-data-model-basic} zu sehen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{core-data-model-basic}
+	\caption{CoreData-Modell im grafischen Editor}
+	\label{core-data-model-basic}
+\end{figure}
+
+Die Beziehungen zwischen den einzelnen Entitäten lassen sich hier ebenfalls erstellen und bearbeiten. 
+
+Nachdem dieses Modell erstellt wurde, ist es zusätzlich möglich, für jede Entität eine eigene Klasse zu generieren. Dieses vereinfacht die Handhabung und den Zugriff auf die Attribute, da nicht mit einem generischen \emph{NSManagedObject} gearbeitet werden muss. Die generierten Klassen enthalten alle Attribute der Entitäten in Form von Properties. Bei \emph{To-Many} Beziehungen zu anderen Entiäten werden zusätzlich Funktionen zum Hinzufügen und Entfernen dieser Entitäten erstellt.
+
+\begin{listing}[htb!]
+	\insertminted{objc}{code_examples/Cell.h}
+	\caption{Generierte Klasse für die Zelle im CoreData-Modells}
+	\label{lst:cell_objc}
+\end{listing}
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ViewController for the diffent purposes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Die erste Aufgabe der Applikation ist das Sammeln der aktuellen Fingerprints an einem bestimmten Ort. Dieser Zweig der Applikation setzt sich aus zwei ViewControllern zusammen. Zunächst wird ein ViewController für die Konfiguration benötigt. In diesem lassen sich etwa der aktuelle Ort oder die gewünschte Anzahl an Fingerprints bestimmen. Ausserdem ist es möglich weitere Einstellungsmöglichkeiten bereitzustellen, wie etwa die manuelle Festlegung des zu suchenden UUID oder Major-Wertes. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% figure of diffenent collecting configuration view controller
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}[t]{5cm}
+		\includegraphics[scale=0.2]{collect-fingerprints-simple}
+		\caption{ViewController für einfache Konfiguration.}
+		\label{collect-fingerprints-simple}
+	\end{minipage}
+	\hspace{2cm}
+	\begin{minipage}[t]{5cm}
+			\includegraphics[scale=0.2]{collect-fingerprints-detailed}
+			\caption{ViewController mit mehreren Konfigurationsmöglichkeiten.}
+			\label{collect-fingerprints-detailed}
+	\end{minipage}
+		\caption{Mögliche ViewController für die Konfiguration des Fingerprinting}
+		\label{collect-fingerprints}
+\end{figure}
+
+Nachdem alle benötigten Daten für die Konfiguration eingegeben wurden, sollen nun die Fingerprints gesammelt werden.
+
+Dazu muss wird ein eigener ViewController angelegt. In diesem wird zunächst ein \emph{CLLocationManager} angelegt, welcher für den Empfang der Beacon-Daten zuständig ist. Nachdem dieser erstellt und initialisiert wurde, wird der ViewController als \emph{delegate} der CLLocationManagers gesetzt, da dies nötig ist, um die eigene Methoden bei der Erkennung von Beacons auszuführen. Ausserdem muss die zu suchende Region spezifiziert werden. Dazu wird ein \emph{CLBeaconRegion} Objekt erstellt, welcher die Informationen einer Region enthält. Dazu zählen zum Beispiel der UUID und der Identifier der Region. Dies sind die beiden zwingend notwendigen Angaben. Darüberhinaus lässt sich zudem der Major-Wert festlegen, nach dem gesucht werden soll. Eine weitere Möglichkeit ist es nur nach Beacons mit bestimmtem UUID, Major und Minor-Wert zu suchen.
+Hier wird die CLBeaconRegion nur mittels UUID und Identifier initialisiert.
+
+Da der ViewController nun die \emph{delegate} ist, lässt sich die Methode, welche nach Beacons sucht, im ViewController implementieren. Die \emph{didRangeBeacons:inRegion} Methode des CLLocationManager, welche für die Suche nach Beacons zuständig ist, bekommt dabei ein \emph{NSArray} mit allen gefundenen Beacons zurückgegeben. 
+
+Die Suche nach den Beacons wird dabei mit der \emph{startRangingBeaconsInRegion:} Methode des CLLocationManagers gestartet.
+Nach dem Start, erhält die \emph{didRangeBeacons:inRegion} Methode periodisch ein Array der gefundenen Beacons auf welche die Spezifikationen der CLBeaconRegion zutreffen. 
+Das Array beinhaltet dabei \emph{CLBeacon} Objekte, welche ein gefundenes Beacon repräsentieren.
+Für das Fingerprinting müssen nun die gefundenen Beacons in das Datenmodell gespeichert werden. Dies geschieht über eine selbstgeschriebene Methode, welche über alle gefundenen Beacons iteriert und diese, unter Berücksichtigung der aktuellen Zelle, zum Datenmodell hinzufügt.
+Während der Aufzeichnung der Fingerprints wird eine Fortschrittsanzeige und die aktuelle Anzahl der in Reichweite liegenden Beacons angezeigt, wie auf Abbildung \ref{collecting-view-controller} zu erkennen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{collecting-view-controller}
+	\caption{Anzeige während des Sammelns von Fingerprints}
+	\label{collecting-view-controller}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Presenting ViewController
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Der vom Template generierte Master-Detail-ViewController wird verwendet um die gesammelten Fingerprints zu verwalten. Dabei wird der Tabellen-View (Master) genutzt um die bisher aufgezeichneten Zellen anzuzeigen. Bei einem Klick auf die jeweilige Tabellenspalte der Zelle lassen sich zusätzliche Informationen ausgeben.
+Ausserdem wurde eine Übertragung der gesammelten Daten an einen Server implementiert. Dazu werden die Daten in das json-Format überführt und dann an einen lokalen Server geschickt, welcher mittels \emph{Javascript} programmiert wurde. Dieser Server empfängt die Datei und speichert sie anschließend auf die Festplatte. 
+Dies ermöglicht eine einfache Auswertung der gesammelten Daten. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Positioning ViewController
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Für die Bestimmung der aktuellen Position ist die aktuelle Zelle der wichtigste Wert. Die Ausgabe einer Karte mit der aktuellen Position ist zwar hilfreich für eine praktische Anwendung, für das Testen jedoch nicht notwendig.
+Für die Positionsbestimmung werden, wie schon beim Sammeln der Fingerprints, zunächst aktuelle Werte der Beacons benötigt. Die Konfiguration und Initialisierung des \emph{CLLocationManagers} und der \emph{CLBeaconRegion} ist dabei identisch zu der Vorgehensweise des Fingerprint ViewControllers.
+
+Statt die erhaltenen Beacon-Daten jedoch in die Datenbank zu übernehmen, werden diese direkt weiterverarbeitet. Dazu werden verschiedene Positionierungsalgorithmen angewandt, auf welche im Kapitel \ref{sec:implementation:fingerprinting:positioning} genauer eingegangen wird. 
+Diese Algorithmen liefern nun die nach den Berechnungen am nächsten liegende Zelle zurück. Der ViewController kümmert sich dann um die Ausgabe der Zellennummer auf dem Bildschirm.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Die Funktionen zum Positionsupdate und zur Erkennung der Beacons werden dabei im \emph{LocationManager} verwaltet.
 In der \emph{LocationManagerDelegate} lassen sich dabei die Aktionen bestimmen, welche bei verschiedenen Events ausgeführt werden.
 
 In Listing \ref{lst:locationmanager_objc} wird die Initialisierung eines LocationManager gezeigt, welcher eine Genauigkeit von einem Kilometer haben soll und bei Positionsänderungen von mehr als 500 Metern aktualisiert wird.
 
-  \begin{listing}[htb!]
+\begin{listing}[htb!]
     \insertminted{objc}{code_examples/locationManager.m}
     \caption{Beispielinitialisierung für einen LocationManager.}
     \label{lst:locationmanager_objc}
-  \end{listing}
+\end{listing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ansatz zur Positionsbestimmung}

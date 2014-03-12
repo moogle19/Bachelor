@@ -43,6 +43,7 @@
 \ihead{\headmark}
 
 %% Hier kommen ein paar Fuschereien von Kalle
+\lstset{basicstyle=\tiny}
 
 %% Seitengröße mit vmargin-Paket einstellen
 \setpapersize{A4}
