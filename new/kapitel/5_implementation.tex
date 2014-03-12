@@ -317,7 +317,7 @@ Aus den Differenzen beziehungsweise die Abstände zwischen den einzelnen Signals
 \subsubsection{Implementierung}
 \label{sec:implementation:fingerprinting:positioning:naiv:implementation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Bei der Implementierung dieser Methode wird für jedes Set von Fingerprints in der Datenbank die euklidische Distanz zu den aktuell gemessenenen Signalstärken berechnet. Dazu wird über die vorhandenen Measurements iteriert, welche jeweils ein Set von gemessenen Fingerprints zu einem bestimmten Zeitpunkt enthalten. Diese Signalstärken werden in einen Vektor transformiert, sodass die Distanz berechnet werden kann. In Listing \ref{lst:euclidean_distance_objc} sieht man die Berechnung der euklidischen Distanz zweier Vektoren, welche in Form eines Arrays eingelesen werden.
+Bei der Implementierung dieser Methode wird für jedes Set von Fingerprints in der Datenbank die euklidische Distanz zu den aktuell gemessenenen Signalstärken berechnet. Dazu wird über die vorhandenen Messungen iteriert, welche jeweils ein Set von gemessenen Fingerprints zu einem bestimmten Zeitpunkt enthalten. Diese Signalstärken werden in einen Vektor transformiert, sodass die Distanz berechnet werden kann. In Listing \ref{lst:euclidean_distance_objc} sieht man die Berechnung der euklidischen Distanz zweier Vektoren, welche in Form eines Arrays eingelesen werden.
 
 \begin{listing}[htb!]
     \insertminted{objc}{code_examples/euclidean_distance.m}
@@ -325,7 +325,7 @@ Bei der Implementierung dieser Methode wird für jedes Set von Fingerprints in d
 	\label{lst:euclidean_distance_objc}
 \end{listing}
 
-Das Measurement mit der geringsten euklidischen Distanz wird dabei gespeichert, sodass diesem, nachdem alle Measurements durchiteriert wurden, zurückgegeben werden kann. Anhand dieses Measurements lässt sich nun die zugehörige Zelle bestimmen und ausgeben.
+Die Messung mit der geringsten euklidischen Distanz wird dabei gespeichert, sodass diesem, nachdem alle Measurements durchiteriert wurden, zurückgegeben werden kann. Anhand dieser Messung lässt sich nun die zugehörige Zelle bestimmen und ausgeben.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Probleme}
@@ -395,17 +395,25 @@ Wie in Abbildung \ref{avgmedianiphone5_raspberry} zu erkennen, ist der Unterschi
 \subsubsection{Implementierung}
 \label{sec:implementation:fingerprinting:positioning:avg:implementiation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Für die Implementierung der Positionsbestimmung mit Mittelwerten wird das CoreData-Modell um eine Entität namens \emph{BeaconInCell} erweitert. Diese Entität repräsentiert ein Beacon in einer bestimmten Zelle und wird zur Speicherung der Mittelwerte genutzt. Dadurch ist es nicht nötig die Mittelwerte für jede Positionsbestimmung neu zu berechnen, wobei über alle Fingerprints iteriert werden muss. Die Mittelwerte müssen so nur beim Hinzufügen neuer Fingerprints berechnet werden.
-
-
+Für die Implementierung der Positionsbestimmung mit Mittelwerten wird das CoreData-Modell um eine Entität namens \emph{BeaconInCell} erweitert. Diese Entität repräsentiert ein Beacon in einer bestimmten Zelle und wird zur Speicherung der Mittelwerte genutzt. Dadurch ist es nicht nötig die Mittelwerte für jede Positionsbestimmung neu zu berechnen, wobei über alle Fingerprints iteriert werden muss. Die Mittelwerte müssen so nur beim Hinzufügen neuer Fingerprints aktualisiert werden.
 
 BeaconInCell:
 	\begin{quote}Repräsentiert ein Beacon in einer bestimmten Zelle und beinhaltet durchschnittliche, maximale und minimale Signalstärke, sowie den Median der Signalstärke des Beacons in der aktuellen Zelle\end{quote}
+
+Bei der Bestimmung der nächsten Zelle arbeitet dieses Verfahren identisch zu dem vorherigen Nearest-Neighbor-Verfahren, nur dass statt aller Messungen jeweils die Mittelwerte der Beacons für die aktuelle Zelle genutzt werden. 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prohabilistisches Verfahren}
 \label{sec:implementation:fingerprinting:positioning:probability}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algorithmus}
+\label{sec:implementation:fingerprinting:positioning:probability:algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Der letzte untersuchte Ansatz war ein prohabilistisches Verfahren, welches die Wahrscheinlichkeiten einer bestimmten Signalstärke eines Beacons als Referenz-Wert für die Positionbestimmung nutzt. Dabei wurde für die Berechnung der Wahrscheinlichkeiten und Bestimmung der aktuellen Position das Verfahren von \citet{wifiFingerprintProbability} verwendet, welche das Fingerprinting mit Hilfe von Wireless LAN-Routern verwenden.
 
 Da das Fingerprinting mittels Wireless LAN ebenfalls auf den Signalstärken der Wireless LAN-Basisstationen basiert, lässt sich das Verfahren auch auf andere Technologien, welche die Signalstärke zur Positionsbestimmung nutzen, übertragen.
@@ -444,10 +452,14 @@ Diese Distanz gibt nun die Ähnlichkeit der aktuellen Wahrscheinlichkeitsverteil
 
 Für unseren Zweck reicht diese Angabe aus. Es lässt sich jedoch, wie im Paper von \citet{wifiFingerprintProbability} weiter ausgeführt, auch noch eine interpolierte Position aus den $k$ wahrscheinlichsten Positionen bilden, welche, gewichtet nach ihrer Distanz, in die finale Position einfließen. Da wir jedoch mit Zellen arbeiten und nicht mit Koordinaten wurde darauf verzichtet. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Implementierung}
+\label{sec:implementation:fingerprinting:positioning:probability:implementiation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anzeige auf der Karte}
-\label{sec:map}
+\label{sec:implementation:map}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
