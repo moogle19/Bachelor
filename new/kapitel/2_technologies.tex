@@ -1,4 +1,4 @@
-\chapter{Technologien}
+\chapter{Technologien und Werkzeuge}
 \label{chap:technologies}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,12 +12,12 @@ Das erste unterstützte Mobilfunkgerät war das iPhone 4s, welches am 4. Oktober
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Bluetooth Low Energy}
+\subsection{Bluetooth Low Energy}
 \label{sec:technologies:bluetoothLE}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Bluetooth Low Energy wurde Anfangs von Nokia unter dem Namen ''Wibree'' entwickelt. Die Zielsetzung dabei war es eine Technologie zu entwickeln, mit der sich Computer und Mobilgeräte schnell und einfach mit Peripherie-Geräten verbinden lassen sollten. Das Hauptaugenmerk galt dabei dem geringen Stromverbrauch, einer kompakten Bauweise und den geringen Kosten der benötigten Hardware.
-Im Jahr 2007 wurden diese Spezifikationen in den, sich in der Entwicklung befindenden, Bluetooth-Standard 4.0 aufgenommen und daraufhin in Bluetooth Low Energy, oder kurz BLE, umbenannt.
+Im Jahr 2007 wurden diese Spezifikationen in den, sich in der Entwicklung befindlichen, Bluetooth-Standard 4.0 aufgenommen. Wibree wurde daraufhin in Bluetooth Low Energy, oder kurz BLE, umbenannt.
 
 Bluetooth Low Energy arbeitet wie das klassische Bluetooth im 2,4 GHz Band, bringt aber in der Funktionsweise einige Unterschiede mit sich.
 
@@ -29,8 +29,22 @@ Des Weiteren wird eine 24-Bit-Fehlerkorrektur eingesetzt, welche die Verbindung 
 
 Auch die Verschlüsselung des zu übertragenden Signals wurde verbessert. Dabei kommt der Advance Encryption Standard (AES) mit einer Schlüssellänge von 128 Bit zum Einsatz.
 
-Bluetooth Low Energy bietet darüber hinaus eine Vielzahl so genannter GATT-Profile (Generic Attribute Profile). Die bereitgestellten GATT-Profile sind Richtlinien für die Bluetooth-Funktionialität, sprich, welche Daten übertragen werden und in welcher Form. Dies erlaubt eine einfache und schnell Interoperabilität zwischen verschiedenen Geräten. Ein Beispiel für ein GATT-Profil wäre zum Beispiel das ''Heart Rate Profile'', welches die Verbindung und Kommunikation eines Pulsmessgurtes mit einem Endgerät beschreibt. So wird sichergestellt, dass jeder Pulsmessgurt mit jedem Endgerät auf die selbe Weise funktioniert. Bisher sind 18 solcher Profile von der Bluetooth Special Interest Group (SIG) bereitgestellt worden. 
+\textbf{Central und Peripheral}
+Bei einer Bluetooth Low Energy-Verbindung unterscheidet man zwischen \emph{Central} und \emph{Peripheral}. Das Gerät in der Rolle des \emph{Central} horcht dabei auf gesendete Pakete in der Umgebung. Das Gerät in der Rolle des \emph{Peripheral} hingegen sendet Pakete an das verbundene oder an alle in der Umgebung befindlichen Geräte. 
 
+\textbf{Link Layer}
+
+\textbf{ATT}
+Das \emph{Attribute Protocol}, oder kurz \emph{ATT}, wird bei allen Datenübertragungen mittels Bluetooth Low Energy genutzt. Es wurde speziell für Bluetooth LE entworfen, um eine schnelle und sparsame Übertragung zu ermöglichen. Es basiert dabei auf einer Client-Server-Architektur. 
+Der Server verwaltet die Daten und der Client fordert Daten vom Server an. Nach einer eroglreichen Anfrage sendet der Server diese zum Client.
+
+\textbf{GATT}
+Das \emph{Generic Attribute Profile (GATT)} ist verpflichtend für alle Bluetooth LE-Profile. Es basiert dabei auf ATT und erlaubt ein einfaches Auffinden der Attribute und einen schnellen Zugriff. Ein Beispiel für ein GATT-Profil ist das \emph{Heart Rate Profile}, welches für Herzfrequenzmessungen designt wurde.
+Jedes Profil besteht dabei aus verschiedenen Attributen, welche hierarchisch aufgebaut sind.
+
+An oberster Stelle steht dabei das \emph{Service}-Attribut. Ein Service besteht aus einer Sammlung von \emph{Characteristics}. Eine Beispiel für einen GATT-Service ist der \emph{Heart Rate Service}, welcher aus mehreren \emph{Characteristics} besteht, wie zum Beispiel \emph{Heart Rate Measurement Characteristic}, \emph{Body Sensor Location Characteristic}, usw. 
+Das \emph{Characteristic}-Attribut besteht aus einem Messwert und einem \emph{Descriptor}. Der aktuelle Wert ist abhängig von der Characteristic, so gibt die \emph{Heart Rate Measurement Characteristic} beispielsweise die aktuelle Herzfrequenz als Wert zurück. 
+Der \emph{Descriptor} liefert zusätzliche Information über die aktuelle \emph{Characteristic}, wie zum Beispiel den erlaubten Wertebereich oder die Einheit in welcher der Messwert vorliegt.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,17 +55,17 @@ Die iBeacons-Technologie wurde am 10.Juni 2014 von Apple auf der Worldwide Devel
 Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwickelten, proprietären GATT-Profil.
 
 Beacon bedeutet übersetzt ''Leuchtfeuer'' und die Funktionsweise der Beacons ist dem sehr ähnlich.
-Einmal in Betrieb genommen, sendet das Beacon kontinuierlich ein Signal, in welchem sich Daten zur Identifizierung und Entfernungsbestimmung des Beacons befinden.
+Einmal in Betrieb genommen, sendet das Beacon dauerhaft in kleinen Zeitintervallen ein Signal, in welchem sich Daten zur Identifizierung und Entfernungsbestimmung des Beacons befinden.
 
 Für die Identifizierung sendet das Beacon drei Werte, den \emph{Universally Unique Identifier (UUID)}, den \emph{Major-Wert} und den \emph{Minor-Wert}.
 Der \emph{UUID} ist ein Identifier, welcher Beacons einem bestimmten Typ oder einem Unternehmen zuordnen. Dieser UUID lässt sich mittels diversen Programmen generieren.
 
-Der \emph{Major-Wert} dient zur Unterscheidung von Beacons mit dem selben UUID und soll dazu eingesetzt werden, verschiedene Standorte beziehungsweise Regionen zu unterscheiden. Ein Beispiel dafür wäre ein Unternehmen mit mehreren Standorten, sodass bei gleichem UUID eine eindeutige Bestimmung des Standortes möglich ist.
+Der \emph{Major-Wert} dient zur Unterscheidung von Beacons mit dem selben UUID und wird dazu eingesetzt, verschiedene Standorte beziehungsweise Regionen zu unterscheiden. Ein Beispiel dafür wäre ein Unternehmen mit mehreren Standorten, sodass bei gleichem UUID eine eindeutige Bestimmung des Standortes möglich ist.
 
-Der \emph{Minor-Wert} dient zur weiteren Unterscheidung der Beacons mit gleichem UUID und Major-Wert. Vorgesehen ist der Minor-Wert zur Bestimmung eines einzelnen Beacons in einer bestimmten Region, es ist jedoch nicht verboten mehreren Beacons die gleichen UUID, Major und Minor-Werte zu zuweisen, wodurch keine eindeutige Identifizierung mehr möglich ist. 
+Der \emph{Minor-Wert} dient zur weiteren Unterscheidung der Beacons mit gleichem UUID und Major-Wert. Vorgesehen ist der Minor-Wert zur Bestimmung eines einzelnen Beacons in einer bestimmten Region, es ist jedoch nicht verboten mehreren Beacons die gleichen UUID, Major und Minor-Werte zu zuweisen, wodurch jedoch keine eindeutige Identifizierung mehr möglich ist. 
 
 Neben den Identifikationsdaten kann das Empfangsgerät noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung zu erhalten. 
-In der iBeacons-API sind dafür vier verschiedene Entfernungs-Zustände definiert: \textit{Far}, \textit{Near}, \textit{Immediate} und \textit{Unknown}. Diese Werte erlauben eine grobe Entfernungseinschätzung zum Beacon. Für eine differenziertere Entfernungsbestimmung lässt sich eine weitere Kenngröße auslesen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung der Enterfernung zweier Beacons genutzt werden soll und keinesfalls einen genauen Abstand zum Beacon angibt. Der Accuracy-Wert soll dabei erlauben, dass nächstgelegene Beacon zu bestimmen.
+Für diesen \emph{Proximity}-Wert sind dabei vier verschiedene Entfernungs-Zustände definiert: \textit{Far(mehr als 10m)}, \textit{Near(wenige Meter)}, \textit{Immediate (wenige Zenitmeter)} und \textit{Unknown(Entfernung konnte nicht bestimmt werden)}. Diese Werte erlauben eine sehr grobe Entfernungseinschätzung zum Beacon. Für eine differenziertere Entfernungsbestimmung lässt sich eine weitere Kenngröße auslesen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung der Enterfernung zweier Beacons genutzt werden soll und keinesfalls einen genauen Abstand zum Beacon angibt. Der Accuracy-Wert soll dabei erlauben, bei gleichem Proximity-Wert, dass nächstgelegene Beacon zu bestimmen.
 
 %\begin{tabular}{p{2cm}p{5cm}p{5cm}p{4cm}}
 %	\\
@@ -99,7 +113,7 @@ Der Aufbau eines solchen Beacons lässt sich in Abbildung \ref{estimote-beacon} 
 \end{figure}
 
 
-Unter genauerer Betrachtung des Chipsatzes in Abbildung \ref{estimote-beacon-inside-annotations}, erkennt man, dass er im Grunde aus zwei Teilen besteht.
+Unter genauerer Betrachtung der Platine in Abbildung \ref{estimote-beacon-inside-annotations}, erkennt man, dass diese im Grunde aus zwei Teilen besteht.
 Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der Antenne, welche im vorderen Bereich der Platine eingearbeitet ist und über die letztendlich die Daten gesendet werden.
 
 \begin{figure}[h!]
@@ -112,14 +126,101 @@ Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{iOS, OS X und Xcode}
+\section{Xcode}
+\label{sec:tools:xcode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Xcode ist eine integrierte Entwicklungsumgebung, welche von Apple etwickelt wurde. Xcode ermöglicht es \emph{iOS} und \emph{OS X} Applikationen zu erstellen, zu testen und zu debuggen.
+Standardmäßig werden dabei die Programmiersprachen \emph{Objective C}, \emph{C} und \emph{C++} unterstützt.
+
+Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen, ohne diese auf ein reales Gerät zu übertragen.
+
+Bei Erstellung einer neuen Applikation kann man unter mehreren Templates wählen, welche jeweils verschiedene Funktionen mit sich bringen. In Abbildung \ref{xcode-templates} lassen sich die verschiedenen Auswahlmöglichkeiten erkennen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.4]{xcode-templates}
+	\caption{Auswahlbildschirm der verschiedenen Templates}
+	\label{xcode-templates}
+\end{figure}
+
+Nach dem man das passende Template gewählt hat, werden die benötigten Dateien angelegt.
+Dazu gehören beispielsweise die \emph{AppDelegate} und das \emph{Storyboard}.
+
+Die AppDelegate-Klasse steuert applikationsweite Ereignisse, wie etwa das Aufrufen und Schließen der Applikation. Außerdem wird durch die AppDelegate der aktuelle Zustand der Applikation gespeichert und wiederhergestellt.
+
+Das Storyboard ist eine grafische Oberfläche für die Erstellung des User Interfaces. Es ermöglicht verschiedene Elemente wie zum Beispiel Views, Textfelder, Buttons oder Tabellen einzufügen und diese zu verbinden. Wie in Abbildung \ref{xcode-storyboard} zu erkennen, besteht das Storyboard aus mehreren View Controllern, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen View Controller sind mit so gennanten \emph{Segue's} verbunden, welche sich durch bestimmte Aktionen, wie zum Beispiel den Druck auf einen Button, auslösen lassen. Diese Segue's definieren, wie die Übergänge zwischen den ViewControllern ablaufen.
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[scale=0.25]{xcode-storyboard}
+	\caption{Beispiel eines Storyboards für iPhones}
+	\label{xcode-storyboard}
+\end{figure}
+
+Das Storyboard bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein passendes User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt.
+In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Constraints, also die Abstands und Ausrichtungsbeziehungen zwischen den einzelnen Objekten, gut erkennen.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.5]{xcode-storyboard-constraints}
+	\caption{View Controller mit Constraints}
+	\label{xcode-storyboard-constraints}
+\end{figure}
+
+Diese Constraints beschreiben dabei die Abstände und Ausrichtungen der einzelnen Elemente zu dem umschließenden ViewController oder den anderen Elementen.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{iOS}
 \label{sec:technologies:iosandxcode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
 Daher waren drei Dinge zwingend notwendig: ein Mac, Xcode und ein iOS-Gerät.
 
-Für die Entwicklung setzte ich deshalb auf ein MacBook Pro mit installiertem Xcode 5.0.2 und als iOS-Gerät setzte ich ein iPhone 5 mit iOS 7.0.6 und ein iPhone 4s mit iOS 7.0.6 ein.
+Für die Entwicklung setzte ich deshalb auf ein MacBook Pro mit installiertem Xcode 5.1 und als iOS-Gerät setzte ich ein iPhone 5 mit iOS 7.1 und ein iPhone 4s mit iOS 7.0.6 ein.
 Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-API des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{iOS Developer Program}
+Um eine programmierte Anwendung letztendlich auf einem iOS-Gerät auszuführen, ist die Mitgliedschaft im iOS Developer Program notwendig.
+Diese erlaubt das Testen der Anwendung auf dem Gerät, die Veröffentlichung im AppStore und gewährt Zugriff auf das iOS Beta-Programm, um Anwendungen für neue Versionen des Betriebssystems zu optimieren.
+Die Mitgliedschaft in diesem \emph{iOS Developer Program} kostet jährlich 99 Dollar. 
+Im Rahmen meine Bachelorarbeit wurde mir der Zugang zu diesem Programm von der Universität zur Verfügung gestellt. Dabei beschränkt sich der Funktionsumfang jedoch auf das Testen der Applikation auf dem Gerät, da die Veröffentlichung im AppStore und der iOS Beta-Programm nicht teil des Pakets für Universitäten ist.
+
+\textbf{iPhone}
+Für die Entwicklung und das Testen der Applikation wurde ein iPhone 5 und ein iPhone 4s verwendet. 
+Hauptsächlich wurde das iPhone 5 genutzt, wobei das iPhone 4s eher als Vergleichsgerät diente, um zum Beispiel Messungen zu überprüfen.
+
+Das Ausführen der geplanten Applikation auf einem realen Endgerät ist dabei unverzichtbar, da der iOS-Simulator nicht die Möglichkeit besitzt Bluetooth-Signale zu empfangen.
+
+Das iPhone 4s wurde dazu genutzt, zu überprüfen in wie weit die Ergebnisse der Messungen übertragbar sind, beziehungsweise wie sie sich zwischen den einzelnen Modellen unterscheiden, da diese verschiedene Hardware einsetzen. So setzt das iPhone 4s auf den Broadcom BCM4330-Chipsatz, welches ein Wireless LAN-Chip mit integriertem Bluetooth 4.0 ist. Das iPhone 5 dagegen setzt auf den BCM4334, ebenfalls von Broadcom. 
+Aber auch der Aufbau der Antennen und das Material der iPhones unterscheidet sich zwischen diesen beiden Generationen deutlich. 
+So ist das iPhone 4s mit einer Glas-Rückseite ausgestattet, wohingegen das iPhone 5 einen Rückseite aus Aluminium besitzt.
+
+Daher ist es wichtig zu vergleichen in wie weit die Änderungen die Empfangsqualität beeinflussen und zu bestimmen, ob eine Übertragung der Ergebnisse möglich ist oder ob jedes Gerät individuell behandelt werden muss.
+
+\begin{figure}[htb!]
+		\centering
+	\includegraphics[scale=0.1]{iphones}
+	\caption{Die für die Messungen und Tests genutzten iPhones}
+	\label{iphones}
+\end{figure}
+
+\textbf{Objective-C}
+Als Programmiersprache kam dabei \emph{Objective-C} zum Einsatz, welches die primäre Sprache zur Programmierung von iOS-Anwendugen ist. 
+Diese bietet viele nützliche Eigenschaften, wie etwa dynamisches Binden, eine dynamische Typisierung oder \emph{Fast Enumeration}.
+Im Vergleich zu Java arbeitet \emph{Objective-C} nicht mit Methodenaufrufen, sondern mit Nachrichten. Diese werden vom Sender zum Empfänger gesendet, wobei der Empfänger daraufhin entscheidet, welche Methode ausgeführt wird. Ein weitere Besonderheit von Objective-C sind die Properties (Eigenschaften), welche den Instanzvariablen entsprechen, jedoch noch weitere Konfigurationsmöglichkeiten hinsichtlich Schreibschutz und Atomarität bieten.
+Eine weiterer Unterschied ist die Syntax von Objective-C.
+
+\begin{listing}[htb!]
+    \insertminted{objc}{code_examples/helloworld.m}
+    \caption{Hello World-Beispiel in Objective-C und Java}
+	\label{lst:helloworld_objc}
+\end{listing}
+
+Der Hauptunterschied liegt in der Methodendeklaration. Statt des \emph{static} Schlüsselwortes wird bei Objective-C eine Klassenmethode mit einem ''+'' gekennzeichnet, wobei eine Instanzmethode mit einem ''-'' deklariert wird. Der nächste Unterschied wird bei den Übergabewerten deutlich. Diese werden bei Objective-C mit einem '':'' abgetrennt.
+Ein weiterer Unterschied wird beim Aufruf der Methoden deutlich. Da Objective-C nicht explizit die Methode aufruft, sondern eine Nachricht an die Klasse sendet, unterscheidet sich die Syntax deutlich. So werden hier geschweifte Klammern genutzt, wobei der Empfänger der Nachricht zuerst aufgeführt wird und danach die zu sendende Nachricht eingefügt wird.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -153,22 +254,23 @@ Diese Genauigkeiten beziehen sich hauptsächlich auf die Positionierung mittels 
 
 Eine weitere Funktion des CoreLocation-Frameworks ist der Kompass, also die Bestimmung der Himmelsrichtungen. Durch den eingebauten Kompass in den neueren iOS-Geräten ist es möglich, die aktuelle Ausrichtung des Gerätes sehr genau zu bestimmen. Dies ist im Bezug auf die Indoor Navigation hilfreich, da diese Informationen in die Positionsbestimmung einbezogen werden können. Da der menschliche Körper die Signale der Beacons beeinflusst, ist es daher von Vorteil die aktuelle Ausrichtung zu kennen und so auch die Position des Körpers zu berücksichtigen.
 
-Des Weiteren erlaubt diese Funktion eine dynamische Ausrichtung der Karte, abhängig davon wie das Gerät ausgerichtet ist.
+Des Weiteren erlaubt diese Funktion eine dynamische Ausrichtung der Karte, abhängig davon wie das Gerät aktuell ausgerichtet ist.
 
 Die für uns zentrale Funktion dieses Frameworks ist die Erkennung von iBeacons und die Funktionen zur Verarbeitung der von den Beacons gesendeten Daten.
-Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Region zugeordnet werden. Die genaue Funktionsweise wird dabei im Kapitel \ref{sec:technologies:corelocation:ibeaconsapi} behandelt.
+Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Region zugeordnet werden. Die genaue Funktionsweise wird dabei im folgenden Kapitel \ref{sec:technologies:corelocation:ibeaconsapi} behandelt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{iBeacons-API}
 \label{sec:technologies:corelocation:ibeaconsapi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Seit der iOS Version 7 wurde das CoreLocation Framework um die Beacon-Funktionalitäten erweitert. 
-Dazu wurden zwei neue Klassen hinzugefügt. Einmal die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum Anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID, beschreibt.
+Dazu wurden zwei neue Klassen hinzugefügt und das bestehende Framework dementsprechend angepasst. 
+Hinzugefügt wurde zum Einen die \emph{CLBeacon}-Klasse, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum Anderen die \emph{CLBeaconRegion}-Klasse, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID und weiteren Werten, beschreibt.
 
-Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Propertys mit den gegebenen Beacon-Informationen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
+Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Properties mit den gegebenen Beacon-Informationen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
 
 Die \emph{CLBeaconRegion}-Klasse ist etwas umfangreicher und bestimmt letztendlich, nach welchen Beacons gesucht werden soll.
-Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen zu beschreiben:
+Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen zu initialisieren:
 
 
 \emph{initWithProximityUUID:identifier:}\begin{quote}
@@ -260,3 +362,22 @@ Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Tests auf best
 Als Rückgabewert erhält man ein Array mit allen Objekten, auf die die gegebenen Kriterien zutreffen.
 
 Die Attribute dieser Objekte können nun ausgelesen und verändert werden. Um Veränderungen auch im Datenmodell zu übernehmen, muss lediglich der \emph{save}-Befehl des \emph{NSManagedObjectContext} ausgeführt werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Versionsverwaltung mit Git}
+\label{sec:tools:git}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Für die Verwaltung und Versionierung des Projektes wurde Git verwendet. Als Hosting-Plattform wurde dabei GitHub genutzt.
+
+Git wurde gewählt, da es schnell und vergleichsweise einfach zu bedienen ist. Des Weiteren bietet Xcode bereits standardmäßig Git-Unterstützung mit einem grafischen Interface, welches alle nötigen Befehle wie Commit, Push, Pull oder die Erstellung eines neuen Branches auf Knopfdruch beherscht.
+
+Auch ein Diff-Editor ist integriert, welcher es erlaubt die Unterschieder im Quelltext, zwischen zwei Versionen zu begutachten.
+
+\begin{figure}[htb!]
+		  \centering
+	\includegraphics[scale=0.25]{xcode-git-diff}
+	\caption{Xcode Versionsverwaltung mit Diff-Anzeige bei einem Commit}
+	\label{xcode-git-diff}
+\end{figure}
+
+

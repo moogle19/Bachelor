@@ -12,7 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Für die Implementierung unter iOS müssen zunächst einige grundlegende Programmbestandteile erzeugt und eingerichtet werden.
-Wie bereits in Kaptiel \ref{sec:tools:xcode} gezeigt, gibt es bei der Erstellung eines neuen Projektes in Xcode verschiedene Vorlage, aus welchen gewählt werden kann. Für diese Applikation wurde die Vorlage der \emph{Master-Detail Application} gewählt, da diese zum einen CoreData-Unterstützung mit sich bringt und zum anderen lassen sich über die Master-Detail Applikation die bereits gemessenen Zellen in einem Tabellen View anzeigen und zusätzlich, bei Klick auf die Tabellenzelle, weitere Informationen zu der Zelle ausgeben.
+Wie bereits in Kaptiel \ref{sec:tools:xcode} gezeigt, gibt es bei der Erstellung eines neuen Projektes in Xcode verschiedene Vorlage, aus welchen gewählt werden kann. Für diese Applikation wurde die Vorlage der \emph{Master-Detail Application} gewählt, da diese eine CoreData-Unterstützung mit sich bringt. Ausserdem lassen sich über die Master-Detail Applikation die bereits gemessenen Werte in einem Tabellen View anzeigen und zusätzlich, bei Klick auf die Tabellenzelle, weitere Informationen zu der Daten ausgeben.
 
 \begin{figure}[htb!]
 		\centering
@@ -21,11 +21,12 @@ Wie bereits in Kaptiel \ref{sec:tools:xcode} gezeigt, gibt es bei der Erstellung
 	\label{master-detail-view-controller}
 \end{figure}
 
-Durch die Verwendung dieses Templates werden die benötigten Klassen, das Datenmodel und die Storyboards direkt generiert. Der \emph{NSManagedContext} des Datenmodels wird in der \emph{AppDelegate} erzeugt und dort an die jeweiligen ViewController weitergegeben, sodass der Zugriff auf das Datenmodell in der gesamten Applikation möglich ist. Alle selbstständig generierten Klassen und Dateien lassen sich selbstverständlich den eigenen Bedürfnissen nach, verändern und anpassen.
+Durch die Verwendung dieses Templates werden die benötigten Klassen, das Datenmodel und die Storyboards direkt generiert. Der \emph{NSManagedContext} des Datenmodels wird in der \emph{AppDelegate} erzeugt und dort an die jeweiligen ViewController weitergegeben, sodass der Zugriff auf das Datenmodell in der gesamten Applikation möglich ist. Alle selbstständig generierten Klassen und Dateien lassen sich selbstverständlich, den eigenen Bedürfnissen nach, verändern und anpassen.
 
 Die geplante Applikation soll mehrere Funktionen abdecken, im Genaueren soll sie es ermöglichen Fingerprints zu sammeln, die gesammelten Fingerprints beziehungsweise Informationen über die Fingerprints anzeigen und eine Positionierung des Geräte im aktuellen Raum ermöglichen.
 
-Dazu kommt im Storyboard ein Tab Bar Controller zum Einsatz, welcher es ermöglicht, mittels einer Tab Bar im unteren Bereich des Bildschirms, zwischen verschiedenen View Controllern zu wechseln. Dies ermöglicht einen schnellen Wechsel zwischen den ViewControllern für das Sammeln der Fingerprints, für die Ausgabe der Informationen über die Fingerprints und für das Anzeigen der aktuellen Position.
+Dahingehend muss das Storyboard, welches das User Interface repräsentiert dementsprechend angepasst werden.
+Dazu kommt ein Tab Bar Controller zum Einsatz, welcher es ermöglicht, mittels einer Tab Bar im unteren Bereich des Bildschirms, zwischen verschiedenen View Controllern auszuwählen. Dies ermöglicht einen schnellen Wechsel zwischen den ViewControllern für das Sammeln der Fingerprints, für die Ausgabe der Informationen über die Fingerprints und für das Anzeigen der aktuellen Position.
 
 \begin{figure}[htb!]
 		\centering
@@ -37,9 +38,9 @@ Dazu kommt im Storyboard ein Tab Bar Controller zum Einsatz, welcher es ermögli
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CoreData Initializing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Um ein Fingerprinting zu ermöglichen, ist es zunächst wichtig eine geeignete Datenstruktur zur Speicherung der Fingerprints zu haben. Hierfür wird das von Apple bereitgestellte CoreData genutzt, welches einen einfachen Zugriff und eine leichte Speicherung der Daten ermöglicht. Dazu muss zunächst ein Datenmodell angelegt werden, welches die Attribute der Entitäte und deren Beziehung beschreibt. Durch die Nutzung des Master-Detail-Templates wurde schon ein Modell erstellt, welches jedoch nur aus einer Entität besteht. Daher muss das Modell um unsere Zwecke erweitert werden.
+Um ein Fingerprinting zu ermöglichen, ist es zunächst wichtig eine geeignete Datenstruktur zur Speicherung der Fingerprints zu haben. Hierfür wird das von Apple bereitgestellte CoreData-Framework genutzt, welches einen einfachen Zugriff und Speicherung der Daten ermöglicht. Dazu muss zunächst ein Datenmodell angelegt werden, welches die Entitäten, ihre Attribute und die Beziehungen zwischen den Entitäten beschreibt. Durch die Nutzung des Master-Detail-Templates wurde schon ein Modell erstellt, welches jedoch nur aus einer Entität besteht. Das Modell muss daher für das Figerprinting erweitert werden.
 
-Zunächst werden daher die wichtigsten Eigenschaften eines Fingerprints bestimmt. Diese bestehen aus der aktuellen Position, der empfangenden Signalstärke und dem sendenden Beacon. Daraus lassen sich auch schon die grundlegenden Entitäten des Datenmodells bestimmen: \textbf{Beacon}, \textbf{Zelle} und \textbf{Fingerprint}. Des Weiteren ist der Zeitpunkt der Messung ebenfalls relevant und sollte gespeichert werden. Da eine Messung zu einem Zeitpunkt stattfindet und mehrere Fingerprints enthält bietet es sich an, für die Messung eine eigene Entität zu erstellen, welche einen Zeitstempel enthält und eine Beziehung zu den Fingerprints der Messung besitzt. 
+Zunächst werden daher die wichtigsten Eigenschaften eines Fingerprints bestimmt. Diese bestehen aus der aktuellen Position, der empfangenden Signalstärke und dem sendenden Beacon. Daraus lassen sich die grundlegenden Entitäten des Datenmodells bestimmen: \textbf{Beacon}, \textbf{Zelle} und \textbf{Fingerprint}. Des Weiteren ist der Zeitpunkt der Messung ebenfalls relevant und sollte gespeichert werden. Da eine Messung zu einem Zeitpunkt stattfindet und mehrere Fingerprints enthält bietet es sich an, für eine Messung eine eigene Entität zu erstellen, welche einen Zeitstempel enthält und eine Beziehung zu den Fingerprints der Messung besitzt. 
 Dieses Modell lässt sich durch den in Xcode integrierten CoreData-Modell-Editor einfach erstellen und das fertige Modell ist in Abbildung \ref{core-data-model-basic} zu sehen.
 
 \begin{figure}[htb!]
@@ -51,7 +52,7 @@ Dieses Modell lässt sich durch den in Xcode integrierten CoreData-Modell-Editor
 
 Die Beziehungen zwischen den einzelnen Entitäten lassen sich hier ebenfalls erstellen und bearbeiten. 
 
-Nachdem dieses Modell erstellt wurde, ist es zusätzlich möglich, für jede Entität eine eigene Klasse zu generieren. Dieses vereinfacht die Handhabung und den Zugriff auf die Attribute, da nicht mit einem generischen \emph{NSManagedObject} gearbeitet werden muss. Die generierten Klassen enthalten alle Attribute der Entitäten in Form von Properties. Bei \emph{To-Many} Beziehungen zu anderen Entiäten werden zusätzlich Funktionen zum Hinzufügen und Entfernen dieser Entitäten erstellt.
+Nachdem dieses Modell erstellt wurde, ist es zusätzlich möglich, für jede Entität eine eigene Klasse zu generieren. Dieses vereinfacht die Handhabung und den Zugriff auf die Attribute, da nicht mit einem generischen \emph{NSManagedObject} gearbeitet werden muss. Die generierten Klassen enthalten alle Attribute der Entitäten in Form von Properties. Bei \emph{To-Many} Beziehungen zu anderen Entiäten werden zusätzlich Methoden zum Hinzufügen und Entfernen dieser Entitäten erstellt.
 
 \begin{listing}[htb!]
 	\insertminted{objc}{code_examples/Cell.h}
@@ -63,7 +64,8 @@ Nachdem dieses Modell erstellt wurde, ist es zusätzlich möglich, für jede Ent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ViewController for the diffent purposes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die erste Aufgabe der Applikation ist das Sammeln der aktuellen Fingerprints an einem bestimmten Ort. Dieser Zweig der Applikation setzt sich aus zwei ViewControllern zusammen. Zunächst wird ein ViewController für die Konfiguration benötigt. In diesem lassen sich etwa der aktuelle Ort oder die gewünschte Anzahl an Fingerprints bestimmen. Ausserdem ist es möglich weitere Einstellungsmöglichkeiten bereitzustellen, wie etwa die manuelle Festlegung des zu suchenden UUID oder Major-Wertes. 
+\textbf{Sammeln der Fingerprints}
+Die erste Aufgabe der Applikation ist das Sammeln der aktuellen Fingerprints an einem festgelegten Ort. Dieser Zweig der Applikation setzt sich aus zwei ViewControllern zusammen. Zunächst wird ein ViewController für die Konfiguration der aktuellen Zelle benötigt. In diesem lassen sich etwa der Ort oder die gewünschte Anzahl an Fingerprints bestimmen. Ausserdem ist es möglich weitere Einstellungsmöglichkeiten bereitzustellen, wie etwa die manuelle Festlegung des zu suchenden UUID oder Major-Wertes. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure of diffenent collecting configuration view controller
@@ -87,7 +89,7 @@ Die erste Aufgabe der Applikation ist das Sammeln der aktuellen Fingerprints an 
 
 Nachdem alle benötigten Daten für die Konfiguration eingegeben wurden, sollen nun die Fingerprints gesammelt werden.
 
-Dazu muss wird ein eigener ViewController angelegt. In diesem wird zunächst ein \emph{CLLocationManager} angelegt, welcher für den Empfang der Beacon-Daten zuständig ist. Nachdem dieser erstellt und initialisiert wurde, wird der ViewController als \emph{delegate} der CLLocationManagers gesetzt, da dies nötig ist, um die eigene Methoden bei der Erkennung von Beacons auszuführen. Ausserdem muss die zu suchende Region spezifiziert werden. Dazu wird ein \emph{CLBeaconRegion} Objekt erstellt, welcher die Informationen einer Region enthält. Dazu zählen zum Beispiel der UUID und der Identifier der Region. Dies sind die beiden zwingend notwendigen Angaben. Darüberhinaus lässt sich zudem der Major-Wert festlegen, nach dem gesucht werden soll. Eine weitere Möglichkeit ist es nur nach Beacons mit bestimmtem UUID, Major und Minor-Wert zu suchen.
+Dazu muss ein weiterer ViewController angelegt werden. In diesem wird ein \emph{CLLocationManager}-Objekt angelegt, welcher für den Empfang der Beacon-Daten zuständig ist. Nachdem dieser erstellt und initialisiert wurde, wird der ViewController als \emph{delegate} der CLLocationManagers gesetzt, da dies nötig ist, um die eigene Methoden bei der Erkennung von Beacons auszuführen. Ausserdem muss die zu suchende Region spezifiziert werden. Dazu wird ein \emph{CLBeaconRegion} Objekt erstellt, welcher die Informationen einer Region enthält. Dazu zählen zum Beispiel der UUID und der Identifier der Region. Dies sind die beiden zwingend notwendigen Angaben. Darüberhinaus lässt sich zudem der Major-Wert festlegen, nach dem gesucht werden soll. Eine weitere Möglichkeit ist es nur nach Beacons mit bestimmtem UUID, Major und Minor-Wert zu suchen.
 Hier wird die CLBeaconRegion nur mittels UUID und Identifier initialisiert.
 
 Da der ViewController nun die \emph{delegate} ist, lässt sich die Methode, welche nach Beacons sucht, im ViewController implementieren. Die \emph{didRangeBeacons:inRegion} Methode des CLLocationManager, welche für die Suche nach Beacons zuständig ist, bekommt dabei ein \emph{NSArray} mit allen gefundenen Beacons zurückgegeben. 
@@ -108,6 +110,7 @@ Während der Aufzeichnung der Fingerprints wird eine Fortschrittsanzeige und die
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Presenting ViewController
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Ausgabe der Fingerprints}
 Der vom Template generierte Master-Detail-ViewController wird verwendet um die gesammelten Fingerprints zu verwalten. Dabei wird der Tabellen-View (Master) genutzt um die bisher aufgezeichneten Zellen anzuzeigen. Bei einem Klick auf die jeweilige Tabellenspalte der Zelle lassen sich zusätzliche Informationen ausgeben.
 Ausserdem wurde eine Übertragung der gesammelten Daten an einen Server implementiert. Dazu werden die Daten in das json-Format überführt und dann an einen lokalen Server geschickt, welcher mittels \emph{Javascript} programmiert wurde. Dieser Server empfängt die Datei und speichert sie anschließend auf die Festplatte. 
 Dies ermöglicht eine einfache Auswertung der gesammelten Daten. 
@@ -116,11 +119,12 @@ Dies ermöglicht eine einfache Auswertung der gesammelten Daten.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Positioning ViewController
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Positionsbestimmung}
 Für die Bestimmung der aktuellen Position ist die aktuelle Zelle der wichtigste Wert. Die Ausgabe einer Karte mit der aktuellen Position ist zwar hilfreich für eine praktische Anwendung, für das Testen jedoch nicht notwendig.
 Für die Positionsbestimmung werden, wie schon beim Sammeln der Fingerprints, zunächst aktuelle Werte der Beacons benötigt. Die Konfiguration und Initialisierung des \emph{CLLocationManagers} und der \emph{CLBeaconRegion} ist dabei identisch zu der Vorgehensweise des Fingerprint ViewControllers.
 
 Statt die erhaltenen Beacon-Daten jedoch in die Datenbank zu übernehmen, werden diese direkt weiterverarbeitet. Dazu werden verschiedene Positionierungsalgorithmen angewandt, auf welche im Kapitel \ref{sec:implementation:fingerprinting:positioning} genauer eingegangen wird. 
-Diese Algorithmen liefern nun die nach den Berechnungen am nächsten liegende Zelle zurück. Der ViewController kümmert sich dann um die Ausgabe der Zellennummer auf dem Bildschirm.
+Diese Algorithmen liefern nun die, nach den Berechnungen, am nächsten liegende Zelle zurück. Der ViewController kümmert sich dann um die Ausgabe der Zellennummer auf dem Bildschirm.
 
 
 
@@ -197,21 +201,21 @@ Die Methode der Trilateration wurde auf Grund der fehlenden Genauigkeit verworfe
 \label{sec:implementation:fingerprinting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Das Fingerprinting ist ein Verfahren der Positionsbestimmung auf der Grundlage von zuvor erhobenen Messwerten, den sogenannten Fingerprints.
-Die Funktionsweise des Fingerprintings unterscheidet sich grundlegend von der Methode der Trilateration, da hierbei keine direkte Berechnung der Position über Entfernungsgrößen geschieht, sondern die Positionierung über, in einer Datenbank abgelegten Erfahrungswerten geschieht.
+Die Funktionsweise des Fingerprintings unterscheidet sich grundlegend von der Methode der Trilateration, da hierbei keine direkte Berechnung der Position über Entfernungsgrößen geschieht, sondern die Positionierung über, in einer Datenbank abgelegten, Erfahrungswerten geschieht.
 
 Um dieses Verfahren umzusetzen muss der Messraum, in welchem die Positionierung statt finden soll, zunächst in ein Gitternetz eingeteilt werden, wobei jede Zelle des Gitters eine mögliche Position im Raum repräsentiert. Die Größe dieser Zellen ist prinzipiell frei wählbar, wird jedoch im wesentlichen durch zwei Faktoren bestimmt. 
 Zum einen die gewünschte Genauigkeit. Da jede Zelle eine mögliche Position repräsentiert, wird durch die Größe der Zellen auch die Genauigkeit der Position bestimmt. Daraus ergibt sich das die Genauigkeit zunimmt, wenn die Zellengröße verkleinert wird.
 Der zweite Faktor bei der Wahl der Zellengröße, ist die eindeutige Bestimmung der Zelle. Dies ist darauf zurückzuführen, dass bei kleineren Zellen die Differenzen zwischen den einzelnen Zellen ebenfalls abnehmen. Um nun eine genaue Bestimmung der Zelle zu ermöglichen, sollte jede Zelle so groß gewählt werden, dass dies noch möglich ist.
 
-Daher sollte die Zellengröße so gewählt werden, dass eine gute Unterscheidbarkeit zwischen den einzelnen Zellen gewährleistet ist, hinzu jedoch eine möglichst genaue Positionsbestimmung erzielt werden kann.
+Auf Grund dieser zwei Kriterien sollte die Zellengröße so gewählt werden, dass eine gute Unterscheidbarkeit zwischen den einzelnen Zellen gewährleistet ist, hinzu jedoch eine möglichst genaue Positionsbestimmung erzielt werden kann.
 
 
-Das Fingerprinting besteht im Wesentlichen aus zwei Phase.
+Das Fingerprintingverfahren besteht dabei im Wesentlichen aus zwei Phase.
 
-Die erste Phase ist die sogenannte \emph{Trainingsphase} (auch Offline-Phase). Dabei werden die sogenannten \emph{Fingerprints} gesammelt, welche letztlich zur Positionsbestimmung genutzt werden. 
-In der Trainingsphase werden daher, für jede Zelle unseres Messraumes eine Reihe von Fingerprints gesammelt. Die Anzahl der Fingerprints sollte dabei relativ groß sein, sodass Messfehler kompensiert werden können. 
+Die erste Phase ist die sogenannte \emph{Trainingsphase} (auch Offline-Phase). Dabei werden die \emph{Fingerprints} gesammelt, welche letztlich zur Positionsbestimmung genutzt werden. 
+In der Trainingsphase werden daher für jede Zelle unseres Messraumes eine Reihe von Fingerprints gesammelt. Die Anzahl der Fingerprints sollte dabei relativ groß sein, sodass Messfehler kompensiert werden können. 
 Ein Fingerprint kann sich dabei aus verschiedenen Daten zusammensetzen. 
-In diesem Fall besteht ein Fingerprint aus der aktuellen Zellennummer beziehungsweise der Zellenkoordinate, einem Zeitstempel mit aktuellem Datum und der Uhrzeit und den Signalstärken zu den verschiedenen, in Reichweite befindlichen Sendestationen, welches in diesem Fall die iBeacons sind.
+In diesem Fall besteht ein Fingerprint aus der aktuellen Zellennummer beziehungsweise der Zellenkoordinate, einem Zeitstempel mit aktuellem Datum und Uhrzeit und den Signalstärken zu den verschiedenen, in Reichweite befindlichen Sendestationen, welches in diesem Fall die Beacons sind.
 
 Die Sammlung der Fingerprints muss für jede Zelle geschehen und macht die Trainingsphase daher sehr zeitaufwendig. 
 
@@ -224,7 +228,7 @@ Dafür werden die gesammelten Fingerprints mit den aktuell gemessenen Signalstä
 \subsection{Sammlung und Speicherung von Fingerprints}
 \label{sec:implementation:fingerprinting:collecting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Um eine Positionierung mittels Fingerprinting zu ermöglichen, ist es zunächst nötig einen grundlegenden Datensatz mit Fingerprints zu sammeln, welcher später für die Positionsbestimmung genutzt werden kann. Dazu ist es zunächst wichtig zu bestimmen, welche Informationen benötigt werden.
+Um eine Positionierung mittels Fingerprinting zu ermöglichen, ist es zunächst nötig einen grundlegenden Datensatz mit Fingerprints zu sammeln, welcher später für die Positionsbestimmung genutzt werden kann. Dazu ist es wichtig zu bestimmen, welche Informationen benötigt werden.
 
 Für jeden Fingerprint muss dabei die aktuelle Position der Messung, das zugehörige Beacon und die aktuelle Signalstärke zwingend vorhanden sein.
 Zusätzlich ist es sinnvoll den aktuellen Zeitpunkt der Messung zu speichern, um so, wenn nötig, veraltete Fingerprints zu entfernen. 
@@ -313,6 +317,7 @@ Die Signalstärke der aktuellen Messung wird mit \emph{MSig} abgekürzt und eben
 
 Aus den Differenzen beziehungsweise die Abstände zwischen den einzelnen Signalstärke-Vektoren lässt sich nun der Nearest-Neighbor bestimmen und damit die wahrscheinlichste Position im Raum.
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Implementierung}
 \label{sec:implementation:fingerprinting:positioning:naiv:implementation}
@@ -325,7 +330,7 @@ Bei der Implementierung dieser Methode wird für jedes Set von Fingerprints in d
 	\label{lst:euclidean_distance_objc}
 \end{listing}
 
-Die Messung mit der geringsten euklidischen Distanz wird dabei gespeichert, sodass diesem, nachdem alle Measurements durchiteriert wurden, zurückgegeben werden kann. Anhand dieser Messung lässt sich nun die zugehörige Zelle bestimmen und ausgeben.
+Die Messung mit der geringsten euklidischen Distanz wird dabei gespeichert, sodass diese, nachdem alle Measurements durchiteriert wurden, zurückgegeben werden kann. Anhand dieser Messung lässt sich nun die zugehörige Zelle bestimmen und ausgeben.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Probleme}
@@ -366,7 +371,7 @@ Bei der Implementierung wurden zwei Mittelwerte getestet. Zum einen der Median, 
 
 Der arithmetische Mittelwert lässt sich sehr leicht berechnen und schafft es kleinere Messungenauigkeiten zu beseitigen. Falls jedoch sehr starke Messfehler einfließen, können diese das arithmetische Mittel deutlich verfälschen.
 
-Im Gegensatz dazu ist der Median deutlich robuster als das arithmetische Mittel.
+Im Gegensatz dazu ist der Median deutlich robuster gegenüber Messfehlern als das arithmetische Mittel.
 
 Der Median errechnet sich dabei wie folgt: 
 
@@ -380,7 +385,7 @@ Der Median errechnet sich dabei wie folgt:
 	\end{split}
 \end{equation}
 
-Bei der Berechnung wird klar, warum Messfehler keinerlei Auswirkungen haben. Da beim Median, der mittlere Wert der sortierten Reihe genutzt wird, spielen Messfehler, welche sich am Anfang oder Ende der Reihe befinden, keine Rolle.
+Bei der Berechnung wird klar, warum Messfehler keinerlei Auswirkungen haben. Da beim Median der mittlere Wert der sortierten Reihe genutzt wird, spielen Messfehler, welche sich am Anfang oder Ende der Reihe befinden, keine Rolle.
 
 \begin{figure}[htb!]
 		\centering
@@ -400,9 +405,7 @@ Für die Implementierung der Positionsbestimmung mit Mittelwerten wird das CoreD
 BeaconInCell:
 	\begin{quote}Repräsentiert ein Beacon in einer bestimmten Zelle und beinhaltet durchschnittliche, maximale und minimale Signalstärke, sowie den Median der Signalstärke des Beacons in der aktuellen Zelle\end{quote}
 
-Bei der Bestimmung der nächsten Zelle arbeitet dieses Verfahren identisch zu dem vorherigen Nearest-Neighbor-Verfahren, nur dass statt aller Messungen jeweils die Mittelwerte der Beacons für die aktuelle Zelle genutzt werden. 
-
-
+Bei der Bestimmung der nächsten Zelle arbeitet dieses Verfahren quasi identisch zu dem vorherigen Nearest-Neighbor-Verfahren, doch statt über die Messungen zu iterieren, wird dabei über die Zellen iteriert. Dabei werden die Mittelwerte jeder Zelle mit den aktuell gemessenen Werten verglichen. Die Zelle mit dem geringsten euklidischen Abstand ist dabei die wahrscheinlichste Zelle der aktuellen Position.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prohabilistisches Verfahren}
@@ -428,7 +431,7 @@ Während der initialen Offline-Phase wird, nachdem die Fingerprints gesammelt wu
 \end{figure}
 
 Danach folgt die Online-Phase in der die aktuelle Position bestimmt werden soll. Dafür werden die aktuellen Signalstärken der Beacons gemessen und gespeichert, um von diesen Werten ebenfalls eine Wahrscheinlichkeitsverteilung zu berechnen. Die Anzahl der Werte, welche in die Wahrscheinlichkeitsverteilung einfließen ist dabei sehr wichtig.
-Für eine statische Positionsbestimmung sollte die Anzahl der letzten gespeicherten Werte groß gewählt werden, da es hier keine Echtzeit-Änderung der Position geschieht.
+Für eine statische Positionsbestimmung sollte die Anzahl der letzten gespeicherten Werte groß gewählt werden, da hier keine Echtzeit-Änderung der Position geschieht.
 Für unsere Anwendung der Echtzeit-Positionsbestimmung ist ein relativ schnelles aktualisieren der Position jedoch essenziell. Daher muss hier ein Kompromiss aus akkurater Positionsbestimmung und Echtzeit-Fähigkeit gefunden werden.
 
 Die Wahrscheinlichkeitsverteilung der aktuell gemessenen Werte muss nun mit den Verteilungen aller Zellen verglichen werden und deren Ähnlichkeit muss bestimmt werden. Dafür wird die Bhattacharyya-Distanz genutzt, welche die Ähnlichkeit zweier Wahrscheinlichkeitsverteilungen beschreibt. 
@@ -456,17 +459,28 @@ Für unseren Zweck reicht diese Angabe aus. Es lässt sich jedoch, wie im Paper 
 \subsubsection{Implementierung}
 \label{sec:implementation:fingerprinting:positioning:probability:implementiation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Für die Implementierung wurde das CoreData-Modell abermals erweitert, da eine neue Entität benötigt wird, welche die Wahrscheinlichkeitsverteilungen speichert. Dies geschieht aus dem gleichen Grund wie zuvor die Speicherung der Mittelwert, um die Rechenintensität während der Positionierungsphase gering zu halten.
+Die neue Entität \emph{BeaconInCellProbability} hat dabei eine \emph{to-many} Beziehung zu der BeaconInCell-Entität. Die neue Entität besitzt zwei Attribute, die Signalstärke und deren Wahrscheinlichkeit. Jedes Beacon in einer Zelle hat dabei mehrere Wahrscheinlichkeitswerte.
+\todo{Darstellung der Dateistruktur in CoreData}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anzeige auf der Karte}
 \label{sec:implementation:map}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Wie bereits erwähnt, wird für die Anzeige der aktuellen Position auf der Karte ein externes Framework von MapBox genutzt.
+Dieses muss zunächst in das Projekt eingebunden werden. 
+Nach dem Einbinden können die vom Framework bereitgestellten Klassen und Funktionen genutzt werden.
 Für die Anzeige auf dem Gerät ist es zunächst nötig einen \emph{RMMapView} anzulegen, welcher für die Ausgabe der Karte verantwortlich ist und gleichzeitig die gewohnten MapView-Features wie zum Beispiel \emph{Pinch-to-Zoom} oder die automatische Ausrichtung auf den Mittelpunkt mit sich bringt.
-Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden. Dazu wird eine eigene \emph{RMTileSource} angelegt, welche die zuvor generierten \emph{mbtiles} lädt und dem MapView zur Verfügung stellt. 
+Da wir unser eigenes Kartenmaterial verwendet ist es zudem nötig die Quelle für Kartendaten des MapViews zu ändern, da ansonsten die Daten des OpenStreetMap-Projekts genutzt werden.
+Dazu muss zunächst die generierte \emph{mbtiles} Datei in die Verzeichnisstruktur des Projektes aufgenommen werden. Dafür wird ein Ordner namens \emph{Supporting Files} bereitgestellt. Durch das Zufügen der Datei wird auch der spätere Offlinebetrieb möglich, da diese lokal auf dem Endgerät gespeichert wird.
+Um diese Datei als Grundlage für die spätere Karte zu verwenden, wird ein neues \emph{RMTileSource}-Objekt angelegt, welche mit der \emph{mbtiles}-Datei initialisiert wird. Daraufhin muss diese neue Kartenquelle als genutzte Kartenquelle für den \emph{RMMapView} gesetzt werden.
+  
 In Listing \ref{lst:RMMapView_objc} wird diese Initialisierung gezeigt.
 \begin{listing}[htb!]
     \insertminted{objc}{code_examples/RMMapView.m}
     \caption{Initialisierung des MapView mit eigenem Kartenmaterial}
 	\label{lst:RMMapView_objc}
 \end{listing}
+
+Nachdem die Karte initialisiert wurde, muss nun die aktuelle Position auf der Karte gezeigt werden. Dazu müssen die Zellennummer in die Kartenkoordinaten überführt werden. Nachdem das geschehen ist, lässt sich eine \emph{RMAnnotation} auf der Karte anzeigen, welche die aktuelle Position im Raum widerspiegelt.

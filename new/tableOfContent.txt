@@ -1,0 +1,32 @@
+Einleitung
+	Motivation
+	Ziele
+	Überblick
+Werkzeuge & Technologien
+	Bluetooth 4.0
+		Bluetooth Low Energy
+		iBeacon
+	Xcode
+	iOS -> iOS Developer Program, iPhones, usw.
+	CoreLocation-Framework
+		iBeacons API
+	MapBox-SDK
+	CoreData-Framework
+	Git -> Xcode-Git und GitHub
+Messungen und Erwartungen
+	Mobile Beacons
+		estimote
+		kontakt.io
+	Stationäre Beacons
+		Raspberry
+	Außenmessungen
+	Innenmessungen
+	Störfaktoren
+Umsetzung und Implementation
+Ergebnisse und Tests
+Fazit und Ausblick
+
++
+
+Literatur
+Anhang

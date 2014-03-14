@@ -36,6 +36,7 @@
 \RequirePackage{hyperref}			%[plainpages=false, pdfpagelabels]
 \RequirePackage{amsmath}	
 \RequirePackage{amssymb}
+\RequirePackage{algorithmicx}
 \newcommand{\theHalgorithm}{\thealgorithm}
 \pagestyle{scrheadings}
 \clearscrheadfoot
