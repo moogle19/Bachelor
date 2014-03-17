@@ -7,9 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Die mobilen iBeacon verzichten, wie der Name schon andeutet, auf eine feste Stromquelle und werden ausschließlich mit Batterien betrieben.
 Zum Einsatz kommen dabei die sogenannten Knopfzellen, welche mit einer Spannung von 3,0 Volt operieren.
-Da Bluetooth Low Energy extrem energiesparend arbeitet, geben die Hersteller der Beacons, die Akkulaufzeit mit bis zu zwei Jahren, ohne einen Batteriewechsel, an. Diese Laufzeit hängt jedoch auch stark mit der gewählten Signalstärke und dem Sendeintervall zusammen, welche die Laufzeit sehr stark beeinflussen können.
+Da Bluetooth Low Energy extrem energiesparend arbeitet, geben die Hersteller der Beacons, die Akkulaufzeit mit bis zu zwei Jahren, ohne einen Batteriewechsel, an. Diese Laufzeit hängt jedoch stark mit der gewählten Signalstärke und dem Sendeintervall zusammen, welche die Laufzeit sehr stark beeinflussen können.
 
-Bisher gibt es nur wenige Hersteller von iBeacons und der Großteil der Produkte befindet sich momentan noch in der Entwicklungsphase. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} befinden sich ebenfalls noch in der Entwicklungsphase und sind hauptsächlich als Testgeräte für Entwickler ausgelegt. Dabei bleibt jedoch unklar in wie weit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
+Bisher gibt es nur wenige Hersteller von iBeacons, wobei sich der Großteil der Produkte momentan noch in der Entwicklungsphase befindet. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} sind ebenfalls noch in der Entwicklungsphase und wurden hauptsächlich als Testgeräte für Entwickler ausgegeben. Dabei bleibt jedoch unklar in wie weit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{estimote Beacon}
@@ -59,9 +59,9 @@ Auch auf die Verwendung dieses SDK wurde verzichtet.
 \section{Stationäre iBeacons}
 \label{sec:dataandmeasurement:stationarybeacon}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Neben den mobilen iBeacons, welche mittels Batterien funktionieren, gibt es auch stationäre iBeacons, welche auf eine stetige Anbindung an das Stromnetz angewiesen sind.
+Neben den mobilen iBeacons, welche mittels Batterien betrieben werden, gibt es auch stationäre iBeacons, welche auf eine stetige Anbindung an das Stromnetz angewiesen sind.
 Dabei gibt es verschiedene Ansätze.
-Zum einen bieten zum Beispiel \emph{PayPal} und \emph{Radius Networks} einen Ansatz, bei dem die komplette Technik in einen USB-Stick integriert wird und über ein USB-Netzteil an jeder Steckdose betrieben werden kann. Die verwendete Technik dieser Beacons entspricht denen der batteriebetriebenen Beacons.
+Zum Einen bieten zum Beispiel \emph{PayPal} und \emph{Radius Networks} einen Ansatz, bei dem die komplette Technik in einen USB-Stick integriert wird und über ein USB-Netzteil an jeder Steckdose betrieben werden kann. Die verwendete Technik dieser Beacons entspricht denen der batteriebetriebenen Beacons.
 
 Eine andere Lösung ist die Nutzung eines Bluetooth 4.0-kompatiblen USB-Dongles an einem Computer. Dieser kann mit entsprechender Software zu einem iBeacon umfunktioniert werden.
 
@@ -75,6 +75,38 @@ Um den Raspberry Pi zu einem Beacon umzufunktionieren wurde eine Linux-Distribut
 Für die Umfunktionierung zum iBeacon wurde die Bluetooth-Implementierung \emph{blueZ} eingesetzt, welche es erlaubt das Bluetooth-Modul anzusprechen und spezifische Nachrichten über Bluetooth zu versenden.
 Diese Möglichkeit den Raspberry Pi als iBeacon zu nutzen, wurde von der Firma Radius Network vorgestellt. Diese bieten ein ausführliches Tutorial für die Nutzung des Raspberry Pi als iBeacon auf ihrer Webseite an (\citet{radiusraspberry}), welches von mir genutzt wurde, um den Raspberry Pi zu konfigurieren.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Physikalische Grundlagen}
+\label{sec:dataandmeasurement:physics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Im Vergleich zu Kabelverbindungen, wo die Ausbreitung des Signals entlang eines bestimmten Leiters geschieht, ist die Ausbreitung eines drahtlosen Signals von deutlich mehr Faktoren abhängig.
+
+\textbf{Dämpfung}
+
+Dämpfung ist die Schwächung der Energie, mit welcher das Signal übertragen wird. Diese tritt auch bei einer freien Sichtverbindung zwischen Sender und Empfänger auf. Die Verringerung der Leistung ist dabei abhängig von der Ausgangssendeleistung $P_0$ und der Entfernung $r$ zwischen Sender und Empfänger. Die letztlich am Empfänger ankommende Signalstärke $P_r$ berechnet sich dabei wie folgt:
+
+\begin{equation}
+	P_r = \frac{P_0}{r^{2}} 
+\end{equation}
+
+Die Abschwächung des Signals resultiert aus der Art der Aussendung. Da die hier verwendeten Beacons einem Punktstrahler entsprechen, wird die anliegende Signalstärke auf eine Kugeloberfläche verteilt. Die Kugeloberfläche $O$ lässt sich dabei abhängig vom Radius $r$ mittels der Formel $O = 4 \pi r^{2}$ berechnen. Die Oberfläche vergrößert sich damit quadratisch zum Radius.
+
+\textbf{Abschattung}
+
+Die Abschattung ist eine stärkere Form der Dämpfung, welche durch Objekte zwischen der Signalquelle und dem Empfänger verursacht wird. Die Abschattung ist dabei abhängig von der Frequenz des Signals und der Geschaffenheit des Objektes. Bei höherer Frequenz ist eine stärkere Abschattung des Signals gegeben.
+
+\textbf{Reflexion}
+
+An größeren Oberflächen kann es zu Reflexionen des Signals kommen. Dabei trifft es auf die Oberfläche und wird dann in abgeschwächter Form reflektiert.
+
+\textbf{Streuung}
+
+Ähnlich der Reflexion trifft das Signal auf eine Oberfläche, wird dabei jedoch aufgespalten und in verschiedene Richtung abgelenkt.
+
+\textbf{Mehrwegeausbreitung}
+
+Durch die obene genannten Effekte ist es möglich, das ein Signal einen Empfänger auf mehreren Wegen erreicht. Dabei ist die Signalstärke stark abhängig von dem zurückgelegtem Weg. Ausserdem unterscheiden sich die Laufzeiten der Signale, da diese ebenfalls vom Weg abhängig sind. Dadurch kann es auch zu Überlagerungen zwischen Signalen kommen, welche zur gleichen Zeit gesendet wurden, jedoch zu unterschiedelichen Zeiten beim Empfänger eintreffen. 
+Durch diese Phasenverschiebung kann das Signal zusätzlich abgeschwächt werden.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

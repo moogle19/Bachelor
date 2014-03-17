@@ -6,7 +6,7 @@ NSFetchRequest *request = [[NSFetchRequest alloc] init];
  
 NSNumber *minimumSalary = 3000;
 NSPredicate *predicate = [NSPredicate predicateWithFormat:
-    @"(lastName LIKE[c] 'muller') AND (salary > %@)", minimumSalary];
+    @"(lastName LIKE[c] 'meier') AND (salary > %@)", minimumSalary];
 [request setPredicate:predicate];
 
 NSArray *array = [moc executeFetchRequest:request error:&error];

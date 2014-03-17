@@ -10,8 +10,8 @@ Die GPS-Navigation ist seit Jahren aus keinem Auto mehr wegzudenken. Wo früher 
 Ein Problem der GPS-Navigation ist jedoch, dass diese nur unter freiem Himmel akzeptabel funktioniert.
 Da wir in der Realität jedoch den Großteil unserer Zeit in Gebäuden aufhalten, ist der GPS-Ansatz dort wenig hilfreich.
 
-Daher ist es sinnvoll, eine Alternative zu GPS zu schaffen, welche diese Funktionen in Innenräumen realisiert.
-Da man jedoch für Innenräume kein eigenes Navigationssystem kaufen möchte, liegt die Idee nah, diese Konzept auf einem Gerät zu realisieren, welches viele Menschen schon besitzen und auch für die GPS-Navigation nutzen. 
+Daher ist es sinnvoll, eine Alternative zu GPS zu schaffen, welche diese Navigationsfunktionen in Innenräumen realisiert.
+Da man jedoch für Innenräume kein eigenes Navigationssystem kaufen möchte, liegt die Idee nah, diese Konzept auf einem Gerät zu realisieren, welches viele Menschen schon besitzen und bereits für die GPS-Navigation nutzen. 
 Das Smartphone.
 
 In Abbildung 1 ist zu erkennen, wie die Verbreitung der Smarthphones in den letzten Jahren sehr stark zugenommen hat. Dadurch kann man annehmen, dass ein Großteil der potentiellen Nutzer der Indoor Positionierung auch ein Smartphone besitzen.
@@ -22,32 +22,35 @@ In Abbildung 1 ist zu erkennen, wie die Verbreitung der Smarthphones in den letz
 \end{figure}
 
 Für die Realisierung der Indoor Positionierung kommen verschiedene Technologien in Frage. Darunter zum Beispiel Wireless LAN, RFID oder Bluetooth.
-Diese Technologien bieten sich an, da sie standardmäßig in vielen Smartphones integriert sind und so nicht der Zwang besteht ein neues Gerät oder eine Erweiterung zu kaufen.
+Diese Technologien bieten sich an, da sie standardmäßig in vielen Smartphones integriert sind und so nicht der Zwang besteht ein neues Gerät oder eine Erweiterung für eine Existierendes zu kaufen.
 
+Es gibt bereits existierende Indoor Navigations-Lösungen auf dem Markt, zum Beispiel von \emph{AlterGeo} oder \emph{Skyhook Wireless}, welche jedoch auf Wireless LAN basieren. Dies bringt jedoch einige Nachteile mit sich, wie zum Beispiel die Erfordernis eines festen Stromanschlusses. Außerdem sind die bisherigen System nicht sehr genau, so gibt \emph{AlterGeo} eine Genauigkeit von 20-30 Meter an, was den Ansprüchen der Indoor Positionierung nicht gerecht wird.
 
-Schlussendlich viel die Entscheidung der zu verwendenden Technologie auf Bluetooth, da dieses eine sehr hohe Verbreitung bietet und auch viele Vorteile mit sich bringt. Zum einen ermöglicht Bluetooth eine schnelle und einfache Einrichtung und zum anderen benötigen die Bluetooth-Sendestationen wenig Energie, sodass nicht zwingend einen Stromanschluss vorhanden sein muss, sondern auch einen Batteriebetrieb über mehrere Monate bis Jahre hinweg möglich ist.
+Daher fiel die Entscheidung der zu verwendenden Technologie auf Bluetooth, da dieses eine sehr hohe Verbreitung bietet und auch viele Vorteile mit sich bringt. Zum einen ermöglicht Bluetooth eine schnelle und einfache Einrichtung und zum anderen benötigen die Bluetooth-Sendestationen wenig Energie, sodass nicht zwingend einen Stromanschluss vorhanden sein muss, sondern auch einen Batteriebetrieb über mehrere Monate bis Jahre hinweg möglich ist.
 
-Die Positionierung in Innenräumen mittels Bluetooth ist ein relativ neuer Ansatz, welcher jedoch seit der Präsentation von Bluetooth Low Energy und der Vorstellung der iBeacons-Technologie von Apple immer mehr an Aufmerksamkeit gewonnen hat. So setzt zum Beispiel Apple selbst die iBeacons-Technologie in ihren Geschäften ein, um dem Kunden gezielte Werbung zu den in der Nähe befindlichen Produkten zu bieten.
+Die Positionierung in Innenräumen mittels Bluetooth ist ein relativ neuer Ansatz, welcher jedoch seit der Präsentation von Bluetooth Low Energy und der Vorstellung der iBeacons-Technologie von Apple immer mehr an Aufmerksamkeit gewonnen hat. So setzt zum Beispiel Apple selbst die iBeacons-Technologie in ihren Geschäften ein, um dem Kunden gezielte Werbung zu den in der Nähe befindlichen Produkten zu bieten. Auch andere Unternehmen haben das Potenzial von iBeacons und Bluetooth erkannt und arbeiten an verschiedenen Einsatzmöglichkeiten für diese Technologie.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ziele der Bachelorarbeit}
 \label{sec:introduction:goal}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Das Hauptziel dieser Arbeit ist es zu untersuchen, in wie weit sich Bluetooth Low Energy, beziehungsweise die darauf basierende iBeacons-Technologie, für eine akzeptable Indoor Positionierung eignet, um Endgeräte, zum Beispiel in Verkaufsräumen, zu orten und zu identifizieren.
 
-Das Hauptziel dieser Arbeit ist es zu untersuchen, in wie weit sich Bluetooth Low Energy, beziehungsweise die darauf basierende iBeacons-Technologie, für eine akzeptable Indoor Positionierung eignen, um Endgeräte zum Beispiel in Verkaufsräumen zu orten und zu identifizieren.
+Dabei soll bestimmt werden, welches Verfahren sich am Besten für die Positionierung in Innenräumen eignet und ob mit der zur Verfügung stehenden Hardware eine ausreichend genaue Positionsbestimmung realisiert werden kann. Außerdem soll die Vergleichbarkeit der Messungen zwischen verschiedenen Endgeräten untersucht werden, also ob diese Werte ohne weiteres übertragbar sind.
 
-Dabei soll bestimmt werden, welches Verfahren sich am Besten für die Positionierung in Innenräumen eignet und ob es Unterschiede zwischen verschiedenen Sende- und auch Empfangsgeräten gibt.
+Für diese Tests werden eingangs ausschließlich Apple-Geräte genutzt, da hier eine übersichtlichere Auswahl auf dem Markt herrscht, sodass die Basis der zu nutzenden Geräte überschaubar bleibt und nur wenige Geräte getestet werden müssen. Ein weiterer Grund ist, dass iOS, das Betriebssystem des Apple iPhone und iPad, bisher das einzige mobile Betriebssystem ist, welches die iBeacons-Technologie offiziell und nativ unterstützt.
 
-Für diese Tests werden ausschließlich Apple-Geräte genutzt, da hier eine übersichtlichere Auswahl auf dem Markt herrscht, sodass die Basis der zu nutzenden Geräte überschaubar bleibt und nur wenige Geräte getestet werden müssen. Ein weiterer Grund ist, dass iOS, das Betriebssystem des Apple iPhone und iPads, bisher das einzige mobile Betriebssystem ist, welches die iBeacons-Technologie offiziell und nativ unterstützt.
+Im Laufe der Bachelorarbeit soll deshalb eine iOS-Applikation entwickelt werden, welche eine Positionierung in einem Innenraum implementiert. Dabei wird die von Apple bereitgestellte CoreLocation-API genutzt, welche die Verarbeitung der iBeacon-Daten übernimmt. Die genutzten iBeacon-Sender kommen von Drittherstellern und befinden sich derzeit noch in einem Vorserienstadium. 
 
-Im Laufe der Bachelorarbeit soll deshalb eine iOS-Applikation entwickelt werden, welche eine Positionierung in einem Innenraum implementiert. Dabei wird die von Apple bereitgestellte CoreLocation-API genutzt, welche die Verarbeitung der iBeacon-Daten übernimmt. Die genutzten iBeacon-Sender kommen von Drittherstellern und sind derzeit noch in einem Vorserienstadium. 
-
-Zum Abschluss soll eine grundlegende Positionierung, eine Anzeige der aktuellen Position auf eine Karte und das Auslösen bestimmter Aktionen an festgelegten Orten implementiert sein.
+Zum Abschluss soll eine grundlegende Positionierung, eine Anzeige der aktuellen Position auf einer Karte und das Auslösen bestimmter Aktionen an festgelegten Orten implementiert sein.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Überblick}
 \label{sec:introduction:overview}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Zu Beginn der Arbeit wird ein Überblick über die verwendeten Hardware- und Softwaretechnologien, welche zur Umsetzung der Indoor Positionierung genutzt werden, gegeben. Dabei werden besonders die zugrundeliegende Bluetooth-Technologie als auch das CoreLocation-Framework, welches für die Verarbeitung der Beacon-Daten zuständig ist, genauer betrachtet. Im zweiten Abschnitt werden diverse Messdaten erhoben, welche die Signalausbreitung der Bluetooth-Beacons verdeutlichen. Dabei werden unter anderem die batteriebetriebenen Beacons mit stationären Beacons verglichen. Außerdem wird untersucht in wie weit sich die Empfangsstärken zwischen verschiedenen Endgeräten unterscheiden. 
+Im darauf folgenden Kapitel werden auf die verwendeten Techniken zur Positionierung erörtert. Dabei wird zuerst eine Positionierung mittels Trilateration beschrieben, welche die Position anhand von Entfernungswerten zu den Basisstationen bestimmt. Danach wird die Methode des Fingerprinting näher erläutert, welche die Positionierung mittels zuvor gesammelter Positions- und Signalstärkedaten realisiert. Dabei werden verschiedene Algorithmen zur Bestimmung der Ähnlichkeit zwischen den gesammelten Fingerprintdaten in der Datenbank und den aktuell empfangenen Signalstärkedaten beschrieben.
+Im letzten Teil wird die Leistungsfähigkeit der verschiedenen Algorithmen untersucht und verglichen. Dabei werden unteranderem die Genauigkeit, als auch die Robustheit der Positionsbestimmung untersucht.
+Abschließend folgt ein Fazit und ein Ausblick für die Zukunft der iBeacon-Technologie und der Indoor Positionierung.

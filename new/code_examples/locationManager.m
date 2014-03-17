@@ -1,15 +1,14 @@
-- (void)startStandardUpdates
+- (void)startBeaconUpdates
 {
-    // Create the location manager if this object does not
-    // already have one.
-    if (nil == locationManager)
-        locationManager = [[CLLocationManager alloc] init];
- 
+    // Create the location manager
+    locationManager = [[CLLocationManager alloc] init];
+    //set current class to delegate
     locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    //Create beacon region
+    beaconRegion =
+        [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                           identifier:identifier];
+    
  
-    // Set a movement threshold for new events.
-    locationManager.distanceFilter = 500; // meters
- 
-    [locationManager startUpdatingLocation];
+    [locationManager startRangingBeaconsInRegion:beaconRegion];
 }
