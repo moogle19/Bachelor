@@ -190,7 +190,7 @@ Dabei wird die Tatsache genutzt, dass die Signalstärke mit zunehmendem Abstand 
 Das Verhältnis zwischen Entfernung und Signalstärke bei elektromagnetischen Wellen wird durch das Abstandsgesetz beschrieben, welches besagt, das die Signalstärke quadratisch zum Abstand abnimmt.
 
 \begin{equation}
-	\text{\emph{Signalstärke}} = \text{\emph{Ausgangssignalstärke}}/\text{\emph{Entfernung}}^2
+	\text{\emph{Signalstärke}} = \frac{\text{\emph{Ausgangssignalstärke}}}{\text{\emph{Entfernung}}^2}
 \end{equation}
 
 Diese Annahme mag bei freien Flächen korrekt sein, in Innenräumen kommen jedoch weitere Faktoren hinzu. 
@@ -407,7 +407,7 @@ Wie in Abbildung \ref{avgmedianiphone5_raspberry} zu erkennen, ist der Unterschi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Für die Implementierung der Positionsbestimmung mit Mittelwerten wird das CoreData-Modell um eine Entität namens \emph{BeaconInCell} erweitert. Diese Entität repräsentiert ein Beacon in einer bestimmten Zelle und wird zur Speicherung der Mittelwerte genutzt. Dadurch ist es nicht nötig die Mittelwerte für jede Positionsbestimmung neu zu berechnen, wobei über alle Fingerprints iteriert werden muss. Die Mittelwerte müssen so nur beim Hinzufügen neuer Fingerprints aktualisiert werden.
 
-BeaconInCell:
+\textbf{BeaconInCell:}
 	\begin{quote}Repräsentiert ein Beacon in einer bestimmten Zelle und beinhaltet durchschnittliche, maximale und minimale Signalstärke, sowie den Median der Signalstärke des Beacons in der aktuellen Zelle\end{quote}
 
 Bei der Bestimmung der nächsten Zelle arbeitet dieses Verfahren quasi identisch zu dem vorherigen Nearest-Neighbor-Verfahren, doch statt über die Messungen zu iterieren, wird dabei über die Zellen iteriert. Dabei werden die Mittelwerte jeder Zelle mit den aktuell gemessenen Werten verglichen. Die Zelle mit dem geringsten euklidischen Abstand ist dabei die wahrscheinlichste Zelle der aktuellen Position.
