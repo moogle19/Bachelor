@@ -140,13 +140,16 @@ Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß und der 
 \section{Xcode}
 \label{sec:tools:xcode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Xcode ist eine integrierte Entwicklungsumgebung, welche von Apple etwickelt wurde. Xcode ermöglicht es \emph{iOS} und \emph{OS X} Applikationen zu erstellen, zu testen und zu debuggen.
+Xcode ist eine integrierte Entwicklungsumgebung, welche von Apple etwickelt wurde. Xcode ermöglicht es native \emph{iOS} und \emph{OS X} Applikationen zu erstellen, zu testen und zu debuggen.
 Standardmäßig werden dabei die Programmiersprachen \emph{Objective C}, \emph{C} und \emph{C++} unterstützt.
 
 Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen, ohne diese auf ein reales Gerät zu übertragen.
 
-Xcode wurde für die Erstellung der iOS-Applikation genutzt.
-Dabei kann man zu Beginn unter mehreren iOS-Templates wählen, welche jeweils verschiedene Funktionen mit sich bringen. In Abbildung \ref{xcode-templates} lassen sich die verschiedenen Auswahlmöglichkeiten erkennen.
+
+\textbf{Templates}
+
+Xcode stellt verschiedene, vorgefertigte iOS-Templates zur Verfügung. 
+Dabei bringt jedes Template eigene Funktionen mit sich. In Abbildung \ref{xcode-templates} lassen sich die verschiedenen Auswahlmöglichkeiten erkennen.
 
 \begin{figure}[htb!]
 		\centering
@@ -155,22 +158,32 @@ Dabei kann man zu Beginn unter mehreren iOS-Templates wählen, welche jeweils ve
 	\label{xcode-templates}
 \end{figure}
 
-Nach dem man das passende Template gewählt hat, werden die benötigten Dateien angelegt.
+Nach der Auswahl des Templates, werden die benötigten Dateien im Dateiexplorer angelegt.
+
+
+
 Dazu gehören beispielsweise die \emph{AppDelegate} und das \emph{Storyboard}.
 
 Die AppDelegate-Klasse steuert applikationsweite Ereignisse, wie etwa das Aufrufen und Schließen der Applikation. Außerdem wird durch die AppDelegate der aktuelle Zustand der Applikation gespeichert und wiederhergestellt.
 
-Das Storyboard ist eine grafische Oberfläche für die Erstellung des User Interfaces. Es ermöglicht verschiedene Elemente wie zum Beispiel Textfelder, Buttons oder Tabellen einzufügen und diese zu verbinden. Wie in Abbildung \ref{xcode-storyboard} zu erkennen, besteht das Storyboard aus mehreren View Controllern, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen View Controller sind mit so gennanten \emph{Segue's} verbunden, welche sich durch bestimmte Aktionen, wie zum Beispiel den Druck auf einen Button, auslösen lassen. Diese Segue's definieren, wie die Übergänge und Wechsel zwischen den ViewControllern ablaufen.
+
+\textbf{Interface Builder}
+
+Der Interface Builder ist ein in Xcode integrierter, grafischer Editor, welcher es erlaubt die Benutzeroberflächer einer iOS-Applikation zu erstellen. Dabei werden Storyboards genutzt.
+Ein Storyboard ist die Repräsentation der grafischen Oberfläche einer Applikation und besteht dabei aus einem oder mehreren Views.
+Ein View repräsentiert dabei eine dargestellte Szene auf dem Gerät.
+Die Views lassen sich dabei nach dem \emph{Drag and Drop}-Prinzip zusammenstellen. Dabei stehen verschiedenste Inteface-Elemente, wie zum Beispiel Textfelder, Buttons oder Schalter, zur Verfügung.
+
+Wie in Abbildung \ref{xcode-storyboard} zu erkennen, besteht das Storyboard aus mehreren Views, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen Views sind mit so gennanten \emph{Segue's} verbunden, welche sich durch bestimmte Aktionen, wie zum Beispiel den Druck auf einen Button, auslösen lassen. Diese Segue's definieren, wie die Übergänge und Wechsel zwischen den Views ablaufen.
 
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[scale=0.25]{xcode-storyboard}
-	\caption{Beispiel eines Storyboards für iPhones}
-	\label{xcode-storyboard}
+	\caption{Interface Builder für eine iPhone-Applikation}
+	\label{xcode-interface-builder}
 \end{figure}
 
-Das Storyboard bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein passendes User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt.
-In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Constraints, also die Abstands und Ausrichtungsbeziehungen zwischen den einzelnen Objekten, gut erkennen.
+Der Interface Builder bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen des Views festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt.
 
 \begin{figure}[htb!]
 		\centering
@@ -179,20 +192,26 @@ In Abbildung \ref{xcode-storyboard-constraints} lassen sich die Constraints, als
 	\label{xcode-storyboard-constraints}
 \end{figure}
 
-Diese Constraints beschreiben dabei die Abstände und Ausrichtungen der einzelnen Elemente zu dem umschließenden ViewController oder den anderen Elementen.
+Diese Constraints beschreiben dabei die Abstände und Ausrichtungen der einzelnen Elemente zu dem umschließenden View oder den Elementen innerhalb des Views.
 
+Eine iOS-Applikation kann über mehrere Storyboards verfügen, wodurch es möglich ist, die gleiche Applikation sowohl für das iPhone als auch das iPad anzupassen.
+
+
+\textbf{iOS Simulator}
+
+Für das Testen und Debuggen der Applikation bringt Xcode einen iOS-Simulator mit sich. Dieser erlaubt das Ausführen einer Applikation auch ohne ein iPhone oder iPad. Der Simulator bietet dabei verschiedene Konfigurationen, welche die bisher erschienen iOS-Geräte repräsentieren. Im Bezug auf Bluetooth bietet der Simulator jedoch keine entsprechende Unterstützung.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{iOS}
 \label{sec:technologies:iosandxcode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
-Für die iOS-Programmierung sind dabei verschiedene Dinge Voraussetzung. Zum einen benötgt man einen Mac, da nur hier die benötigte Software vorhanden ist. 
-Des Weiteren wurde Xcode als Entwicklungsumgebung genutzt. Um die Applikation nicht nur im, bei Xcode mitgelieferten, iOS-Simulator zu testen, wurde für das Testen ein iPhone 5 und ein iPhone 4s genutzt.
+Apple hat dabei für die iOS Programmierung verschiedene Vorraussetzungen. Zum einen benötgt man einen Mac, da nur hier die benötigte Software installiert werden kann.
+Dazu zählt in erster Linie Xcode, welches als Entwicklungsumgebung für iOS-Applikationen genutzt wird. 
+Außerdem wird ein iOS-Gerät vorrausgesetzt, da, wie bereits erwähnt, der iOS-Simulator kein Unterstützung für Bluetooth mit sich bringt. 
+Die eingesetzten iOS-Gerät sind ein iPhone 5 und ein iPhone 4s, welche beide mit iOS 7.1 laufen.
 
-Die iOS-Geräte laufen dabei auf der aktuellsten iOS-Version 7.1.
-
-Als minimale iOS-Version musste iOS 7 verwendet werden, da die iBeacon-API des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
+Die vorrausgesetzte, minimale iOS-Version ist dabei iOS 7, da die iBeacon-API des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{iOS Developer Program}
@@ -203,11 +222,11 @@ Im Rahmen meine Bachelorarbeit wurde der Zugang zu diesem Programm von der Unive
 
 \textbf{iPhone}
 Für die Entwicklung und das Testen der Applikation wurde ein iPhone 5 und ein iPhone 4s verwendet. 
-Hauptsächlich wurde das iPhone 5 genutzt, wobei das iPhone 4s eher als Vergleichsgerät diente, um zum Beispiel Messungen zu überprüfen.
+Hauptsächlich wurde das iPhone 5 genutzt, wobei das iPhone 4s eher als Vergleichsgerät diente, um Messwerte zu vergleichen oder zu überprüfen.
 
 Das Ausführen der geplanten Applikation auf einem realen Endgerät ist dabei unverzichtbar, da der iOS-Simulator nicht die Möglichkeit besitzt Bluetooth-Signale zu empfangen.
 
-Das iPhone 4s wurde dazu genutzt, zu überprüfen in wie weit die Ergebnisse der Messungen übertragbar sind, beziehungsweise wie sie sich zwischen den einzelnen Modellen unterscheiden, da diese verschiedene Hardware einsetzen. 
+Das iPhone 4s wurde dazu genutzt, zu überprüfen in wie weit die Ergebnisse der Messwert zwischen einzelnen Geräten übertragbar sind, beziehungsweise wie sich diese zwischen einzelnen Modellgenerationen unterscheiden, da diese verschiedene Hardware einsetzen. 
 
 So setzt das iPhone 4s auf den Broadcom BCM4330-Chipsatz, welches ein Wireless LAN-Chip mit integriertem Bluetooth 4.0 ist. Das iPhone 5 dagegen setzt auf den BCM4334, ebenfalls von Broadcom. 
 Auch der Aufbau der Antennen und das Material der iPhones unterscheidet sich zwischen diesen beiden Generationen deutlich. 
@@ -362,8 +381,8 @@ Für die Erstellung eines CoreData-Modells bietet Xcode einen eigenen Editor an,
 \end{figure}
 
 
-Nachdem ein CoreData-Modell konfiguriert wurde, benötigt man für den Zugriff auf das Modell ein \emph{NSManagedObjectContext}-Objekt, ein \emph{NSPersistentStoreCoordinator}-Objekt und ein \emph{NSManagedObjectModel}-Objekt. Das \emph{NSManagedObjectContext}-Objekt, verwaltet dabei alle Datenobjekte des Modells, welche durch ein \emph{NSManagedObject} repräsentiert werden. So werden über den \emph{NSManagedObjectContext} neue Objekte zum Datenmodell hinzugefügt oder vorhandene Onjekte ausgelesen.
-Die einzelnen Objekte der Modells sind dabei \emph{NSManagedObject}-Objekte. Nach dem Anlegen des Modells ist es jedoch auch möglich, automatisiert eigene Klassen für die einzelnen Datenobjekte erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff und das Auslesen erleichtern.
+Nachdem ein CoreData-Modell konfiguriert wurde, benötigt man für den Zugriff auf das Modell ein \emph{NSManagedObjectContext}-Objekt, ein \emph{NSPersistentStoreCoordinator}-Objekt und ein \emph{NSManagedObjectModel}-Objekt. Das \emph{NSManagedObjectContext}-Objekt, verwaltet dabei alle Datenobjekte des Modells, wobei jedes durch ein \emph{NSManagedObject} repräsentiert wird. So werden über den \emph{NSManagedObjectContext} neue Objekte zum Datenmodell hinzugefügt oder vorhandene Onjekte ausgelesen.
+Nach dem Anlegen des Modells ist es jedoch auch möglich, automatisiert eigene Klassen für die einzelnen Entitäten erzeugen zu lassen, welche alle Attribute und Funktionen der einzelnen Objekte und Verbindungen beinhalten und somit den Zugriff und das Auslesen erleichtern.
 
 Um auf die Daten zuzugreifen und diese zu verändern ist es zunächst nötig sie aus der Datenbank zu extrahieren. Dazu verwendet man einen \emph{NSFetchRequest}, welcher Objekte nach bestimmten Kriterien aus der Datenmodell ausliest.
 Dabei ist es möglich den \emph{NSFetchRequest} genauer zu spezifizieren und so nur Objekte mit bestimmten Eigenschaften auszulesen.

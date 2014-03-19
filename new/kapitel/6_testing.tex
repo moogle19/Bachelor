@@ -1,18 +1,23 @@
 \chapter{Versuchsergebnisse}
 \label{chap:testing}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Einfache Positionsbestimmung mittels Nearest-Neighbor-Verfahren}
-\label{sec:testing:simplepositioning}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Im Anschluss an die Implementierung der verschiedenen Algorithmen, sollten diese unter realen Bedingungen getestet werden. 
+Dazu wurde ein Versuchsaufbau innerhalb eines Gebäudes aufgebaut, welches aus mehreren Räumen besteht. Dafür werden 10 Beacons innerhalb des Gebäudes verteilt. 
+In der Offline-Phase werden dabei eine bestimmte Anzahl an Fingerprints gesammelt.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nearest-Neighbor-Verfahren}
-\label{sec:testing:nearestneighbor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Untersucht werden soll dabei zum einen die Genauigkeit der Positionierung eines sich bewegenden Objektes. Hierfür wird der Pfad aufgezeichnet und mit dem realen Pfad verglichen.
+Zum Anderen soll die Positionierung an einer statischen Position getestet werden. Dazu wird an verschiedenen Testpunkten geprüft, ob die ausgegebene Position mit der realen Position überein stimmt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Prohabilistisches-Verfahren}
-\label{sec:testing:prohabilistic}
+\section{Positionierung eines beweglichen Objektes}
+\label{sec:testing:moving}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Bei den Tests der Positionierung bei einem bewegenden Objekt wird zuerst ein abzulaufender Pfad festgelegt, welcher jeweils über die Mittelpunkte der zuvor eingemessenen Zellen führt. Dieser Pfad wird dabei langsam abgelaufen und die Positionierungsangabe für jeden Algorithmus werden aufgezeichnet und nach Beendigung der Messungen wird der gemessene Pfad mit dem realen Pfad verglichen. Dabei wird das Hauptaugenmerk auf die Korrektheit der Position, die Größe der Abweichung und die Echtzeitfähigkeit des verwendeten Algorithmus gelegt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statische Positionierung}
+\label{sec:testing:static}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Bei der statischen Positionierung wird an verschiedenen Positionen eine Positionsmessung durchgeführt. Dabei werden die Ergebnisse der verschiedenen Algorithmen verglichen. Dabei wird neben der korrekten Positionsangabe besonders auf die Konstanz dieser Positionsangabe geachtet. Diese sollte nicht zu stark schwanken und sich nach kurzer Zeit auf die korrekte Position einpendeln.
