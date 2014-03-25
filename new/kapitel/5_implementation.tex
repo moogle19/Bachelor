@@ -189,7 +189,7 @@ In der NavigationBar des NavigationController existiert außerdem ein Button, we
 
 \textbf{PositioningView}
 
-Der \emph{PositioningViewController} besteht nur aus Labels, welche die aktuelle Zelle anzeigen. Dabei wird die aktuelle Position für jeden implementierten Algorithmus ausgegeben, sodass sich diese Ergebnisse direkt vergleichen lassen. 
+Der \emph{PositioningView} besteht aus Labels, welche die aktuelle Zelle anzeigen. Dabei wird die aktuelle Position für jeden implementierten Algorithmus ausgegeben, sodass sich diese Ergebnisse direkt vergleichen lassen. Außerdem befindet sich im unteren Bereich des PositioningViews eine MapView, welcher die Karte des aktuellen Raumes ausgeben soll.
 
 
 \textbf{InformationView} 
@@ -198,7 +198,7 @@ Dieser soll dabei die Zellen anzeigen, für welche bereits Fingerprints gesammel
 
 \textbf{InformationDetailView}
 Der InformationDetailView zeigt detailierte Informationen der Zelle an, wie etwa die Anzahl der gesammelten Fingerprints oder die durchschnittliche Signalstärke der Beacons.
-Dies wird ebenfalls mit Labels gelöst.
+Diese werden in einer Tabellenansicht dargestellt.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,6 +330,13 @@ Im FingerprintingViewController wird in der \emph{locationManager:didRangeBeacon
 
 Für die Speicherung werden verschiedene Methode aus ZDatabaseConnector-Klasse verwendet.
 
+\textbf{ZDatabaseConnector}
+
+In der ZDatabaseConnector-Klasse sind verschiedene Methoden für den Zugriff und die Speicherung der Entitäten im CoreData-Modell implementiert.
+Für die Speicherung neuer Fingerprints wurde dafür die Methode \emph{addFingerprintToDatabaseForCell :withBeacons:withContext} erstellt. Diese erwartet dabei die aktuelle Zelle, die in Reichweite befindlichen Beacons und den \emph{managedObjectContext} des CoreData-Modells. Sie fügt die Fingerprints der Datenbank hinzu.
+Im ZDatabaseConnector sind außerdem die Methoden zur Berechnung der Wahrscheinlichkeitsverteilungen und der Mittelwerte implementiert.
+Für den Zugriff auf die Datenbank gibt es Methoden zum Auslesen der Wahrscheinlichkeitsverteilung und die Rückgabe der stärksten Beacons einer Zelle.
+
 \textbf{InformationViewController}
 
 Der \emph{InformationViewController} gibt die Zellen aus, welche bereits über Fingerprint-Daten verfügen. Dabei wurde die Struktur des MasterViewController, welcher durch die Wahl des Templates bereits erstellt wurde, größtenteils beibehalten. Es musste nur die CoreData-Abfrage angepasst werden, sodass alle Zellen des Modells zurückgegeben werden.
@@ -337,7 +344,8 @@ Der \emph{InformationViewController} gibt die Zellen aus, welche bereits über F
 
 \textbf{InformationDetailViewController}
 
-Wie auch schon beim \emph{InformationViewController} kann die grobe Struktur der Klasse beibehalten werden und nur die Datenabfrage muss angepasst werden, um das eigene CoreData-Modell zu unterstützen.
+Im InformationDetailViewController werden die Daten der Beacons in der zuvor gewählten Zelle ausgegeben. Dabei wird ein Tabellenlayout genutzt. Jede Zeile steht dabei für ein Beacon. 
+Für die Anzeige der Beacondaten wurde die Unterzeile der Tabellenzelle genutzt. Dort werden die minimale, maximale und durchschnittliche Signalstärke un der Median der Signalstärke des Beacons angezeigt.
 
 
 \textbf{PositioningViewController}
@@ -346,6 +354,7 @@ Wie bereits im FingerprintingViewController muss zunächst ein CLLocationManager
 Statt die Beacondaten zu speichern, wird in der \emph{locationManager:
 \newline didRangeBeacons:inRegion} Methode jedoch der Positionierungsalgortihmus aufgerufen, welchem die aktuellen Informationen übergeben werden. 
 Die verschiedenen Positionierungsalgorithmen wurden in der Klasse ZPositionLocator implementiert.
+Für die Anzeige auf der Karte wurde ein RMMapView verwendet, welcher vom Mapbox-Framework zur Verfügung gestellt wird.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -392,6 +401,13 @@ Für den PositioningViewController müssen ebenfalls ein \emph{CLLocationManger}
 
 Im Unterschied zum FingerprintingViewController muss der PositioningViewController in der \emph{locationManager:didRangeBeacons:inRegion:}-Methode jedoch keine Speicherung der Daten durchführen, sondern die aktuelle Position bestimmen. Dafür wurden verschiedene Algorithmen implementiert.
 
+Diese Algorithmen liefern dabei jeweils die aktuelle Position in Form der Zelle zurück.
+
+Die Positionsanzeige auf der Karte wird mittels des Mapbox-Frameworks realisiert. Dazu benötigt man eine \emph{RMMapView}, welcher die aktuelle Karte anzeigt. Um eigenes Kartenmaterial zu verwenden benötigt man zusätzlich noch eine \emph{RMMBTilesSource}, welche das Kartenmaterial enthält. Dies ist nötig, da die Standarddatenquelle von Mapbox (Openstreetmap.org) keine Indoor-Karten zur Verfügung stellt. Die RMMBTilesSource wird dabei mit dem zuvor erstellten Kartenmaterial initialisiert (siehe Kapitel \ref{sec:sec:technologies:mapbox}). Das Kartenmaterial wird dabei direkt auf dem Gerät gespeichert. 
+
+Für die Anzeige der Position wird eine RMAnnotation genutzt. Das RMAnnotation-Objekt besitzt dabei ein Property mit den Koordinaten und lässt sich, nachdem dieses Property gesetzt wurde, auf der Karte ausgeben.
+
+Im Folgenden werden die verwendeten Algorithmen und deren Implementierungen näher erörtert.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -405,14 +421,15 @@ Im Unterschied zum FingerprintingViewController muss der PositioningViewControll
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Bei der einfachen und naiven Bestimmung der aktuellen Position, werden alle zuvor gesammelten Fingerprints mit den aktuell gemessenen Signalstärken verglichen. Dies führt dazu, dass bei größeren Fingerprint-Datenbanken auch die Rechenzeit und damit der Energieverbrauch steigt. 
 
-Bei dem Vergleich der Messwerte mit den gespeicherten Fingerprints wird das Nearest-Neighbor-Verfahren verwendet. Dabei werden sowohl die aktuellen Messwerte der in der Umgebung befindlichen Beacons, als auch die zuvor erhobenen Fingerprints der Beacons als Vektoren aus den Signalstärken zusammengefasst. Aus diesen Vektoren wird anschließend die jeweilige Entfernung der beiden Werte berechnet. Die einzelnen Signalstärken-Werte sind die Werte von allen in Reichweite befindlichen Beacons.
+Bei dem Vergleich der Messwerte mit den gespeicherten Fingerprints wird das Nearest-Neighbor-Verfahren verwendet. Dabei werden sowohl die aktuellen Messwerte der in der Umgebung befindlichen Beacons, als auch die zuvor erhobenen Fingerprints der Beacons als Vektoren aus den Signalstärken zusammengefasst. Aus diesen Vektoren wird anschließend die jeweilige Entfernung der beiden Werte berechnet. 
 
-Bei der Berechnung wird dabei für jeden Fingerprint ein Vektor erzeugt, welcher die Signalstärken zu den in Reichweite befindlichen Beacons beinhaltet.
+Bei der Berechnung der Distanz $d$ wird dabei für jeden Fingerprint ein Vektor erzeugt, welcher die Signalstärken zu den in Reichweite befindlichen Beacons beinhaltet.
 Die Signalstärke der Fingerprints der Beacons $n$ ist dabei $F_{b_n}$.
 Die Signalstärke der aktuellen Messung des Beacons $n$ wird als $M_{b_n}$ bezeichnet.
 
 
 \begin{equation}
+	d =
 	\begin{pmatrix}
 		F_{b_1} \\
 		F_{b_2} \\
@@ -428,28 +445,12 @@ Die Signalstärke der aktuellen Messung des Beacons $n$ wird als $M_{b_n}$ bezei
 	= 
 	\begin{pmatrix}
 		F_{b_1} - M_{b_1} \\
-		F_{b_2} - M_{b_n} \\
-		... \\
-		F_{b_n} - M_{b_n}
-	\end{pmatrix}
-\end{equation}
-
-\begin{equation}
-	\begin{pmatrix}
-		F_{b_1} - M_{b_1} \\
 		F_{b_2} - M_{b_2} \\
 		... \\
 		F_{b_n} - M_{b_n}
 	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		Diff_1 \\
-		Diff_2 \\
-		... \\
-		Diff_n
-	\end{pmatrix}
 	\widehat{=}
-	\sqrt{Diff_1^2 + Diff_2^2 + ... + Diff_n^2}
+	\sqrt{(F_{b_1} - M_{b_1})^2 + (F_{b_2} - M_{b_2})^2 + ... + (F_{b_n} - M_{b_n})^2}
 \end{equation}
 
 Aus den Differenzen beziehungsweise den Abständen zwischen den einzelnen Signalstärke-Vektoren lässt sich nun der Nearest-Neighbor bestimmen und damit die wahrscheinlichste Position im Raum.
@@ -633,6 +634,12 @@ Ein BeaconSampler-Objekt verwaltet dabei die aktuelle Wahrscheinlichkeitsverteil
 Die Methode \emph{addBeacons} verlangt dabei ein NSArray der aktuell empfangenen CLBeacons. Die Signalstärkewerte der Beacons werden daraufhin zu einem, vom BeaconSampler verwaltetem, NSDictionary hinzugefügt. Dabei werden, um dem Echtzeitanspruch gerecht zu werden, nur die letzten fünf gemessenen Signalstärkewerte für jedes Beacon gespeichert. Dadurch wird die Wahrscheinlichkeitsverteilung ausreichend schnell an die aktuelle Position und deren Signalstärken angepasst.
 
 Außerdem verfügt der BeaconSampler über die Methode \emph{getProbabilityDictForBeaconWithIdentifier}, welche ein Beacon-Identifizierungsstring benötigt. Die Methode errechnet dabei die Wahrscheinlichkeiten der Signalstärken des Beacon, welches zu dem übergebenen Beaconidentifizierungs-String passt. Diese werden dabei in einem NSDictionary gespeichert, wobei der Signalstärke-Wert als Key des Dictionary verwendet und die Wahrscheinlichkeit des Wertes als Value im Dictionary. Dieses NSDictionary wird von der Methode zurückgegeben.
+
+\begin{listing}[htb!]
+    \insertminted{json}{code_examples/probabilities.json}
+    \caption{Beispiel für ein Dictionary einer Wahrscheinlichkeitsverteilung}
+	\label{lst:probablities}
+\end{listing}
 
 Eine weitere Methode ist die \emph{getKeysOfStrongestBeacons}-Methode, welche ein Array mit Beacons zurückgibt, absteigend sortiert nach der Signalstärke. Dies wird dazu verwendet, um bei der Positionierung Zellen auszuschließen, da nur Zellen berücksichtig werden, welche ebenfalls die aktuell stärksten Beacons beinhalten. Dies dient dazu, die Zellen auszuschließen deren stärkste Beacons sich momentan nicht im Empfangsradius befinden und dadurch mit hoher Wahrscheinlichkeit nicht der aktuellen Position entsprechen. Dies erlaubt eine schneller Ausführung, da nicht die Wahrscheinlichkeitsverteilungen jeder Zelle berücksichtigt werden müssen.
 
