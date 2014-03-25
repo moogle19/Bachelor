@@ -7,15 +7,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Die mobilen iBeacon verzichten, wie der Name schon andeutet, auf eine feste Stromquelle und werden ausschließlich mit Batterien betrieben.
 Zum Einsatz kommen dabei die sogenannten Knopfzellen, welche mit einer Spannung von 3,0 Volt operieren.
-Da Bluetooth Low Energy extrem energiesparend arbeitet, geben die Hersteller der Beacons, die Akkulaufzeit mit bis zu zwei Jahren, ohne einen Batteriewechsel, an. Diese Laufzeit hängt jedoch stark mit der gewählten Signalstärke und dem Sendeintervall zusammen, welche die Laufzeit sehr stark beeinflussen können.
+Da Bluetooth Low Energy extrem energiesparend arbeitet, geben die Hersteller der Beacons, die Akkulaufzeit mit bis zu zwei Jahren, ohne einen Batteriewechsel, an. Diese Laufzeit hängt jedoch mit der gewählten Signalstärke und dem Sendeintervall zusammen, welche diese sehr stark beeinflussen können.
 
-Bisher gibt es nur wenige Hersteller von iBeacons, wobei sich der Großteil der Produkte momentan noch in der Entwicklungsphase befindet. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} sind ebenfalls noch in der Entwicklungsphase und wurden hauptsächlich als Testgeräte für Entwickler ausgegeben. Dabei bleibt jedoch unklar in wie weit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
+Bisher gibt es nur wenige Hersteller von iBeacons, wobei sich der Großteil der Produkte momentan noch in der Entwicklungsphase befindet. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} sind ebenfalls noch in der Entwicklungsphase und wurden hauptsächlich als Testgeräte für Entwickler ausgegeben. Dabei bleibt unklar in wie weit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{estimote Beacon}
 \label{sec:dataandmeasurement:mobilebeacon:estimote}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die Firma \emph{estimote} mit Sitz in Polen, war ein der ersten, die ein funktionstüchtiges iBeacon vorgestellt haben und es in einem \emph{Developer Preview Kit} zum Verkauf anbieten.
+Die Firma \emph{estimote} (\citet{estimote}) mit Sitz in Polen, war eine der ersten, welche ein funktionstüchtiges iBeacon vorgestellt hat und es in einem \emph{Developer Preview Kit} zum Verkauf anbieten.
 Dieses Kit beinhaltet drei verschiedenfarbige Beacons, welche mit einer wiederverwendbaren Klebeschicht an der Unterseite ausgestattet sind. Dies erlaubt ein beliebiges Anbringen und Abziehen der Beacons auf allen glatten Oberflächen.
 \begin{figure}[htb!]
 		\centering
@@ -24,11 +24,11 @@ Dieses Kit beinhaltet drei verschiedenfarbige Beacons, welche mit einer wiederve
 	\label{estimote-developer-kit}
 \end{figure}
 
-Im inneren des Beacons befindet sich ein Bluetooth Chipsatz von Nordic Semiconductor, welcher auf einem 32-bit ARM Prozessor beruht und mit einem 2,4Ghz Bluetooth Low Energy Modul arbeitet. Dabei verfügt der über 256 KB Flash-Speicher für Speicherung der Beacon-Konfiguration.
-Speziell in den estimote-Beacon wurde dazu noch ein Temperatursensor eingebaut, welcher allerdings momentan noch nicht angesprochen werden kann.
+Im inneren des Beacons befindet sich der nRF51822 Bluetooth-Chipsatz von Nordic Semiconductor (\citet{nordicchipset}), welcher auf einem 32-bit ARM Prozessor beruht und mit einem 2,4Ghz Bluetooth Low Energy Modul arbeitet. Dabei verfügt der über 256 KB Flash-Speicher für Speicherung der Beacon-Konfiguration. (\citet{estimotespecs}) 
+In den estimote Beacons wurde zusätzlich noch ein Temperatursensor und ein Accelerometer integriert, welche sich jedoch softwareseitig noch nicht ansprechen lassen.
 
-Des Weiteren stellt estimote noch ein SDK für Android und iOS zur Verfügung, welches in Fall des iOS-SDK auf der iBeacons-API basiert, jedoch speziell auf die estimote-Beacons abgestimmt ist. 
-Dabei bietet es neben den Funktionen der iBeacon-API noch die Funktionalität, sich mit den estimote Beacons zu verbinden und diese zu programmieren. So erlaubt es zum Beispiel die Signalstärke, das Sendeintervall und die Major-Minor-Informationen zu verändern oder die Firmware der Beacons zu aktualisieren.
+Des Weiteren stellt estimote noch ein SDK für Android und iOS zur Verfügung, welches in Fall des iOS-SDK auf der iBeacons-API basiert, jedoch speziell auf die estimote-Beacons abgestimmt ist (\citet{estimoteapi}). 
+Dabei bietet es neben den Funktionen der iBeacon-API noch die Funktionalität, sich mit den estimote Beacons zu verbinden und deren Konfiguration anzupassen. So erlaubt es zum Beispiel die Signalstärke, das Sendeintervall und die Major-Minor-Informationen zu verändern oder die Firmware der Beacons zu aktualisieren.
 
 Da das SDK, bis auf die Programmierung der Beacons, keine Vorteile gegenüber dem Core Location-Framework mit der iBeacons-API bietet, wurde jedoch auf die Verwendung verzichtet.
 
@@ -47,12 +47,12 @@ Die Beacons sind relativ schlicht gehalten und das Innere ist sehr einfach zugä
 	\label{kontakt-beacon-outside}
 \end{figure}
 
-Die Beacons von \emph{kontakt.io} basieren dabei auf dem BLE113 Chipsatz von \emph{bluegiga}, welcher über 256 KB Flash-Speicher verfügt und einen 8051 Mikrocontroller von Intel nutzt.
+Die Beacons von \emph{kontakt.io} basieren dabei auf dem BLE113 Chipsatz von \emph{bluegiga}. (\citet{bluegigachipset}) Die Beacons verfügen dabei einen ARM Cortex M0 Porzessor mit 256 KB Flashspeicher. Die Ausgangssignalstärke des Chipsatz lässt sich zwischen +4dBm und -20dBm variabel einstellen.
 
 
 Auch kontakt.io bietet ein eigenes SDK an, welches im Gegensatz zu dem SDK von \emph{estimote} nicht nativ für die einzelnen Plattformen entworfen wurde, sondern online über eine REST-Schnittstelle arbeitet.
-Dabei stellt \emph{kontakt.io} ein Webpanel zur Verfügung, in welchem man die einzelnen Beacons mit ihrem UUID, Major und Minor-Wert registriert und jedem den jeweiligen Ort beziehungsweise die Funktion zuweisen kann. 
-Auch auf die Verwendung dieses SDK wurde verzichtet.
+Dabei stellt \emph{kontakt.io} ein Webpanel zur Verfügung, in welchem man die einzelnen Beacons mit ihrem UUID, Major und Minor-Wert registriert und jedem den jeweiligen Ort beziehungsweise eine Funktion zuweisen kann. 
+Auch auf die Verwendung dieses SDK wurde verzichtet, da es nicht dem geplanten Anwendugszweck gerecht wird.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,7 +61,7 @@ Auch auf die Verwendung dieses SDK wurde verzichtet.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Neben den mobilen iBeacons, welche mittels Batterien betrieben werden, gibt es auch stationäre iBeacons, welche auf eine stetige Anbindung an das Stromnetz angewiesen sind.
 Dabei gibt es verschiedene Ansätze.
-Zum Einen bieten zum Beispiel \emph{PayPal} und \emph{Radius Networks} einen Ansatz, bei dem die komplette Technik in einen USB-Stick integriert wird und über ein USB-Netzteil an jeder Steckdose betrieben werden kann. Die verwendete Technik dieser Beacons entspricht denen der batteriebetriebenen Beacons.
+Zum Einen bieten zum Beispiel \emph{PayPal} und \emph{Radius Networks} einen Ansatz, bei dem die komplette Technik in einen USB-Stick integriert wird und über ein USB-Netzteil an jeder Steckdose betrieben werden kann. Diese Beacons basieren dabei auf den gleichen Chipsätzen wie auch ihre batteriebetriebenen Pendants.
 
 Eine andere Lösung ist die Nutzung eines Bluetooth 4.0-kompatiblen USB-Dongles an einem Computer. Dieser kann mit entsprechender Software zu einem iBeacon umfunktioniert werden.
 
@@ -69,17 +69,19 @@ Eine andere Lösung ist die Nutzung eines Bluetooth 4.0-kompatiblen USB-Dongles 
 \subsection{Raspberry Pi als iBeacon}
 \label{sec:dataandmeasurement:stationarybeacon:raspberrypi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Der Raspberry Pi ist ein Mini-Computer, welcher auf einem ARM-Prozessor basiert und als günstiger Computer für Programmiereinsteiger konzipiert wurde. Der kleine Computer ermöglicht aber auch andere Einsatzgebiete, zum Beispiel als Beacon.
+Der Raspberry Pi ist ein Mini-Computer, welcher auf dem BCM2835 ARM-Prozessor von Broadcom basiert und als günstiger Computer für Programmiereinsteiger konzipiert wurde (siehe \citet{raspberrypi}). Der kleine Computer ermöglicht aber auch andere Einsatzgebiete, zum Beispiel als Beacon.
 
 Um den Raspberry Pi zu einem Beacon umzufunktionieren wurde eine Linux-Distribution auf dem Gerät installiert und ein Bluetooth-Dongle über USB angeschlossen. Dabei kam ein Modul von \emph{Plugable Technologies} zum Einsatz, welches spezielle Bluetooth 4.0 und Linux-Unterstützung bietet.
 Für die Umfunktionierung zum iBeacon wurde die Bluetooth-Implementierung \emph{blueZ} eingesetzt, welche es erlaubt das Bluetooth-Modul anzusprechen und spezifische Nachrichten über Bluetooth zu versenden.
 Diese Möglichkeit den Raspberry Pi als iBeacon zu nutzen, wurde von der Firma Radius Network vorgestellt. Diese bieten ein ausführliches Tutorial für die Nutzung des Raspberry Pi als iBeacon auf ihrer Webseite an (\citet{radiusraspberry}), welches von mir genutzt wurde, um den Raspberry Pi zu konfigurieren.
 
+Radius Network hat dabei den Nachrichteninhalt der iBeacons-Mitteilungen mittels Reverse-Engineering aufgeschlüsselt. Dies ermöglicht eine Reproduzierung der Nachricht mit eigenen Parametern für die UUID, Major und Minor-Werte.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Physikalische Grundlagen}
 \label{sec:dataandmeasurement:physics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Im Vergleich zu Kabelverbindungen, wo die Ausbreitung des Signals entlang eines bestimmten Leiters geschieht, ist die Ausbreitung eines drahtlosen Signals von deutlich mehr Faktoren abhängig.
+Im Vergleich zu Kabelverbindungen, wo die Ausbreitung des Signals entlang eines bestimmten Leiters geschieht, ist die Ausbreitung eines drahtlosen Signals von deutlich mehr Faktoren abhängig (\citet{signalverbreitung}). 
 
 \textbf{Dämpfung}
 
@@ -93,7 +95,7 @@ Die Abschwächung des Signals resultiert aus der Art der Aussendung. Da die hier
 
 \textbf{Abschattung}
 
-Die Abschattung ist eine stärkere Form der Dämpfung, welche durch Objekte zwischen der Signalquelle und dem Empfänger verursacht wird. Die Abschattung ist dabei abhängig von der Frequenz des Signals und der Geschaffenheit des Objektes. Bei höherer Frequenz ist eine stärkere Abschattung des Signals gegeben.
+Die Abschattung ist eine stärkere Form der Dämpfung, welche durch Objekte zwischen der Signalquelle und dem Empfänger verursacht wird. Die Abschattung ist dabei abhängig von der Frequenz des Signals und der Geschaffenheit des Objektes. Eine höhere Frequenz des Signals führt dabei zu einer stärkeren Abschattung.
 
 \textbf{Reflexion}
 
@@ -101,18 +103,13 @@ An größeren Oberflächen kann es zu Reflexionen des Signals kommen. Dabei trif
 
 \textbf{Streuung}
 
-Ähnlich der Reflexion trifft das Signal auf eine Oberfläche, wird dabei jedoch aufgespalten und in verschiedene Richtung abgelenkt.
+Die Streuung ähnelt der Reflexion, da auch hier das Signal reflektiert wird. Während dieses Vorganges wird das Signal jedoch aufgespalten und dadurch in verschiedene Richtungen abgelenkt.
 
 \textbf{Mehrwegeausbreitung}
 
 Durch die obene genannten Effekte ist es möglich, das ein Signal einen Empfänger auf mehreren Wegen erreicht. Dabei ist die Signalstärke stark abhängig von dem zurückgelegtem Weg. Ausserdem unterscheiden sich die Laufzeiten der Signale, da diese ebenfalls vom Weg abhängig sind. Dadurch kann es auch zu Überlagerungen zwischen Signalen kommen, welche zur gleichen Zeit gesendet wurden, jedoch zu unterschiedelichen Zeiten beim Empfänger eintreffen. 
 Durch diese Phasenverschiebung kann das Signal zusätzlich abgeschwächt werden.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Außenmessungen}
-\label{sec:dataandmeasurement:outdoormeasure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Innenraummessungen}
@@ -123,7 +120,7 @@ Die Messungen wurden dabei sowohl mit dem iPhone 5 als auch mit dem iPhone 4s du
 
 
 Zuerst wurden die Messungen mit den mobilen Beacons, hier die \emph{kontakt.io}-Beacons, durchgeführt.
-Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt, wobei immer freie Sicht zwischen den Beacons und den Empfangsgeräten bestand. Für jede Entfernung wurden dabei 100 Stichproben genommen, jeweils eine pro Sekunde.
+Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt, wobei immer freie Sicht zwischen den Beacons und den Empfangsgeräten bestand. Für jede Entfernung wurden 100 Stichproben genommen, jeweils eine pro Sekunde.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure of signal strnegth
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,7 +142,7 @@ Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt,
 \end{figure}
 
 In Abbildung \ref{avgiphone5-signalstrength} und Abbildung \ref{avgiphone4s-signalstrength} lässt sich dabei sehr gut erkennen, das die Signalstärke, nicht wie eigentlich erwartet stetig abnimmt, sondern relativ stark schwankt. Dies ist darauf zurückzuführen, dass in Innenräumen sowohl Wände, als auch Gegenstände im Raum, das Bluetooth-Signal reflektieren oder blockieren und so die Ergebnisse verfälschen.
-Des Weiteren ist zu erkennen, dass die Ergebnisse zwischen den verschiedenen iPhone-Modellen deutlich voneinander abweichen. Das lässt darauf schließen, das der verbaute Chipsatz beziehungsweise die verbaute Antenne innerhalb der Gerät die Ergebnisse deutlich beeinflusst und die Werte daher nur schwer übertragbar sind.
+Des Weiteren ist zu erkennen, dass die Ergebnisse zwischen den verschiedenen iPhone-Modellen deutlich voneinander abweichen. Das lässt darauf schließen, dass der verbaute Chipsatz beziehungsweise die verbaute Antenne innerhalb der Gerät die Ergebnisse deutlich beeinflusst und die Werte daher nur schwer übertragbar sind.
 
 Ein weiterer wichtiger Punkt ist die Untersuchung der Stabilität des Signal. Dabei wurden die gleichen Daten wie zuvor verwendet, jedoch um die minimalen und maximalen Werte ergänzt. In Abbildung \ref{all-iphone5} lässt sich dabei gut erkennen, das die Ergebnisse eine ähnliche Tendenz haben, aber sich dennoch über einen sehr großen Bereich der Signalstärke verteilen.
 
@@ -163,7 +160,7 @@ Dazu wurde der gleiche Messaufbau wie zuvor genutzt, jedoch das \emph{kontakt.io
 \begin{figure}[htb!]
 		\centering
 	\includegraphics[scale=0.5]{avgiphone5_raspberry}
-	\caption{Durchschnittliche Signalsteäines Raspberry Pi Beacons}
+	\caption{Durchschnittliche Signalstärke des Raspberry Pi Beacons (gemessen mit iPhone 5)}
 		\label{avgiphone5_raspberry}
 \end{figure}
 
@@ -172,11 +169,11 @@ Wie aus Abbildung \ref{avgiphone5_raspberry} zu entnehmen, sind die Ergebnisse i
 \begin{figure}[htb!]
 		\centering
 	\includegraphics[scale=0.5]{alliphone5_raspberry}
-	\caption{Minimale, maximale und durchschnittliche Signalstrke des Raspberry Pi gemessen vom iPhone 5}
+	\caption{Minimale, maximale und durchschnittliche Signalstärke des Raspberry Pi gemessen vom iPhone 5}
 	\label{alliphone5_raspberry}
 \end{figure}
 
-Für die weiteren Test und Messungen wurden daher die \emph{kontakt.io} Beacons verwendet, da die beiden zur Verfügung stehenden Beacons sich in Signalstärke und Stabilität nicht zu stark unterscheiden, von den \emph{kontakt.io} Beacons jedoch deutlich mehr Exemplare verfügbar sind und diese deutlich variabler im Bezug auf die Positionierung der Beacons sind.
+Für die weiteren Test und Messungen wurden daher die \emph{kontakt.io} Beacons verwendet, da die beiden zur Verfügung stehenden Beacons sich in Signalstärke und Stabilität nicht zu stark unterscheiden, von den \emph{kontakt.io} Beacons jedoch deutlich mehr Exemplare verfügbar sind und diese variabler im Bezug auf die Positionierung der Beacons sind.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -185,7 +182,7 @@ Für die weiteren Test und Messungen wurden daher die \emph{kontakt.io} Beacons 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wie die obigen Messungen zeigen, weichen die realen Ergebnisse stark von den, durch die physikalischen Ausbreitungseigenschaften der elektromagnetischen Wellen, angenommenen Ergebnissen ab. Dies hängt vorallem damit zusammen, dass die Antenne der Beacons nicht gerichtet ist, sondern in alle Richtungen sendet. Dies führt dazu, dass das Signal der Beacons von diversen Flächen im Raum reflektiert und so nicht auf direktem Weg zum Endgerät gelangt. 
 
-Ein weiterer wichtiger Störfaktor ist der Benutzer selbst, da der menschliche Körper größtenteils aus Wasser besteht, welche elektromagnetische Wellen abschirmt. Daher ist zu beobachten, dass die Ausrichtung des Nutzers einen deutlichen Einfluss auf die Signalstärke nimmt. In Abbildung \ref{boxplotiPhone5Body} ist diese Auswirkung des Körpers deutlich zu erkennen. Hierbei wurden jeweils aus zwei Metern Entfernung 100 Stichproben der Signalstärke genommen. Einmal mit freier Sicht zum Beacon und einmal mit dem Körper zwischen Beacon und iPhone. 
+Ein weiterer wichtiger Störfaktor ist der Benutzer selbst, da der menschliche Körper größtenteils aus Wasser besteht, welche elektromagnetische Wellen abschirmt. Daher ist zu beobachten, dass die Ausrichtung des Nutzers einen deutlichen Einfluss auf die Signalstärke nimmt. 
 
 \begin{figure}[htb!]
 		\centering
@@ -194,6 +191,8 @@ Ein weiterer wichtiger Störfaktor ist der Benutzer selbst, da der menschliche K
 	\label{boxplotiPhone5Body}
 \end{figure}
 
-Auf der Abbildung ist deutlich zu erkennen wie der Körper die Signalstärke verringert. Dieser Faktor muss also in die Positionsbestimmung einbezogen werden.
+In Abbildung \ref{boxplotiPhone5Body} ist diese Auswirkung des Körpers deutlich zu erkennen. Hierbei wurden jeweils aus zwei Metern Entfernung 100 Stichproben der Signalstärke genommen. Einmal mit freier Sicht zum Beacon und einmal mit dem Körper zwischen Beacon und iPhone. 
 
-Zusätzlich zum Körper kann es an realen Einsatzorten weitere Gegenstände geben, welche das Signal abschirmen beziehungsweise abschwächen, wie zum Beispiel Wände oder Möbelstücke.
+Auf der Abbildung ist deutlich zu erkennen, wie der Körper die Signalstärke verringert. Dieser Faktor muss also bei der Positionsbestimmung berücksichtigt werden.
+
+Zusätzlich zum Körper kann es an realen Einsatzorten weitere Gegenstände geben, welche das Signal abschwächen oder komplett abschirmen, wie zum Beispiel Wände oder Möbelstücke.
