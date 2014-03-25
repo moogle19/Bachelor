@@ -36,7 +36,7 @@
 \RequirePackage{hyperref}			%[plainpages=false, pdfpagelabels]
 \RequirePackage{amsmath}	
 \RequirePackage{amssymb}
-\RequirePackage{natbib}
+%\RequirePackage{natbib}
 \newcommand{\theHalgorithm}{\thealgorithm}
 \pagestyle{scrheadings}
 \clearscrheadfoot

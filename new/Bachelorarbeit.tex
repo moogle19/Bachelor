@@ -38,7 +38,7 @@
 \secondSupervisor{Prof. Dr. Elke Pulvermüller}
 \erstgutachter{Prof. Dr. Oliver Vornberger}
 \zweitgutachter{Prof. Dr. Elke Pulvermüller}
-\bibpunct{(}{)}{,}{a}{}{;}
+%\bibpunct{(}{)}{,}{a}{}{;}
 
 % Pfad zu den Bildern
 \graphicspath{
@@ -47,13 +47,14 @@
 % Eigene Makros
 \newcommand{\latexklasse}{\texttt{AGTI.cls}}
 \newcommand{\term}[1]{\textbf{#1}}
-\newcommand{\insertminted}[2]{\inputminted[linenos=true,
-                                           %frame=lines,
+\newcommand{\insertminted}[2]{\inputminted[linenos=false,
+										   fontsize=\scriptsize,
+                                           frame=lines,
                                            framesep=2mm,
-                                           xleftmargin=2cm,
-                                           xrightmargin=2cm]{#1}{#2}}
+                                           xleftmargin=0cm,
+                                           xrightmargin=0cm]{#1}{#2}}
 
-\newcommand{\minipageminted}[2]{\inputminted[linenos=true,xleftmargin=0.85cm]{#1}{#2}}
+\newcommand{\minipageminted}[2]{\inputminted[linenos=false,xleftmargin=0.85cm]{#1}{#2}}
 
 \newcommand*\justify{%
   \fontdimen2\font=0.4em% interword space
@@ -168,7 +169,8 @@ iBeacons are mobile transmitting stations which are powered by a battery and hav
 
 % Dieser Stil erzeugt Verweise mit Autorenname und Jahr
 %\bibliographystyle{gerapali}
-\bibliographystyle{abbrvnat}
+%\bibliographystyle{abbrvnat}
+\bibliographystyle{unsrt}
 %\bibliographystyle{AGTI}
 \addcontentsline{toc}{chapter}{Bibliography}
 
@@ -176,6 +178,10 @@ iBeacons are mobile transmitting stations which are powered by a battery and hav
 % Paper stehen
 \bibliography{literatur}
 %\clearpage{\cleardoublepage}
+\clearpage
+
+\appendix
+\include{kapitel/appendix}
 \cleardoublepage
 
   \vspace*{15cm}

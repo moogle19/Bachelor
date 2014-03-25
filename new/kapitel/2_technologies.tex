@@ -6,9 +6,9 @@
 \label{sec:technologies:bluetooth4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Der Bluetooth-Standard 4.0, auch Bluetooth Smart genannt, wurde am 30.Juni 2010 verabschiedet. Darin enthalten sind alle Protokolle der vorherigen Version 3.0, sowie Fehlerkorrekturen und Erweiterungen (\citet{bluetoothcore}). Außerdem wurde ein neues Protokoll hinzugefügt, Bluetooth Low Energy. 
+Der Bluetooth-Standard 4.0, auch Bluetooth Smart genannt, wurde am 30.Juni 2010 verabschiedet. Darin enthalten sind alle Protokolle der vorherigen Version 3.0, sowie Fehlerkorrekturen und Erweiterungen \cite{bluetoothcore}. Außerdem wurde ein neues Protokoll hinzugefügt, Bluetooth Low Energy. 
 
-Das erste unterstützte Mobilfunkgerät war das iPhone 4s (\citet{iphone4sspecs}), welches am 4. Oktober 2011 vorgestellt wurde. Im Jahr 2012 integrierten auch andere Smartphone-Hersteller Bluetooth 4.0 in ihre Geräte, sodass alle neueren Geräte diesen Standard beherschen.
+Das erste unterstützte Mobilfunkgerät war das iPhone 4s \cite{iphone4sspecs}, welches am 4. Oktober 2011 vorgestellt wurde. Im Jahr 2012 integrierten auch andere Smartphone-Hersteller Bluetooth 4.0 in ihre Geräte, sodass alle neueren Geräte diesen Standard beherschen.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,7 +17,7 @@ Das erste unterstützte Mobilfunkgerät war das iPhone 4s (\citet{iphone4sspecs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Bluetooth Low Energy wurde Anfangs von Nokia unter dem Namen ''Wibree'' entwickelt. Die Zielsetzung dabei war es eine Technologie zu entwickeln, mit der sich Computer und Mobilgeräte schnell und einfach mit Peripherie-Geräten verbinden lassen sollten. Das Hauptaugenmerk galt dabei dem geringen Stromverbrauch, einer kompakten Bauweise und den geringen Kosten der benötigten Hardware.
-Im Jahr 2007 wurden diese Spezifikationen in den, sich in der Entwicklung befindlichen, Bluetooth-Standard 4.0 aufgenommen. Wibree wurde daraufhin in Bluetooth Low Energy, oder kurz BLE, umbenannt (\citet{wibree}).
+Im Jahr 2007 wurden diese Spezifikationen in den, sich in der Entwicklung befindlichen, Bluetooth-Standard 4.0 aufgenommen. Wibree wurde daraufhin in Bluetooth Low Energy, oder kurz BLE, umbenannt \cite{wibree}.
 
 Bluetooth Low Energy arbeitet wie das klassische Bluetooth im 2,4 GHz Band, bringt aber in der Funktionsweise einige Unterschiede mit sich.
 
@@ -29,9 +29,9 @@ Darüberhinaus arbeitet BLE nach dem Race-to-idle Prinzip. Dabei werden anstehen
 
 Eine weitere Neuerung ist die Nutzung einer 24-Bit-Fehlerkorrektur, welche die Verbindung unempfindlicher gegenüber Störungen und Übertragungsfehlern machen soll und so unnötige Neuübertragungen verhindert.
 
-Auch die Verschlüsselung des zu übertragenden Signals wurde verbessert. Dabei kommt der Advance Encryption Standard (AES) mit einer Schlüssellänge von 128 Bit zum Einsatz (vgl. \citet{blespecs}). 
+Auch die Verschlüsselung des zu übertragenden Signals wurde verbessert. Dabei kommt der Advance Encryption Standard (AES) mit einer Schlüssellänge von 128 Bit zum Einsatz (vgl. \cite{blespecs}. 
 
-Das Bluetooth Low Energy Architektur besteht dabei aus verschiedenen Schichten und Komponenten (\citet{blespecsnordic}).
+Das Bluetooth Low Energy Architektur besteht dabei aus verschiedenen Schichten und Komponenten \cite{blespecsnordic}.
 
 \textbf{Central und Peripheral}
 Bei einer Bluetooth Low Energy-Verbindung unterscheidet man zwischen \emph{Central} und \emph{Peripheral}. Das Gerät in der Rolle des \emph{Central} horcht dabei auf gesendete Pakete von verbundenen oder allen in der Umgebung befindlichen Geräten. Das Gerät in der Rolle des \emph{Peripheral} hingegen sendet Pakete an die verbundenen oder an alle Geräte.
@@ -58,7 +58,7 @@ Der \emph{Descriptor} liefert zusätzliche Information über die aktuelle \emph{
 \begin{figure}[htb!]
 		\centering
 	\includegraphics[scale=0.3]{nordic-gatt-overview}
-	\caption{Verbindug zwischen Client und Server bei GATT-Übertragung}
+	\caption{Verbindung zwischen Client und Server bei GATT-Übertragung}
 	\label{nordic-gatt-overview}
 	\end{figure}
 
@@ -67,14 +67,14 @@ Der \emph{Descriptor} liefert zusätzliche Information über die aktuelle \emph{
 \subsection{iBeacons}
 \label{sec:technologies:bluetoothLE:ibeacons}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die iBeacons-Technologie wurde am 10.Juni 2014 von Apple auf der Worldwide Developers Conference vorgestellt (\citet{appleinsideribeacons}). 
+Die iBeacons-Technologie wurde am 10.Juni 2014 von Apple auf der Worldwide Developers Conference vorgestellt \cite{appleinsideribeacons}. 
 Diese basiert auf Bluetooth Low Energy und arbeitet mit einem von Apple entwickelten, proprietären GATT-Profil.
 
 Beacon bedeutet übersetzt ''Leuchtfeuer'' und die Funktionsweise der Beacons ist dem sehr ähnlich.
 Einmal in Betrieb genommen, sendet das Beacon dauerhaft, in kleinen Zeitintervallen, ein Signal in welchem sich Daten zur Identifizierung und Entfernungsbestimmung des Beacons befinden.
 
 Für die Identifizierung sendet das Beacon drei Werte, den \emph{Universally Unique Identifier (UUID)}, den \emph{Major}-Wert und den \emph{Minor}-Wert.
-Der \emph{UUID} ist ein Identifier, welcher Beacons einem bestimmten Typ oder einem Unternehmen zuordnen. Dieser UUID lässt sich mittels diversen Programmen generieren.
+Der \emph{UUID} ist ein Identifier, welcher Beacons einem bestimmten Typ oder einem Unternehmen zuordnen. Dieser UUID lässt sich mittels diversen Programmen generieren \cite{uuidgen}.
 
 Der \emph{Major}-Wert dient zur Unterscheidung von Beacons mit dem selben UUID und wird dazu eingesetzt, verschiedene Standorte beziehungsweise Regionen zu unterscheiden. Ein Beispiel dafür wäre ein Unternehmen mit mehreren Standorten, sodass bei gleichem UUID eine eindeutige Bestimmung des Standortes möglich ist.
 
@@ -83,7 +83,7 @@ Der \emph{Minor}-Wert dient zur weiteren Unterscheidung der Beacons mit gleichem
 Neben den von Beacon gesendeten Identifikationsdaten kann das Empfangsgerät selbst noch weitere Größen bestimmen. Es ist so zum Beispiel möglich die ungefähre Entfernung zu erhalten. 
 Dafür wir der \emph{Proximity}-Wert genutzt. Dieser definiert vier verschiedene Entfernungs-Zustände : \textit{Far(mehr als 10m)}, \textit{Near(wenige Meter)}, \textit{Immediate (wenige Zenitmeter)} und \textit{Unknown(Entfernung konnte nicht bestimmt werden)}. 
 Diese Werte erlauben eine sehr grobe Entfernungseinschätzung zum Beacon. 
-Für eine differenziertere Entfernungsbestimmung lässt sich eine weitere Kennzahl bestimmen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung der Enterfernung zweier Beacons genutzt werden soll und keinesfalls einen genauen Abstand zum Beacon angibt. Der Accuracy-Wert soll dabei erlauben, bei gleichem Proximity-Wert, das nächstgelegene Beacon zu bestimmen (\citet{clbeaconref}).
+Für eine differenziertere Entfernungsbestimmung lässt sich eine weitere Kennzahl bestimmen, der \textit{Accuracy}-Wert. Dabei handelt es sich um eine ungefähre Entfernungsangabe in Metern, welche jedoch ausdrücklich nur zur Differenzierung der Enterfernung zweier Beacons genutzt werden soll und keinesfalls einen genauen Abstand zum Beacon angibt. Der Accuracy-Wert soll dabei erlauben, bei gleichem Proximity-Wert, das nächstgelegene Beacon zu bestimmen \cite{clbeaconref}.
 
 \begin{figure}[htb!]
 		\centering
@@ -139,7 +139,7 @@ Dem Bluetooth-Chipsatz, welcher an sich ist nur wenige Zentimeter groß ist und 
 Xcode ist eine integrierte Entwicklungsumgebung, welche von Apple etwickelt wurde. Xcode ermöglicht es native \emph{iOS} und \emph{OS X} Applikationen zu erstellen, zu testen und zu debuggen.
 Standardmäßig werden dabei die Programmiersprachen \emph{Objective C}, \emph{C} und \emph{C++} unterstützt.
 
-Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen, ohne diese auf ein reales Gerät zu übertragen (\citet{xcodeinfo}).
+Xcode stellt viele Features für die Programmierung bereit, wie zum Beispiel \emph{code completion}, vorgefertigte \emph{Templates}, einen umfangreichen \emph{Debugger} und eine \emph{iOS-Simulator} für das Testen der Applikationen, ohne diese auf ein reales Gerät zu übertragen \cite{xcodeinfo}.
 
 
 \textbf{Templates}
@@ -179,7 +179,7 @@ Die Views lassen sich nach dem \emph{Drag and Drop}-Prinzip zusammenstellen. Dab
 Wie in Abbildung \ref{xcode-interface-builder} zu erkennen, besteht das Storyboard aus mehreren Views, die jeweils eine gezeigte Szene auf dem Gerät repräsentieren. Die einzelnen Views sind mit \emph{Segue's} verbunden. Ein Segue, auf deutsch Übergang, steuert dabei den Wechsel zwischen den Views. Dabei wird zum Beispiel festgelegt durch welche Aktion dieser ausgelöst wird und wie dieser abläuft.
 
 
-Der Interface Builder bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen des Views festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt. (\citet{xcodeautolayout})
+Der Interface Builder bietet außerdem noch die Funktion des \emph{Auto Layout}. Dabei werden sogenannte \emph{Constraints} genutzt, welche die Positionsbeziehungen zwischen den einzelnen Elementen des Views festlegen. Diese Constraints erzeugen so ein dynamisches Interface, welches sich an das verwendete Gerät anpasst und so ein User Interface, unabhängig der Bildschirmgröße oder der aktuellen Orientierung des Bildschirms, darstellt \cite{xcodeautolayout}.
 
 \begin{figure}[htb!]
 		\centering
@@ -196,7 +196,7 @@ Eine iOS-Applikation kann über mehrere Storyboards verfügen, wodurch es mögli
 \textbf{iOS Simulator}
 
 Für das Testen und Debuggen der Applikation bringt Xcode einen iOS-Simulator mit sich. Dieser erlaubt das Ausführen einer Applikation auch ohne ein iPhone oder iPad. Der Simulator bietet dabei verschiedene Konfigurationen, sowohl für iPhone (3,5 Zoll und 4 Zoll) als auch für das iPad (retina und non-retina).
-Im Bezug auf Bluetooth bietet der Simulator jedoch keine entsprechende Unterstützung (\citet{iossimulator}).
+Im Bezug auf Bluetooth bietet der Simulator jedoch keine entsprechende Unterstützung \cite{iossimulator}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{iOS}
@@ -204,17 +204,20 @@ Im Bezug auf Bluetooth bietet der Simulator jedoch keine entsprechende Unterstü
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Für die Entwicklung der Applikation zur Indoor Positionierung war eine der Vorgaben, dass diese für iOS programmiert werden soll.
 Apple hat dabei für die iOS Programmierung verschiedene Vorraussetzungen. Zum einen benötgt man einen Mac, da nur hier die benötigte Software installiert werden kann.
-Dazu zählt in erster Linie Xcode, welches als Entwicklungsumgebung für iOS-Applikationen genutzt wird (\citet{iossetup}). 
+Dazu zählt in erster Linie Xcode, welches als Entwicklungsumgebung für iOS-Applikationen genutzt wird \cite{iossetup}. 
 Außerdem wird ein iOS-Gerät vorrausgesetzt, da, wie bereits erwähnt, der iOS-Simulator kein Unterstützung für Bluetooth mit sich bringt. 
 Die eingesetzten iOS-Gerät sind ein iPhone 5 und ein iPhone 4s. Auf beiden Geräten ist die aktuelle iOS-Version 7.1 installiert.
 
 Die vorrausgesetzte, minimale iOS-Version ist dabei iOS 7, da die iBeacon-API des CoreLocation-Frameworks (mehr dazu im Kapitel \ref{sec:technologies:corelocation}) erst ab dieser Version zur Verfügung stehen.
 
+Die iOS-Applikationen basieren dabei auf dem Model-View-Controller Konzept. Dabei gibt es eine strenge Trennung zwischen den Daten, der Programmlogik und der Darstellung. 
+Die Views in iOS sind dabei für die Darstellung der Daten und das Entgegennehmen von Nutzerinteraktionen zuständig. Die Programmlogik, welche die Daten bereitstellt und auf Nutzerinteraktionen reagiert, befindet sich dabei in einem ViewController. Für die Datenspeicherung stellt iOS verschiedene Möglickeiten zur Verfügung. Die am Häufigsten genutzten sind die \emph{Property Lists}, welche einer einfachen Textdatei mit vorgegebener Formatierung entsprechen, und CoreData, ein Speichermodell für iOS und OS X (siehe Kapitel \ref{sec:technologies:coredata}).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{iOS Developer Program}
 Um eine programmierte Anwendung letztendlich auf einem iOS-Gerät auszuführen, ist die Mitgliedschaft im iOS Developer Program notwendig.
 Diese erlaubt das Testen der Anwendung auf dem Gerät, die Veröffentlichung im AppStore und gewährt Zugriff auf das iOS Beta-Programm, um Anwendungen für neue Versionen des Betriebssystems zu optimieren.
-Die Mitgliedschaft in diesem \emph{iOS Developer Program} kostet jährlich 99 Dollar (\citet{iosdevprog}). 
+Die Mitgliedschaft in diesem \emph{iOS Developer Program} kostet jährlich 99 Dollar \cite{iosdevprog}. 
 Im Rahmen meine Bachelorarbeit wurde der Zugang zu diesem Programm von der Universität zur Verfügung gestellt. Dabei beschränkt sich der Funktionsumfang jedoch auf das Testen der Applikation auf dem Gerät, da die Veröffentlichung im AppStore und der iOS Beta-Programm nicht teil des Pakets für Universitäten ist.
 
 \textbf{iPhone}
@@ -225,7 +228,7 @@ Das Ausführen der geplanten Applikation auf einem realen Endgerät ist dabei un
 
 Das iPhone 4s wurde dazu genutzt, zu überprüfen in wie weit die Ergebnisse der Messwert zwischen einzelnen Geräten übertragbar sind, beziehungsweise wie sich diese zwischen einzelnen Modellgenerationen unterscheiden, da diese verschiedene Hardware einsetzen. 
 
-So setzt das iPhone 4s auf den Broadcom BCM4330-Chipsatz, welches ein Wireless LAN-Chip mit integriertem Bluetooth 4.0 ist (\citet{iPhone4sTeardown}). Das iPhone 5 dagegen setzt auf den BCM4334 (\citet{iPhone5Teardown}), ebenfalls von Broadcom. 
+So setzt das iPhone 4s auf den Broadcom BCM4330-Chipsatz, welches ein Wireless LAN-Chip mit integriertem Bluetooth 4.0 ist \cite{iPhone4sTeardown}. Das iPhone 5 dagegen setzt auf den BCM4334 \cite{iPhone5Teardown}, ebenfalls von Broadcom. 
 Auch der Aufbau der Antennen und das Material der iPhones unterscheidet sich zwischen diesen beiden Generationen deutlich. 
 So ist das iPhone 4s mit einer Glas-Rückseite ausgestattet, wohingegen das iPhone 5 einen Rückseite aus Aluminium besitzt.
 
@@ -251,7 +254,7 @@ Eine weiterer Unterschied ist die Syntax von Objective-C.
 \end{listing}
 
 Der Hauptunterschied liegt in der Methodendeklaration. Statt des \emph{static} Schlüsselwortes wird bei Objective-C eine Klassenmethode mit einem ''+'' gekennzeichnet. Eine Instanzmethode wird mit einem ''-'' deklariert. Der nächste Unterschied wird bei den Übergabewerten deutlich. Diese werden bei Objective-C, mit einem '':'' abgetrennt, angegeben.
-Ein weiterer Unterschied wird beim Aufruf der Methoden deutlich. Da Objective-C nicht explizit die Methode aufruft, sondern eine Nachricht an die Klasse sendet, unterscheidet sich die Syntax deutlich. So werden hier eckige Klammern genutzt, wobei der Empfänger der Nachricht zuerst aufgeführt wird und danach die zu sendende Nachricht eingefügt wird (\citet{objc}).
+Ein weiterer Unterschied wird beim Aufruf der Methoden deutlich. Da Objective-C nicht explizit die Methode aufruft, sondern eine Nachricht an die Klasse sendet, unterscheidet sich die Syntax deutlich. So werden hier eckige Klammern genutzt, wobei der Empfänger der Nachricht zuerst aufgeführt wird und danach die zu sendende Nachricht eingefügt wird \cite{objc}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -270,7 +273,7 @@ Eine weitere Funktion des CoreLocation-Frameworks ist der Kompass, also die Best
 Des Weiteren erlaubt diese Funktion eine dynamische Anpassung der Karte, abhängig davon wie das Gerät aktuell ausgerichtet ist.
 
 Die für uns zentrale Funktion dieses Frameworks ist die Erkennung von iBeacons und die Funktionen zur Verarbeitung der von den Beacons gesendeten Daten.
-Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Region zugeordnet werden. Die genaue Funktionsweise wird dabei im folgenden Kapitel behandelt. (\citet{corelocation})
+Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Region zugeordnet werden. Die genaue Funktionsweise wird dabei im folgenden Kapitel behandelt \cite{corelocation}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{iBeacons-API}
@@ -278,7 +281,7 @@ Mittels des Frameworks können Beacons anhand ihres UUID erkannt und einer Regio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Mit der iOS Version 7 wurde das CoreLocation Framework um die Beacon-Funktionalitäten erweitert. 
 Dazu wurden zwei neue Klassen hinzugefügt und das bestehende Framework dementsprechend angepasst. 
-Hinzugefügt wurde zum einen die \emph{CLBeacon}-Klasse (\citet{clbeaconref}), welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum anderen die \emph{CLBeaconRegion}-Klasse (\citet{clbeaconregionref}), welche eine Region mit mehreren Beacons, abhängig von ihrem UUID und weiteren Werten, beschreibt.
+Hinzugefügt wurde zum einen die \emph{CLBeacon}-Klasse \cite{clbeaconref}, welche ein iBeacon repräsentiert und alle zur verfügungsteheneden Informationen enthält und zum anderen die \emph{CLBeaconRegion}-Klasse \cite{clbeaconregionref}, welche eine Region mit mehreren Beacons, abhängig von ihrem UUID und weiteren Werten, beschreibt.
 
 Die \emph{CLBeacon}-Klasse besteht dabei lediglich aus Properties mit den gegebenen Beacon-Informationen, wie \emph{UUID}, \emph{major}, \emph{minor}, \emph{accuracy}, \emph{proximity} und \emph{rssi}.
 
@@ -299,24 +302,24 @@ Dabei ist es möglich die Region in verschiedene Genaugikeits-Stufen zu initiali
 Die Beacon-Region bestimmt also letztlich nach welchen Beacons gesucht wird, beziehungsweise welche Beacons gefunden werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{MapBox}
+\section{Mapbox}
 \label{sec:sec:technologies:mapbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-MapBox ist ein Online-Landkarten Anbieter, welcher es erlaubt eigene Karten zu erstellen und über ihren Service online bereitzustellen (\citet{mapboxweb}). 
+MapBox ist ein Online-Landkarten Anbieter, welcher es erlaubt eigene Karten zu erstellen und über ihren Service online bereitzustellen \cite{mapboxweb}. 
 Die Grundkarten werden dabei aus dem OpenStreetMap-Projekt entnommen und Mapbox erlaubt es diese Karten grafisch zu überarbeiten, um so zum Beispiel das Farbschema zu ändern, eigene Markierungen hinzuzufügen oder auch eigene Layer über die Karte zu legen.
 
-Außerdem stellt Mapbox ein SDK (\citet{mapboxsdk})für iOS bereit, welche es erlaubt diese individuell angepassten Karten in iOS anzuzeigen und gleichzeitig die Funktionen des native MapKit-Framework, wie zum Beispiel Pinch-to-Zoom, automatische Kompassausrichtung oder Annotationen auf der Karte, mit sich bringt. Zudem besitzt Mapbox eine größere Flexibilität im Bezug auf die individuelle Anpassung der Karten und den Offline-Betrieb, als das von Apple für iOS bereitgestellte MapKit-Framework. Das Mapbox-SDK erlaubt es zum Beispiel die Karten direkt auf dem Gerät zu speichern.
+Außerdem stellt Mapbox ein SDK \cite{mapboxsdk} für iOS bereit, welche es erlaubt diese individuell angepassten Karten in iOS anzuzeigen und gleichzeitig die Funktionen des native MapKit-Framework, wie zum Beispiel Pinch-to-Zoom, automatische Kompassausrichtung oder Annotationen auf der Karte, mit sich bringt. Zudem besitzt Mapbox eine größere Flexibilität im Bezug auf die individuelle Anpassung der Karten und den Offline-Betrieb, als das von Apple für iOS bereitgestellte MapKit-Framework. Das Mapbox-SDK erlaubt es zum Beispiel die Karten direkt auf dem Gerät zu speichern.
 
 Bisher ist die Unterstützung von Indoor-Karten jedoch noch nicht gegeben, sodass hierbei nicht auf vorhandenes Kartenmaterial zurückgegriffen werden kann, sondern eigenes Kartenmaterial bereitstellen muss.
 
-Google hat mit \emph{Google Maps Indoor} bereits einen Dienst gestartet, welcher Gebäudepläne in Google Maps integriert (siehe \citet{googleindoormaps}). Dabei handelt es sich bisher jedoch hauptsächlich um öffentliche Gebäude in US-amerikanischen Städten. In Deutschland ist der Dienst ebenfalls schon gestartet, beinhaltet jedoch nur wenige Gebäude. Das Hinzufügen von neuen Gebäudeplänen ist nur bei öffentlichen Gebäuden möglich und nicht für den privaten Gebrauch vorgesehen, daher konnte nicht auf diesen Dienst zurückgegriffen werden.
+Google hat mit \emph{Google Maps Indoor} bereits einen Dienst gestartet, welcher Gebäudepläne in Google Maps integriert (siehe \cite{googleindoormaps}. Dabei handelt es sich bisher jedoch hauptsächlich um öffentliche Gebäude in US-amerikanischen Städten. In Deutschland ist der Dienst ebenfalls schon gestartet, beinhaltet jedoch nur wenige Gebäude. Das Hinzufügen von neuen Gebäudeplänen ist nur bei öffentlichen Gebäuden möglich und nicht für den privaten Gebrauch vorgesehen, daher konnte nicht auf diesen Dienst zurückgegriffen werden.
 
 Die Indoor-Karten mussten daher individuell für den Einsatzort erstellt und in ein, von Mapbox verständliches Format, umgewandelt werden.
 Die Ausgangsdatei ist dabei eine Bilddatei in JPEG-Format, welches eine Karte des Innenraumes zeigt. Dieses Datei muss zur weiteren Verwendung in ein von Mapbox verständliches Format umgewandelt werden. 
-Dazu wurde ein von ''Tom MacWright'' (\citet{jpgtogeo}) bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTIFF-Datei (\citet{geotiff}) speichert neben den eigentlichen Bildinformationen zusätzlich Koordinaten für die Georeferenzierung. 
+Dazu wurde ein von ''Tom MacWright'' \cite{jpgtogeo} bereitgestellte Python-Script verwendet, welches JPEG Dateien in GeoTIFF Dateien umwandelt. Die GeoTIFF-Datei \cite{geotiff} speichert neben den eigentlichen Bildinformationen zusätzlich Koordinaten für die Georeferenzierung. 
 
 Mit dieser GeoTIFF-Datei ist es nun möglich eine eigene Karte zu erstellen, welche letztendlich auf dem iOS-Gerät ausgegeben wird.
-Dafür stellt Mapbox das Programm \emph{TileMill} zur Verfügung (\citet{tilemill}). Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten exportiert werden. 
+Dafür stellt Mapbox das Programm \emph{TileMill} zur Verfügung \cite{tilemill}. Dieses erlaubt es eigene Karten zu erstellen und zu bearbeitet. Die erstellte Karte kann anschließend in verschiedenen Formaten exportiert werden. 
 TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt eingefügt werden kann.
 
 \begin{figure}[htb!]
@@ -328,7 +331,7 @@ TileMill bietet einen Import von GeoTIFF-Dateien an, sodass unsere Karte direkt 
 
 TileMill erlaubt es nun die eingefügte Karte weiter zu bearbeiten oder Informationen hinzuzufügen.
 Der nächste Schritt ist es die Karte in ein für iOS beziehungsweise das Mapbox SDK, verständliches Format zu überführen.
-Dazu wird die Karte im \emph{mbtiles}-Format exportiert. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in einzelne Kacheln überführt und speichert. Dadurch wird das Laden der einzelnen Kartenabschnitte bei größeren Karten beschleunigt, da nicht die komplette Karte geladen werden muss, sondern nur die aktuell benötigten Kacheln.
+Dazu wird die Karte im \emph{mbtiles}-Format exportiert \cite{mbtiles}. Dies ist ein von Mapbox entwickeltes Dateiformat, welches die Karte in einzelne Kacheln überführt und speichert. Dadurch wird das Laden der einzelnen Kartenabschnitte bei größeren Karten beschleunigt, da nicht die komplette Karte geladen werden muss, sondern nur die aktuell benötigten Kacheln.
 
 Die erzeugte \emph{.mbtiles}-Datei lässt sich nun in die iOS Applikation einbinden und über das SDK auf dem iOS-Gerät ausgeben. In Abbildung \ref{mapbox-map-ios} sieht man die Ausgabe einer Karte auf dem iPhone 5.
 
@@ -354,8 +357,8 @@ Für die Erstellung eines CoreData-Modells bietet Xcode einen eigenen Editor an,
 
 \begin{figure}[htb!]
 		\centering
-	\includegraphics[scale=0.5]{coredata-model}
-	\caption{CoreData-Modell in der grafischen Darstellung.}
+	\includegraphics[scale=0.3]{coredata-editor}
+	\caption{CoreData-Editor in der grafischen Darstellung.}
 	\label{coredata-model}
 \end{figure}
 
@@ -376,13 +379,13 @@ Dafür verwendet man ein \emph{NSPredicate}, welches umfangreiche Tests auf best
 
 Als Rückgabewert erhält man ein Array mit allen Objekten, auf die die gegebenen Kriterien zutreffen.
 
-Die Attribute dieser Objekte können nun ausgelesen und verändert werden. Um Veränderungen auch im Datenmodell zu übernehmen, muss lediglich der \emph{save}-Befehl des \emph{NSManagedObjectContext} ausgeführt werden. (\citet{coredataguide})
+Die Attribute dieser Objekte können nun ausgelesen und verändert werden. Um Veränderungen auch im Datenmodell zu übernehmen, muss lediglich der \emph{save}-Befehl des \emph{NSManagedObjectContext} ausgeführt werden \cite{coredataguide}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Versionsverwaltung mit Git}
 \label{sec:tools:git}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Für die Verwaltung und Versionierung des Projektes wurde Git verwendet. Als Hosting-Plattform wurde dabei GitHub (\citet{github}) genutzt.
+Für die Verwaltung und Versionierung des Projektes wurde Git verwendet. Als Hosting-Plattform wurde dabei GitHub \cite{github} genutzt.
 
 Git wurde gewählt, da es schnell und vergleichsweise einfach zu bedienen ist. Des Weiteren bietet Xcode bereits standardmäßig Git-Unterstützung mit einem grafischen Interface, welches alle nötigen Befehle wie Commit, Push, Pull oder die Erstellung eines neuen Branches auf Knopfdruck beherscht.
 

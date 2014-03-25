@@ -10,11 +10,13 @@
     for (int i = 0; i < [vector1 count]; i++) {
         /** check if both array only contain NSNumber objects **/
         if([vector1[i] isKindOfClass:[NSNumber class]] && [vector2[i] isKindOfClass:[NSNumber class]]) {
-			/** calculate sum of square of v1 - v2 **/
-            euclideanDistanceSum += ([vector1[i] floatValue] - [vector2[i] floatValue]) * ([vector1[i] floatValue] - [vector2[i] floatValue]);
+            /** calculate sum of square of v1 - v2 **/
+            euclideanDistanceSum +=
+                ([vector1[i] floatValue] - [vector2[i] floatValue]) *
+                ([vector1[i] floatValue] - [vector2[i] floatValue]);
         }
         else {
-			/** error if wrong input file format **/
+            /** error if wrong input file format **/
             NSLog(@"Wrong file format, no NSNumber. (ZLocationPositioner:euclideanDistanceBetweenVector)");
             return -1;
         }
