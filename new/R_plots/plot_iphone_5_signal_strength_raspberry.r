@@ -9,10 +9,10 @@ data <- read.csv(file='iphone5_raspberry_signal_strength-all.csv', head=TRUE, se
 pdf(file="avgiphone5_raspberry.pdf", onefile=TRUE, pagecentre=TRUE, width=12, height=6)
 
 print(
-	ggplot(data = data, aes(x=distance, y=avg)) + geom_line() + ylab("Signal Strength [dBm]") + xlab("Distance [cm]") + ggtitle("Indoor Average Signal Strength of Raspberry Pi")
+	ggplot(data = data, aes(x=distance, y=avg)) + geom_line() + ylab("Signalstärke [dBm]") + xlab("Distanz [cm]") + ggtitle("Durchschnittliche Signalstärke des Raspberry Pi im Innenraum")
 )
 
 pdf(file="alliphone5_raspberry.pdf", onefile=TRUE, pagecentre=TRUE, width=12, height=6)
 print(
-	ggplot(data = data, aes(x=distance, y=value)) + geom_line(aes(y=avg, col = 'avg')) + geom_line(aes(y=min, col = 'min')) + geom_line(aes(y=max, col = 'max'))   + ylab("Signal Strength [dBm]") + xlab("Distance [cm]") + ggtitle("Indoor Signal Strength of Raspberry Pi Beacon") + labs(colour = "values")
+	ggplot(data = data, aes(x=distance, y=value)) + geom_line(aes(y=avg, col = 'Durchschnitt')) + geom_line(aes(y=min, col = 'Minimum')) + geom_line(aes(y=max, col = 'Maximum'))   + ylab("Signalstärke [dBm]") + xlab("Distanz [cm]") + ggtitle("Signalstärken des Raspberry Pi im Innenraum") + labs(colour = "Werte")
 )

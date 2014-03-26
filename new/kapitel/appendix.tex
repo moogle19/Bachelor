@@ -26,3 +26,20 @@
   	\textbf{Location-based service} & Als Location-based service bezeichnet man Dienste, welche von der aktuellen Position des Nutzers abhängig sind. \\ \\
   \end{tabular}
   
+  
+\chapter{Anleitung zur Nutzung der Applikation}
+
+Die Applikation liegt in Quellcodeform auf der beiliegenden CD-ROM vor. Da Apple keine Installationen außerhalb des eigenen AppStores erlaubt, muss das Programm in Xcode kompiliert werden. Um die Applikation auf ein Gerät zu übertragen, ist eine Mitgliedschaft im Apple Developer Program nötig.
+
+Die Applikation ist standardmäßig auf die Daten der kontakt.io Beacons eingestellt. Dabei kommt die UUID \emph{A41B74DE-F54E-411F-9F03-75D5253528A0} zum Einsatz. Falls andere Beacons zum Einsatz kommen, muss deren UUID entsprechend angepasst werden. 
+
+Die Applikation an sich besteht aus drei grundlegenden Views, welche sich über die Tab-Bar im unteren Bereich des Bildschirmes erreichen lassen. 
+
+Das Tab \emph{Collecting} erlaubt dabei die Sammlung der Fingerprintdaten. Dazu ist zunächst die Eingabe der aktuellen Zelle und der Anzahl der zu sammelnden Fingerprints einzugeben. Um den Sammelvorgang zu starten muss der Button \emph{Start Collecting Fingerprints} gedrückt werden. Die Vorgang wird danach automatisch gestartet und sobald die gewünschte Anzahl an Fingerprints gesammelt wurde, kehrt die Applikation zum vorherigen Bildschirm zurück. 
+Bei der Sammlung der Fingerprints sollte die aktuelle Position nicht zu stark verändert werden, da dies negative Auswirkungen auf die Qualität der Fingerprints haben könnte.
+
+Das Tab \emph{Information} erlaubt das Betrachten der bereits gesammelten Fingerprints. Dabei werden in einem TableView die bisher eingemessenen Zellen angezeigt. Bei einem Klick auf die jeweilige Zelle werden zusätzliche Informationen zu den Beacon in der Zelle angezeigt.
+
+Das Tab \emph{Positioning} ist für die Lokalisierung zuständig. Nachdem verschiedene Zellen eingemessen wurde, ist es hier möglich die aktuelle Zelle anzuzeigen.
+Dabei werden die Ergebnisse der verschiedenen Algorithmen untereinander angezeigt. 
+Auch eine Karte wird eingeblendet, diese muss jedoch abhängig vom aktuellen Ort im Quellcode initialisiert werden. Daher ist die Positionsanzeige auf der Karte deaktiviert.

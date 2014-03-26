@@ -9,5 +9,5 @@ data <- read.csv(file='signal_Strength_raspberry_avg_median.csv', head=TRUE, sep
 
 pdf(file="avgmedianiphone5_raspberry.pdf", onefile=TRUE, pagecentre=TRUE, width=12, height=6)
 print(
-	ggplot(data = data, aes(x=distance, y=value)) + geom_line(aes(y=avg, col = 'avg')) + geom_line(aes(y=median, col = 'median')) + ylab("Signal Strength [dBm]") + xlab("Distance [cm]") + ggtitle("Indoor Signal Strength of Raspberry Pi Beacon") + labs(colour = "values")
+	ggplot(data = data, aes(x=distance, y=value)) + geom_line(aes(y=avg, col = 'Durchschnitt')) + geom_line(aes(y=median, col = 'Median')) + ylab("Signalstärke [dBm]") + xlab("Distanz [cm]") + ggtitle("Signalstärke des Raspberry Pi im Innenraum") + labs(colour = "Werte")
 )

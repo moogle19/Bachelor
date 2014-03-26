@@ -9,7 +9,7 @@ Die mobilen iBeacon verzichten, wie der Name schon andeutet, auf eine feste Stro
 Zum Einsatz kommen dabei die sogenannten Knopfzellen, welche mit einer Spannung von 3,0 Volt operieren.
 Da Bluetooth Low Energy extrem energiesparend arbeitet, geben die Hersteller der Beacons, die Akkulaufzeit mit bis zu zwei Jahren, ohne einen Batteriewechsel, an. Diese Laufzeit hängt jedoch mit der gewählten Signalstärke und dem Sendeintervall zusammen, welche diese sehr stark beeinflussen können.
 
-Bisher gibt es nur wenige Hersteller von iBeacons, wobei sich der Großteil der Produkte momentan noch in der Entwicklungsphase befindet. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} sind ebenfalls noch in der Entwicklungsphase und wurden hauptsächlich als Testgeräte für Entwickler ausgegeben. Dabei bleibt unklar in wie weit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
+Bisher gibt es nur wenige Hersteller von iBeacons, wobei sich der Großteil der Produkte momentan noch in der Entwicklungsphase befindet. Die genutzten iBeacons von \emph{estimote} und \emph{kontakt.io} sind ebenfalls noch in der Entwicklungsphase und wurden hauptsächlich als Testgeräte für Entwickler ausgegeben. Dabei bleibt unklar inwieweit sich das fertige Produkt in den technischen Spezifikationen und der Leistung von den aktuellen Prototypen unterscheiden wird.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{estimote Beacon}
@@ -24,7 +24,7 @@ Dieses Kit beinhaltet drei verschiedenfarbige Beacons, welche mit einer wiederve
 	\label{estimote-developer-kit}
 \end{figure}
 
-Im inneren des Beacons befindet sich der nRF51822 Bluetooth-Chipsatz von Nordic Semiconductor \cite{nordicchipset}, welcher auf einem 32-bit ARM Prozessor beruht und mit einem 2,4Ghz Bluetooth Low Energy Modul arbeitet. Dabei verfügt der über 256 KB Flash-Speicher für Speicherung der Beacon-Konfiguration \cite{estimotespecs} .
+Im Inneren des Beacons befindet sich der nRF51822 Bluetooth-Chipsatz von Nordic Semiconductor \cite{nordicchipset}, welcher auf einem 32-bit ARM Prozessor beruht und mit einem 2,4Ghz Bluetooth Low Energy Modul arbeitet. Dabei verfügt der über 256 KB Flash-Speicher für Speicherung der Beacon-Konfiguration \cite{estimotespecs} .
 In den estimote Beacons wurde zusätzlich noch ein Temperatursensor und ein Accelerometer integriert, welche sich jedoch softwareseitig noch nicht ansprechen lassen.
 
 Des Weiteren stellt estimote noch ein SDK für Android und iOS zur Verfügung, welches in Fall des iOS-SDK auf der iBeacons-API basiert, jedoch speziell auf die estimote-Beacons abgestimmt ist \cite{estimoteapi} . 
@@ -107,7 +107,7 @@ Die Streuung ähnelt der Reflexion, da auch hier das Signal reflektiert wird. W�
 
 \textbf{Mehrwegeausbreitung}
 
-Durch die obene genannten Effekte ist es möglich, das ein Signal einen Empfänger auf mehreren Wegen erreicht. Dabei ist die Signalstärke stark abhängig von dem zurückgelegtem Weg. Ausserdem unterscheiden sich die Laufzeiten der Signale, da diese ebenfalls vom Weg abhängig sind. Dadurch kann es auch zu Überlagerungen zwischen Signalen kommen, welche zur gleichen Zeit gesendet wurden, jedoch zu unterschiedelichen Zeiten beim Empfänger eintreffen. 
+Durch die oben genannten Effekte ist es möglich, dass ein Signal einen Empfänger auf mehreren Wegen erreicht. Dabei ist die Signalstärke stark abhängig von dem zurückgelegtem Weg. Ausserdem unterscheiden sich die Laufzeiten der Signale, da diese ebenfalls vom Weg abhängig sind. Dadurch kann es auch zu Überlagerungen zwischen Signalen kommen, welche zur gleichen Zeit gesendet wurden, jedoch zu unterschiedlichen Zeiten beim Empfänger eintreffen. 
 Durch diese Phasenverschiebung kann das Signal zusätzlich abgeschwächt werden.
 
 
@@ -120,20 +120,20 @@ Die Messungen wurden dabei sowohl mit dem iPhone 5 als auch mit dem iPhone 4s du
 
 
 Zuerst wurden die Messungen mit den mobilen Beacons, hier die \emph{kontakt.io}-Beacons, durchgeführt.
-Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt, wobei immer freie Sicht zwischen den Beacons und den Empfangsgeräten bestand. Für jede Entfernung wurden 100 Stichproben genommen, jeweils eine pro Sekunde.
+Diese wurden in einem leeren Raum durchgeführt, wobei immer freie Sicht zwischen den Beacons und den Empfangsgeräten bestand. Für jede Entfernung wurden 100 Stichproben genommen, jeweils eine pro Sekunde.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure of signal strnegth
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h!]
 	\centering
-	\begin{minipage}[t]{5cm}
-		\includegraphics[scale=0.2]{avgiphone5}
+	\begin{minipage}[t]{8cm}
+		\includegraphics[scale=0.3]{avgiphone5}
 		\caption{Messung des iPhone 5}
 		\label{avgiphone5-signalstrength}
 	\end{minipage}
 	\hspace{2cm}
-	\begin{minipage}[t]{5cm}
-			\includegraphics[scale=0.2]{avgiphone4s}
+	\begin{minipage}[t]{8cm}
+			\includegraphics[scale=0.3]{avgiphone4s}
 			\caption{Messung des iPhone 4s}
 			\label{avgiphone4s-signalstrength}
 	\end{minipage}
@@ -142,9 +142,9 @@ Diese wurden in einem leeren, nur an den Wänden bestellten, Raum durchgeführt,
 \end{figure}
 
 In Abbildung \ref{avgiphone5-signalstrength} und Abbildung \ref{avgiphone4s-signalstrength} lässt sich dabei sehr gut erkennen, das die Signalstärke, nicht wie eigentlich erwartet stetig abnimmt, sondern relativ stark schwankt. Dies ist darauf zurückzuführen, dass in Innenräumen sowohl Wände, als auch Gegenstände im Raum, das Bluetooth-Signal reflektieren oder blockieren und so die Ergebnisse verfälschen.
-Des Weiteren ist zu erkennen, dass die Ergebnisse zwischen den verschiedenen iPhone-Modellen deutlich voneinander abweichen. Das lässt darauf schließen, dass der verbaute Chipsatz beziehungsweise die verbaute Antenne innerhalb der Gerät die Ergebnisse deutlich beeinflusst und die Werte daher nur schwer übertragbar sind.
+Des Weiteren ist zu erkennen, dass die Ergebnisse zwischen den verschiedenen iPhone-Modellen deutlich voneinander abweichen. Das lässt darauf schließen, dass der verbaute Chipsatz, beziehungsweise die verbaute Antenne innerhalb der Gerät, die Ergebnisse deutlich beeinflusst und die Werte daher nur schwer übertragbar sind.
 
-Ein weiterer wichtiger Punkt ist die Untersuchung der Stabilität des Signal. Dabei wurden die gleichen Daten wie zuvor verwendet, jedoch um die minimalen und maximalen Werte ergänzt. In Abbildung \ref{all-iphone5} lässt sich dabei gut erkennen, das die Ergebnisse eine ähnliche Tendenz haben, aber sich dennoch über einen sehr großen Bereich der Signalstärke verteilen.
+Ein weiterer wichtiger Punkt ist die Untersuchung der Stabilität des Signals. Dabei wurden die gleichen Daten wie zuvor verwendet, jedoch um die minimalen und maximalen Werte ergänzt. In Abbildung \ref{all-iphone5} lässt sich dabei gut erkennen, das die Ergebnisse eine ähnliche Tendenz haben, aber sich dennoch über einen sehr großen Bereich der Signalstärke verteilen.
 
 \begin{figure}[htb!]
 		\centering
@@ -154,7 +154,7 @@ Ein weiterer wichtiger Punkt ist die Untersuchung der Stabilität des Signal. Da
 \end{figure}
 
 
-Zusätzlich wurde untersucht in wie weit sich die Sendeleistung und Signalqualität der batteriebetriebenen Beacon von stationären Beacons unterscheidet.
+Zusätzlich wurde untersucht, inwieweit sich die Sendeleistung und Signalqualität der batteriebetriebenen Beacon von stationären Beacons unterscheidet.
 Dazu wurde der gleiche Messaufbau wie zuvor genutzt, jedoch das \emph{kontakt.io} Beacon durch den Raspberry Pi ausgetauscht. Danach wurden die gleichen Messungen erneut durchgeführt.
 
 \begin{figure}[htb!]
@@ -164,7 +164,7 @@ Dazu wurde der gleiche Messaufbau wie zuvor genutzt, jedoch das \emph{kontakt.io
 		\label{avgiphone5_raspberry}
 \end{figure}
 
-Wie aus Abbildung \ref{avgiphone5_raspberry} zu entnehmen, sind die Ergebnisse im Vergleich zu der Messung der kontakt.io Beacons näher am erwarteten Ergebnis, welches eine konstante Abnahme der Signalstärke sein sollte. Es sind jedoch immernoch einige Ausreißer zu erkennen. Bei der Betrachtung der minimalen und maximalen Signalstärken fällt auch auf, dass die ähnlich stark schwanken, wie schon zuvor bei den kontakt.io Beacons. Die Stabilität des Signal des stationären Beacons ist also genauso schwach beziehungsweise noch schwächer als die des batteriebetriebenen Beacons. Dies wird in Abbildung \ref{alliphone5_raspberry} nocheinmal deutlich.
+Wie aus Abbildung \ref{avgiphone5_raspberry} zu entnehmen, sind die Ergebnisse im Vergleich zu der Messung der kontakt.io Beacons näher am erwarteten Ergebnis, welches eine konstante Abnahme der Signalstärke sein sollte. Es sind jedoch immer noch einige Ausreißer zu erkennen. Bei der Betrachtung der minimalen und maximalen Signalstärken fällt auch auf, dass diese ähnlich stark schwanken, wie schon zuvor bei den kontakt.io Beacons. Die Stabilität des Signals des stationären Beacons ist also genauso schwach beziehungsweise noch schwächer, als die des batteriebetriebenen Beacons. Dies wird in Abbildung \ref{alliphone5_raspberry} noch einmal deutlich.
 
 \begin{figure}[htb!]
 		\centering
@@ -173,14 +173,14 @@ Wie aus Abbildung \ref{avgiphone5_raspberry} zu entnehmen, sind die Ergebnisse i
 	\label{alliphone5_raspberry}
 \end{figure}
 
-Für die weiteren Test und Messungen wurden daher die \emph{kontakt.io} Beacons verwendet, da die beiden zur Verfügung stehenden Beacons sich in Signalstärke und Stabilität nicht zu stark unterscheiden, von den \emph{kontakt.io} Beacons jedoch deutlich mehr Exemplare verfügbar sind und diese variabler im Bezug auf die Positionierung der Beacons sind.
+Für die weiteren Tests und Messungen wurden daher die \emph{kontakt.io} Beacons verwendet, da die beiden zur Verfügung stehenden Beacons sich in Signalstärke und Stabilität nicht zu stark unterscheiden, von den \emph{kontakt.io} Beacons jedoch deutlich mehr Exemplare verfügbar sind und diese variabler im Bezug auf die Positionierung der Beacons sind.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mögliche Störfaktoren}
 \label{sec:dataandmeasurement:interferencefactor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Wie die obigen Messungen zeigen, weichen die realen Ergebnisse stark von den, durch die physikalischen Ausbreitungseigenschaften der elektromagnetischen Wellen, angenommenen Ergebnissen ab. Dies hängt vorallem damit zusammen, dass die Antenne der Beacons nicht gerichtet ist, sondern in alle Richtungen sendet. Dies führt dazu, dass das Signal der Beacons von diversen Flächen im Raum reflektiert und so nicht auf direktem Weg zum Endgerät gelangt. 
+Wie die obigen Messungen zeigen, weichen die realen Ergebnisse stark von den, durch die physikalischen Ausbreitungseigenschaften der elektromagnetischen Wellen, angenommenen Ergebnissen ab. Dies hängt vor allem damit zusammen, dass die Antenne der Beacons nicht gerichtet ist, sondern in alle Richtungen sendet. Dies führt dazu, dass das Signal der Beacons von diversen Flächen im Raum reflektiert und so nicht auf direktem Weg zum Endgerät gelangt. 
 
 Ein weiterer wichtiger Störfaktor ist der Benutzer selbst, da der menschliche Körper größtenteils aus Wasser besteht, welche elektromagnetische Wellen abschirmt. Daher ist zu beobachten, dass die Ausrichtung des Nutzers einen deutlichen Einfluss auf die Signalstärke nimmt. 
 
